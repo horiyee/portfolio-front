@@ -2,14 +2,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require('path');
-// require('dotenv').config();
+require('dotenv').config();
 
 module.exports = {
-  // env: {
-  //   API_BASE_URL: process.env.API_BASE_URL,
-  //   CMS_BASE_URL: process.env.CMS_BASE_URL,
-  //   CMS_KEY: process.env.CMS_KEY,
-  // },
+  env: {
+    GITHUB_OAUTH_ID: process.env.GITHUB_OAUTH_ID,
+    GITHUB_OAUTH_SECRET: process.env.GITHUB_OAUTH_SECRET,
+    // API_BASE_URL: process.env.API_BASE_URL,
+    // CMS_BASE_URL: process.env.CMS_BASE_URL,
+    // CMS_KEY: process.env.CMS_KEY,
+  },
   images: {
     domains: [
       'images.microcms-assets.io',
