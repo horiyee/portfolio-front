@@ -9,8 +9,7 @@
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint",
-    "*.{css,scss}": "stylelint"
+    "*.{js,jsx,ts,tsx}": "eslint"
   },
   "husky": {
     "hooks": {
