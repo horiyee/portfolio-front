@@ -16,6 +16,8 @@ const Root = styled.div`
 const Editor = styled(Textarea)`
   width: 50%;
   min-height: 420px;
+
+  resize: none;
 `;
 
 const Preview = styled(MarkdownPreview)`
