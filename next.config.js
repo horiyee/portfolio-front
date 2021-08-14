@@ -20,7 +20,13 @@ module.exports = {
       'assets.st-note.com',
     ],
   },
-  webpack(config) {
+  webpack(config, { isServer }) {
+    config.experiments = {
+      asyncWebAssembly: true,
+    };
+    config.output.webassemblyModuleFilename =
+      (isServer ? '../' : '') + 'static/wasm/webassembly.wasm';
+
     config.resolve.alias = {
       ...config.resolve.alias,
       src: path.join(__dirname, 'src/'),
