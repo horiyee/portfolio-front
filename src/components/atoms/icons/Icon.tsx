@@ -12,7 +12,6 @@ const Root = styled.span`
   display: inline-block;
   width: 24px;
   height: 24px;
-  fill: ${colors.defaultBlue};
 `;
 
 const Icon: React.VFC<Props> = ({ icon, className }) => {

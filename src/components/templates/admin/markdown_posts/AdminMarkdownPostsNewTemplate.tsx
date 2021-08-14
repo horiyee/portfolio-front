@@ -30,12 +30,9 @@ const TitleInput = styled(Input)`
   width: 100%;
 `;
 
-const StyledClearIcon = styled(Icon)`
-  fill: ${colors.error};
-`;
-
 const CancelButton = styled(BasicButton)`
   color: ${colors.error};
+  fill: ${colors.error};
 `;
 
 const PostButton = styled(BasicButton)``;
@@ -68,11 +65,11 @@ const AdminMarkdownPostsNewTemplate: React.VFC = () => {
       <AdminBottomActionBar>
         <CancelButton
           onClick={() => router.push(paths.admin.markdownPosts.index)}
-          icon={<StyledClearIcon icon={<ClearIcon />} />}
+          icon={<ClearIcon />}
         >
           やめる
         </CancelButton>
-        <PostButton onClick={() => {}} icon={<Icon icon={<SendIcon />} />}>
+        <PostButton onClick={() => {}} icon={<SendIcon />}>
           記事を投稿
         </PostButton>
       </AdminBottomActionBar>

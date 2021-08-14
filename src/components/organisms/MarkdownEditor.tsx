@@ -15,7 +15,7 @@ const Root = styled.div`
 
 const Editor = styled(Textarea)`
   width: 50%;
-  overflow-y: scroll;
+  min-height: 420px;
 `;
 
 const Preview = styled(MarkdownPreview)`

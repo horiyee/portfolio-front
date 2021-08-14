@@ -5,6 +5,9 @@ export const paths = {
       index: '/admin/markdown_posts',
       new: '/admin/markdown_posts/new',
     },
+    users: {
+      index: '/admin/users',
+    },
   },
   index: '/',
   about: '/about',
