@@ -1,6 +1,7 @@
+import { NextPage } from 'next';
 import React from 'react';
 
-const IndexPage: React.VFC = () => {
+const IndexPage: NextPage = () => {
   return <div>Index</div>;
 };
 
