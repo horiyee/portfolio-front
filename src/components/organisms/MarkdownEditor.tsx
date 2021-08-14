@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { colors } from '../../styles/variables';
 import Textarea from '../atoms/Textarea';
 import MarkdownPreview from '../molecules/MarkdownPreview';
 
@@ -15,13 +16,18 @@ const Root = styled.div`
 
 const Editor = styled(Textarea)`
   width: 50%;
-  min-height: 420px;
-
+  height: 420px;
+  overflow-y: scroll;
   resize: none;
+
+  /* min-height: 420px; */
+  /* resize: vertical; */
 `;
 
 const Preview = styled(MarkdownPreview)`
   width: 50%;
+  height: 420px;
+  overflow-y: scroll;
 `;
 
 const MarkdownEditor: React.VFC<Props> = ({ markdown, setMarkdown }) => {

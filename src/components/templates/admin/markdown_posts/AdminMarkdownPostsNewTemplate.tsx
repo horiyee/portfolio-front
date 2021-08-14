@@ -69,7 +69,12 @@ const AdminMarkdownPostsNewTemplate: React.VFC = () => {
         >
           やめる
         </CancelButton>
-        <PostButton onClick={() => {}} icon={<SendIcon />}>
+        <PostButton
+          onClick={() => {
+            console.dir({ title: title, body: body });
+          }}
+          icon={<SendIcon />}
+        >
           記事を投稿
         </PostButton>
       </AdminBottomActionBar>

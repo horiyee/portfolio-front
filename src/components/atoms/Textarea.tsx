@@ -9,7 +9,7 @@ type Props = {
   className?: string;
 };
 const Root = styled.textarea`
-  border: 1px solid ${colors.defaultBlack};
+  border: 1px solid ${colors.borderBlack};
   border-radius: 8px;
 
   padding: 8px;

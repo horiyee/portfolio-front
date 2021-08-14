@@ -36,11 +36,8 @@ const StyledIcon = styled(Icon)`
   height: 36px;
 `;
 
-type LabelProps = {
-  hasIcon: boolean;
-};
-const Label = styled.span<LabelProps>`
-  margin-left: ${props => (props.hasIcon ? '4px' : '0')};
+const Label = styled.span`
+  margin: 0 4px;
 `;
 
 const AdminIndexItem: React.VFC<Props> = ({
@@ -49,12 +46,10 @@ const AdminIndexItem: React.VFC<Props> = ({
   icon,
   className,
 }) => {
-  const hasIcon = Boolean(icon);
-
   return (
     <Root href={href} className={classes(className)}>
       <StyledIcon icon={icon} />
-      <Label hasIcon={hasIcon}>{children}</Label>
+      <Label>{children}</Label>
     </Root>
   );
 };

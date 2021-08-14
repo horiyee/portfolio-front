@@ -5,7 +5,7 @@ import AdminTemplate from '../../common/AdminTemplate';
 const AdminMarkdownPostsIndexTemplate: React.VFC = () => {
   return (
     <AdminTemplate>
-      <AdminPageTitle>マークダウン記事一覧</AdminPageTitle>
+      <AdminPageTitle>マークダウン記事管理</AdminPageTitle>
     </AdminTemplate>
   );
 };

@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Root = styled.input`
-  border: 1px solid ${colors.defaultBlack};
+  border: 1px solid ${colors.borderBlack};
   border-radius: 8px;
 
   padding: 8px;
