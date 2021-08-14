@@ -1,21 +1,8 @@
-import { signIn, signOut, useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 import React from 'react';
 import AdminTemplate from '../../components/templates/common/AdminTemplate';
-import { paths } from '../../config/paths';
 
-const AdminIndexPage: React.VFC = () => {
-  const [session, loading] = useSession();
-
-  const router = useRouter();
-  const routerIsReady = router.isReady;
-
-  if (routerIsReady) {
-    if (loading === false && session === null) {
-      signIn();
-    }
-  }
-
+const AdminIndexPage: NextPage = () => {
   return (
     <AdminTemplate>
       <h1>Admin Page</h1>

@@ -1,5 +1,3 @@
 export const recoilKeys = {
-  atoms: {
-    CURRENT_USER: 'CURRENT_USER',
-  },
+  atoms: {},
 } as const;

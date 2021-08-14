@@ -1,4 +1,6 @@
-import React from 'react';
+import { signIn, useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import AdminHeader from '../../organisms/admin/AdminHeader';
 
@@ -23,6 +25,21 @@ const Main = styled.main`
 `;
 
 const AdminTemplate: React.VFC<Props> = ({ children }) => {
+  const router = useRouter();
+  const { pathname, isReady } = router;
+
+  const [session, loading] = useSession();
+
+  useEffect(() => {
+    if (isReady) {
+      if (pathname.includes('admin')) {
+        if (loading === false && session === null) {
+          signIn();
+        }
+      }
+    }
+  }, [session, loading, pathname, isReady]);
+
   return (
     <Root>
       <AdminHeader />
