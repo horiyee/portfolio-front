@@ -9,7 +9,10 @@ type Props = {
   id: string;
 };
 
-const Root = styled.section``;
+const Root = styled.section`
+  display: inline-block;
+  width: 100%;
+`;
 
 const StyledFirstHeading = styled(FirstHeading)`
   margin-bottom: 32px;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { fontSize } from '../../styles/mixins';
 import { colors, fontFamilies } from '../../styles/variables';
 import { classes } from '../../utils/classes';
+import ResponsiveBreak from './ResponsiveBreak';
 
 type Props = {
   enHeading: string;

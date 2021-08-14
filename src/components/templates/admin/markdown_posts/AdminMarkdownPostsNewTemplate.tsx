@@ -6,7 +6,6 @@ import { colors } from '../../../../styles/variables';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import BasicButton from '../../../atoms/buttons/BasicButton';
 import ClearIcon from '../../../atoms/icons/ClearIcon';
-import Icon from '../../../atoms/icons/Icon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import Input from '../../../atoms/Input';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
