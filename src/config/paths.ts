@@ -1,7 +1,13 @@
 export const paths = {
   admin: {
     index: '/admin',
-    login: '/admin/login',
+    markdownPosts: {
+      index: '/admin/markdown_posts',
+    },
   },
   index: '/',
-};
+  about: '/about',
+  development: '/development',
+  technology: '/technology',
+  blog: '/blog',
+} as const;

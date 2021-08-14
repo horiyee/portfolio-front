@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
+import { classes } from '../../utils/classes';
 
 type Props = {
   children?: React.ReactNode;
@@ -8,17 +8,13 @@ type Props = {
   className?: string;
 };
 
-const Root = styled(Link)``;
-
-const Anchor = styled.a``;
-
 const NextLink: React.VFC<Props> = ({ children, href, className }) => {
   return (
-    <Root href={href}>
-      <Anchor href={href} className={className}>
+    <Link href={href}>
+      <a href={href} className={classes(className)}>
         {children}
-      </Anchor>
-    </Root>
+      </a>
+    </Link>
   );
 };
 
