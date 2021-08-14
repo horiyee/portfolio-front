@@ -58,5 +58,14 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     color: inherit;
     cursor: pointer;
+    font-family: ${fontFamilies.jpFont};
+  }
+
+  input {
+    font-family: ${fontFamilies.jpFont};
+  }
+
+  textarea {
+    font-family: ${fontFamilies.jpFont};
   }
 `;

@@ -6,6 +6,7 @@ import AdminHeader from '../../organisms/admin/AdminHeader';
 
 type Props = {
   children?: React.ReactNode;
+  hasBottomActionBar?: boolean;
 };
 
 const Root = styled.div`
@@ -13,10 +14,14 @@ const Root = styled.div`
   width: 100%;
 `;
 
-const ContentsWrapper = styled.div`
+type ContentsWrapperProps = {
+  hasBottomActionBar?: boolean;
+};
+const ContentsWrapper = styled.div<ContentsWrapperProps>`
   display: inline-block;
   width: 100%;
-  padding-top: 64px;
+  padding: calc(64px + 32px) 32px
+    ${props => (props.hasBottomActionBar ? 'calc(64px + 32px)' : '32px')} 32px;
 `;
 
 const Main = styled.main`
@@ -24,7 +29,7 @@ const Main = styled.main`
   width: 100%;
 `;
 
-const AdminTemplate: React.VFC<Props> = ({ children }) => {
+const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
   const router = useRouter();
   const { pathname, isReady } = router;
 
@@ -44,7 +49,7 @@ const AdminTemplate: React.VFC<Props> = ({ children }) => {
     <Root>
       <AdminHeader />
 
-      <ContentsWrapper>
+      <ContentsWrapper hasBottomActionBar={hasBottomActionBar}>
         <Main>{children}</Main>
       </ContentsWrapper>
     </Root>

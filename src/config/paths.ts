@@ -3,6 +3,7 @@ export const paths = {
     index: '/admin',
     markdownPosts: {
       index: '/admin/markdown_posts',
+      new: '/admin/markdown_posts/new',
     },
   },
   index: '/',
