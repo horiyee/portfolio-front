@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mqSp } from '../../../styles/mixins';
 import { colors } from '../../../styles/variables';
 import { classes } from '../../../utils/classes';
 import Icon from '../icons/Icon';
@@ -16,8 +17,10 @@ const Root = styled(NextLink)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 320px;
+  width: calc(50% - 32px);
+  ${mqSp(`width: 100%;`)};
   height: 96px;
+  ${mqSp(`height: 80px;`)};
 
   color: ${colors.defaultBlue};
   fill: ${colors.defaultBlue};

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../config/paths';
+import { mqSp } from '../../../styles/mixins';
 import AdminIndexItem from '../../atoms/admin/AdminIndexItem';
 import DescriptionIcon from '../../atoms/icons/DescriptionIcon';
 import PersonIcon from '../../atoms/icons/PersonIcon';
@@ -13,7 +14,8 @@ const AdminItems = styled.div`
 `;
 
 const StyledAdminIndexItem = styled(AdminIndexItem)`
-  margin: 0 32px 32px 0;
+  margin: 0 16px 32px 16px;
+  ${mqSp(`margin-bottom: 24px;`)};
 `;
 
 const AdminIndexTemplate: React.VFC = () => {
