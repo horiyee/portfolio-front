@@ -8,7 +8,7 @@ module.exports = {
   env: {
     GITHUB_OAUTH_ID: process.env.GITHUB_OAUTH_ID,
     GITHUB_OAUTH_SECRET: process.env.GITHUB_OAUTH_SECRET,
-    // API_BASE_URL: process.env.API_BASE_URL,
+    API_BASE_URL: process.env.API_BASE_URL,
     // CMS_BASE_URL: process.env.CMS_BASE_URL,
     // CMS_KEY: process.env.CMS_KEY,
   },
