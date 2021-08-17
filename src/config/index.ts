@@ -8,3 +8,11 @@ export const getUrl = (path: string) => {
   }
   return `https://${domain}${path}`;
 };
+
+export const getEndpoint = (path: string) => {
+  return `${envVariables.API_BASE_URL}${path}`;
+};
+
+export const apiRequestHeaders = {
+  'Content-Type': 'application/json',
+};

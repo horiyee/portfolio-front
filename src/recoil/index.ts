@@ -1,3 +1,5 @@
 export const recoilKeys = {
-  atoms: {},
+  atoms: {
+    API_HEALTH: 'API_HEALTH',
+  },
 } as const;
