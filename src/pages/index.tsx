@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import React from 'react';
 import IndexTemplate from '../components/templates/IndexTemplate';
-import { setApiHealth } from '../hooks/apiHealth';
+import { useSetApiHealth } from '../hooks/apiHealth';
 import { ApiHealth } from '../types/apiHealth';
 import { healthCheckApiClient } from '../api/clients/healthCheck';
 
@@ -11,7 +11,7 @@ type Props = {
 
 const IndexPage: NextPage<Props> = ({ apiHealth }) => {
   if (apiHealth) {
-    setApiHealth(apiHealth);
+    useSetApiHealth(apiHealth);
   }
 
   return <IndexTemplate />;
