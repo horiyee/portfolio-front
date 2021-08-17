@@ -17,7 +17,7 @@ const IndexPage: NextPage<Props> = ({ apiHealth }) => {
   return <IndexTemplate />;
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   try {
     const res = await healthCheckApiClient();
     const props: Props = {
