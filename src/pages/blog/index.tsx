@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import React from 'react';
-import { fetchCmsPostsApiClient } from '../api/clients/cmsPosts';
-import BlogIndexTemplate from '../components/templates/BlogIndexTemplate';
-import { useSetCmsPosts } from '../hooks/cmsPosts';
-import { CmsPost } from '../types/cmsPosts';
+import { fetchCmsPostsApiClient } from '../../api/clients/cmsPosts';
+import BlogIndexTemplate from '../../components/templates/blog/BlogIndexTemplate';
+import { useSetCmsPosts } from '../../hooks/cmsPosts';
+import { CmsPost } from '../../types/cmsPosts';
 
 type Props = {
   cmsPosts: CmsPost[];
