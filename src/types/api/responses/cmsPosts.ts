@@ -1,4 +1,4 @@
-import { CmsPost } from '../../cmsPosts';
+import { CmsPost } from '../../cmsPost';
 
 export type FetchCmsPostsApiResponse = {
   contents: CmsPost[];

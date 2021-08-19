@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../config/paths';
 import { fontSize } from '../../styles/mixins';
-import { fontFamilies } from '../../styles/variables';
 import PageNavigation from '../atoms/links/PageNavigation';
-import NextLink from '../atoms/NextLink';
 
 const Root = styled.nav`
   display: flex;

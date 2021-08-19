@@ -3,7 +3,7 @@ import React from 'react';
 import { fetchCmsPostsApiClient } from '../../api/clients/cmsPosts';
 import BlogIndexTemplate from '../../components/templates/blog/BlogIndexTemplate';
 import { useSetCmsPosts } from '../../hooks/cmsPosts';
-import { CmsPost } from '../../types/cmsPosts';
+import { CmsPost } from '../../types/cmsPost';
 
 type Props = {
   cmsPosts: CmsPost[];
