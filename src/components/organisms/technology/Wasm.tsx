@@ -13,25 +13,29 @@ const TechnologyWasm: React.VFC = () => {
   console.log(wasmResults, jsResults);
 
   const calculateWithWasm = () => {
-    const startTime = performance.now();
-    const result = sums(number);
-    const endTime = performance.now();
+    let ms = 0;
+    while (ms === 0) {
+      const startTime = performance.now();
+      sums(number);
+      const endTime = performance.now();
 
-    const ms = endTime - startTime;
-    console.log(result, ms);
+      ms = endTime - startTime;
+    }
     setWasmResult([...wasmResults, ms]);
   };
 
   const calculateWithJs = () => {
-    const startTime = performance.now();
-    let a = 0;
-    for (let i = 0; i < number + 1; i++) {
-      a += i;
-    }
-    const endTime = performance.now();
+    let ms = 0;
+    while (ms === 0) {
+      const startTime = performance.now();
+      let a = 0;
+      for (let i = 0; i < number + 1; i++) {
+        a += i;
+      }
+      const endTime = performance.now();
 
-    const ms = endTime - startTime;
-    console.log(a, ms);
+      ms = endTime - startTime;
+    }
     setJsResult([...jsResults, ms]);
   };
 
