@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { sums } from '../../../../wasm/pkg/wasm_bg.wasm';
 import RoundedColorButton from '../../atoms/buttons/RoundedColorButton';
 import Paragraph from '../../atoms/Paragraph';
