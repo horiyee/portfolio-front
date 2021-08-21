@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { classes } from '../../utils/classes';
 import FirstHeading from '../atoms/FirstHeading';
 
 type Props = {
@@ -7,6 +8,7 @@ type Props = {
   enHeading: string;
   jpHeading: string;
   id: string;
+  className?: string;
 };
 
 const Root = styled.section`
@@ -18,9 +20,15 @@ const StyledFirstHeading = styled(FirstHeading)`
   margin-bottom: 32px;
 `;
 
-const Section: React.VFC<Props> = ({ children, enHeading, jpHeading, id }) => {
+const Section: React.VFC<Props> = ({
+  children,
+  enHeading,
+  jpHeading,
+  id,
+  className,
+}) => {
   return (
-    <Root id={id}>
+    <Root id={id} className={classes(className)}>
       <StyledFirstHeading enHeading={enHeading} jpHeding={jpHeading} />
       {children}
     </Root>
