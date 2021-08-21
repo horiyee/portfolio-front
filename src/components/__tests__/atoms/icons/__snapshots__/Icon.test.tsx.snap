@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/atoms/icons/Icon if the components has svg icon render svg icon as children 1`] = `
+<span
+  className="sc-bdnxRM icjhvk"
+>
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
+    />
+  </svg>
+</span>
+`;
+
+exports[`components/atoms/icons/Icon if the props \`icon\` is null render only myself 1`] = `
+<span
+  className="sc-bdnxRM icjhvk"
+/>
+`;
