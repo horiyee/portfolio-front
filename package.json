@@ -8,6 +8,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "test": "jest",
+    "test:ci": "jest --ci",
     "test:coverage": "jest --collect-coverage"
   },
   "lint-staged": {
