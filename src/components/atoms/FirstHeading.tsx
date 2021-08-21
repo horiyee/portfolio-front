@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { fontSize } from '../../styles/mixins';
+import { fontSize, mqSp } from '../../styles/mixins';
 import { colors, fontFamilies } from '../../styles/variables';
 import { classes } from '../../utils/classes';
 import ResponsiveBreak from './ResponsiveBreak';
@@ -32,7 +32,8 @@ const EnHeading = styled.span`
 `;
 
 const JpHeading = styled.span`
-  margin-left: 48px;
+  margin-left: 12px;
+  ${mqSp(`margin-left: 48px;`)}
 
   ${fontSize(20)};
   font-weight: 300;
