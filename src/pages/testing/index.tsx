@@ -1,18 +1,13 @@
+import { Button, DatePicker } from 'antd';
 import axios from 'axios';
 import { NextPage } from 'next';
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import { getUrl } from '../../config';
 import { envVariables } from '../../config/envVariables';
-import { colors } from '../../styles/variables';
 
 const Root = styled.div`
   display: inline-block;
   width: 100%;
-`;
-
-const Button = styled.button`
-  border: 1px solid ${colors.defaultBlack};
 `;
 
 const TestingPage: NextPage = () => {
@@ -44,7 +39,9 @@ const TestingPage: NextPage = () => {
         Path:
         <input value={path} onChange={e => setPath(e.target.value)} />
       </label>
-      <Button onClick={() => callApiClient()}>Call API Client</Button>
+      <Button type="primary" onClick={() => callApiClient()}>
+        Call API Client
+      </Button>
 
       <br />
       <br />
@@ -53,6 +50,10 @@ const TestingPage: NextPage = () => {
         Result:
         <textarea value={result} onChange={() => {}} />
       </label>
+
+      <br />
+      <br />
+      <DatePicker />
     </Root>
   );
 };
