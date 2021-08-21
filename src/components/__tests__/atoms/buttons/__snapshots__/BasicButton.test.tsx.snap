@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/atoms/buttons/BasicButton if the component has string children render children as it is 1`] = `
+<button
+  className="sc-gtsrHT fswUjs"
+  onClick={[Function]}
+>
+  <span
+    className="sc-dlnjwi lbpwDs"
+  >
+    Button
+  </span>
+</button>
+`;
