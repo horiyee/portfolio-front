@@ -1,4 +1,3 @@
-import { Button, DatePicker } from 'antd';
 import axios from 'axios';
 import { NextPage } from 'next';
 import React, { useCallback, useState } from 'react';
@@ -39,9 +38,7 @@ const TestingPage: NextPage = () => {
         Path:
         <input value={path} onChange={e => setPath(e.target.value)} />
       </label>
-      <Button type="primary" onClick={() => callApiClient()}>
-        Call API Client
-      </Button>
+      <button onClick={() => callApiClient()}>Call API Client</button>
 
       <br />
       <br />
@@ -50,10 +47,6 @@ const TestingPage: NextPage = () => {
         Result:
         <textarea value={result} onChange={() => {}} />
       </label>
-
-      <br />
-      <br />
-      <DatePicker />
     </Root>
   );
 };

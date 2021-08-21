@@ -4,7 +4,6 @@ import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { Provider } from 'next-auth/client';
 import { GlobalStyle } from '../styles/global';
-import 'antd/dist/antd.css';
 
 const App: React.VFC = ({ Component, pageProps }: AppProps) => {
   return (
