@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/atoms/Paragraph if the component has React.ReactNode as children render React.ReactNode as children 1`] = `
+<p
+  className="sc-bdnxRM gVrMcJ"
+>
+  <a
+    href="https://example.com"
+    id="link"
+  >
+    Link
+  </a>
+</p>
+`;
+
+exports[`components/atoms/Paragraph if the component has no children render only myself 1`] = `
+<p
+  className="sc-bdnxRM gVrMcJ"
+/>
+`;
+
+exports[`components/atoms/Paragraph if the component has string children render children as it is 1`] = `
+<p
+  className="sc-bdnxRM gVrMcJ"
+>
+  p
+</p>
+`;

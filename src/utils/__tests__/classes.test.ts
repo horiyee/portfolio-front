@@ -1,4 +1,4 @@
-import { classes } from '../../src/utils/classes';
+import { classes } from '../classes';
 
 describe('utils/classes', () => {
   describe('if all of arguments are string value', () => {
@@ -9,7 +9,7 @@ describe('utils/classes', () => {
 
   describe('if arguments includes logical values', () => {
     it('join only string values', () => {
-      expect(classes('hoge', null, undefined)).toBe('hoge');
+      expect(classes('hoge', null, undefined, 'fuga')).toBe('hoge fuga');
     });
   });
 });
