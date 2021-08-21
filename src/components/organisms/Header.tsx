@@ -18,6 +18,8 @@ const Root = styled.header`
   padding: 16px 32px;
 
   border-bottom: 1px solid ${colors.borderGray};
+
+  background: ${colors.white};
 `;
 
 const IndexLink = styled(NextLink)`

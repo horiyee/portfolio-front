@@ -12,8 +12,7 @@ type Props = {
 };
 
 const Root = styled.h1`
-  display: flex;
-  align-items: center;
+  display: inline-block;
   width: 100%;
 `;
 
@@ -22,7 +21,8 @@ const Decoration = styled.div`
   width: 32px;
   height: 2px;
   background: ${colors.defaultBlue};
-  margin-right: 16px;
+
+  margin: 0 16px 8px 0;
 `;
 
 const EnHeading = styled.span`
@@ -32,7 +32,7 @@ const EnHeading = styled.span`
 `;
 
 const JpHeading = styled.span`
-  margin-left: 12px;
+  margin-left: 48px;
 
   ${fontSize(20)};
   font-weight: 300;
@@ -43,6 +43,7 @@ const FirstHeading: React.VFC<Props> = ({ enHeading, jpHeding, className }) => {
     <Root className={classes(className)}>
       <Decoration />
       <EnHeading>{enHeading}</EnHeading>
+      <ResponsiveBreak sp />
       <JpHeading>{jpHeding}</JpHeading>
     </Root>
   );
