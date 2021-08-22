@@ -32,6 +32,28 @@ const TestingPage: NextPage = () => {
     }
   }, [path]);
 
+  const mockApiClient = async (): Promise<{ hoge: string }> => {
+    // const successCallback = useCallback(async () => {}, []);
+
+    // const rejectCallback = useCallback(async () => {}, []);
+
+    const promise = new Promise<{ hoge: string }>((resolve, reject) => {
+      // resolve({ hoge: 'hoge' });
+      reject('hogehoge');
+    });
+
+    return promise;
+  };
+
+  const onClickMock = useCallback(async () => {
+    try {
+      const res = await mockApiClient();
+      console.log(res);
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
   return (
     <Root>
       <label>
@@ -47,6 +69,8 @@ const TestingPage: NextPage = () => {
         Result:
         <textarea value={result} onChange={() => {}} />
       </label>
+
+      <button onClick={() => onClickMock()}>mock</button>
     </Root>
   );
 };
