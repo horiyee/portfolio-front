@@ -5,4 +5,5 @@ export const envVariables = {
   CMS_KEY: process.env.CMS_KEY,
   GITHUB_OAUTH_ID: process.env.GITHUB_OAUTH_ID,
   GITHUB_OAUTH_SECRET: process.env.GITHUB_OAUTH_SECRET,
+  GITHUB_OAUTH_ALLOW_USER_EMAIL: process.env.GITHUB_OAUTH_ALLOW_USER_EMAIL,
 } as const;
