@@ -43,10 +43,10 @@ const Post: React.VFC<Props> = ({ post }) => {
   return (
     <Root>
       <Thumbnail
-        src={post.thumbnail.url}
+        src={post.thumbnailUrl}
         alt={`${post.title}のサムネイル`}
-        width={post.thumbnail.width}
-        height={post.thumbnail.height}
+        width={1200}
+        height={630}
       />
 
       <InfoWrapper>

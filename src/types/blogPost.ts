@@ -1,10 +1,9 @@
-import { Thumbnail } from './thumbnail';
-
 export type BlogPost = {
   id: string;
   title: string;
-  thumbnail: Thumbnail;
-  body: string;
+  url: string;
+  thumbnailUrl: string;
+  categoryName: string;
   createdAt: string;
   updatedAt: string;
 };

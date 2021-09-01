@@ -5,4 +5,8 @@ export const recoilKeys = {
     QIITA_POSTS: 'QIITA_POSTS',
     ANNOUNCEMENTS: 'ANNOUNCEMENTS',
   },
+  selectors: {
+    BLOG_POSTS: 'BLOG_POSTS',
+    WHATS_NEW: 'WHATS_NEW',
+  },
 } as const;

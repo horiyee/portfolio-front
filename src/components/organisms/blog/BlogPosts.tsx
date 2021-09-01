@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { cmsPostsState } from '../../../recoil/atoms/cmsPosts';
+import { blogPostsState } from '../../../recoil/selectors/blogPosts';
 import Post from '../../molecules/blog/Post';
 
 const Root = styled.div`
@@ -9,16 +9,16 @@ const Root = styled.div`
   width: 100%;
 `;
 
-const CmsPosts: React.VFC = () => {
-  const cmsPosts = useRecoilValue(cmsPostsState);
+const BlogPosts: React.VFC = () => {
+  const blogPosts = useRecoilValue(blogPostsState);
 
   return (
     <Root>
-      {cmsPosts.map((post, index) => (
+      {blogPosts.map((post, index) => (
         <Post post={post} key={index} />
       ))}
     </Root>
   );
 };
 
-export default CmsPosts;
+export default BlogPosts;
