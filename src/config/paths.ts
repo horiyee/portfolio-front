@@ -14,4 +14,5 @@ export const paths = {
   development: '/development',
   technology: '/technology',
   blog: '/blog',
+  notFound: '/404',
 } as const;
