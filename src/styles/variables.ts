@@ -23,3 +23,7 @@ export const breakPoints = {
   pc: 1024,
   sp: 420,
 };
+
+export const zIndexes = {
+  header: 10000,
+};

@@ -4,6 +4,7 @@ import {
   ContentsWrapper,
   SideNavigationWrapper,
 } from '../../../styles/components';
+import { mqPc } from '../../../styles/mixins';
 import Header from '../../organisms/Header';
 import SideNavigation from '../../organisms/SideNavigation';
 
@@ -20,6 +21,7 @@ const Contents = styled.main`
   display: inline-block;
   width: 100%;
   padding: 128px 32px;
+  ${mqPc(`max-width: 700px;`)}
 `;
 
 const BlogTemplate: React.VFC<Props> = ({ children }) => {

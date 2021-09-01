@@ -1,18 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { fontSize, hoverWithTransition } from '../../../styles/mixins';
+import { fontSize, hoverWithTransition, mqPc } from '../../../styles/mixins';
 import type { BlogPost } from '../../../types/blogPost';
 import NextImage from '../../atoms/NextImage';
+import NextLink from '../../atoms/NextLink';
 
 type Props = {
   post: BlogPost;
 };
 
 const Root = styled.article`
+  position: relative;
   display: inline-block;
-  width: 512px;
 
-  margin: 0 32px;
+  ${mqPc(`
+    width: calc(100% - 64px);
+    margin: 32px;
+  `)};
+  width: 100%;
+  margin: 32px 0;
 
   border-radius: 28px;
 
@@ -39,12 +45,22 @@ const Title = styled.h2`
   font-weight: 600;
 `;
 
+const ArticleLink = styled(NextLink)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 28px;
+`;
+
 const Post: React.VFC<Props> = ({ post }) => {
   return (
     <Root>
       <Thumbnail
         src={post.thumbnailUrl}
-        alt={`${post.title}のサムネイル`}
+        alt={`『${post.title}』のサムネイル`}
         width={1200}
         height={630}
       />
@@ -52,6 +68,8 @@ const Post: React.VFC<Props> = ({ post }) => {
       <InfoWrapper>
         <Title>{post.title}</Title>
       </InfoWrapper>
+
+      <ArticleLink href={post.url} />
     </Root>
   );
 };
