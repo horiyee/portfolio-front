@@ -1,9 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { fontSize, hoverWithTransition, mqPc } from '../../../styles/mixins';
+import {
+  fontSize,
+  hoverWithTransition,
+  mqPc,
+  mqSp,
+} from '../../../styles/mixins';
+import { colors, fontFamilies } from '../../../styles/variables';
 import type { BlogPost } from '../../../types/blogPost';
+import ChevronRightIcon from '../../atoms/icons/ChevronRightIcon';
+import Icon from '../../atoms/icons/Icon';
 import NextImage from '../../atoms/NextImage';
 import NextLink from '../../atoms/NextLink';
+import Time from '../../atoms/Time';
 
 type Props = {
   post: BlogPost;
@@ -40,12 +49,67 @@ const InfoWrapper = styled.div`
   padding: 32px;
 `;
 
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  ${mqSp(`
+    flex-direction: column;
+    align-items: flex-start
+  `)}
+`;
+
+const UpdatedAt = styled(Time)`
+  ${fontSize(18)};
+  font-family: ${fontFamilies.enFont};
+
+  margin: 8px 0;
+`;
+
+const CategoryName = styled.span`
+  font-weight: 300;
+
+  padding: 4px 16px;
+
+  border: 1px solid ${colors.borderBlack};
+  border-radius: 24px;
+`;
+
+const Main = styled.main`
+  display: inline-block;
+  width: 100%;
+
+  margin: 24px 0;
+`;
+
 const Title = styled.h2`
   ${fontSize(24)}
   font-weight: 600;
 `;
 
-const ArticleLink = styled(NextLink)`
+const Footer = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
+const Decoration = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+  background: ${colors.defaultBlue};
+
+  fill: ${colors.white};
+`;
+
+const Link = styled(NextLink)`
   position: absolute;
   top: 0;
   left: 0;
@@ -66,10 +130,23 @@ const Post: React.VFC<Props> = ({ post }) => {
       />
 
       <InfoWrapper>
-        <Title>{post.title}</Title>
+        <Header>
+          <UpdatedAt datetime={post.updatedAt} seperateWithPeriod />
+          <CategoryName>{post.categoryName}</CategoryName>
+        </Header>
+
+        <Main>
+          <Title>{post.title}</Title>
+        </Main>
+
+        <Footer>
+          <Decoration>
+            <Icon icon={<ChevronRightIcon />} />
+          </Decoration>
+        </Footer>
       </InfoWrapper>
 
-      <ArticleLink href={post.url} />
+      <Link href={post.url} />
     </Root>
   );
 };
