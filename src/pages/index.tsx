@@ -1,17 +1,35 @@
 import { NextPage } from 'next';
 import React from 'react';
 import IndexTemplate from '../components/templates/IndexTemplate';
-import { useSetApiHealth } from '../hooks/apiHealth';
-import { ApiHealth } from '../types/apiHealth';
-import { healthCheckApiClient } from '../api/clients/healthCheck';
+import { fetchCmsPostsApiClient } from '../api/clients/cmsPosts';
+import { CmsPost } from '../types/cmsPost';
+import { useSetCmsPosts } from '../hooks/cmsPosts';
+import { Announcement } from '../types/announcement';
+import { useSetAnnouncements } from '../hooks/announcements';
+import { fetchQiitaPostsApiClient } from '../api/clients/qiitaPosts';
+import { QiitaPost } from '../types/qiitaPost';
+import { useSetQiitaPosts } from '../hooks/qiitaPosts';
+import { fetchAnnouncementsApiClient } from '../api/clients/announcements';
 
 type Props = {
-  apiHealth: ApiHealth;
+  cmsPosts: CmsPost[];
+  qiitaPosts: QiitaPost[];
+  announcements: Announcement[];
 };
 
-const IndexPage: NextPage<Props> = ({ apiHealth }) => {
-  if (apiHealth) {
-    useSetApiHealth(apiHealth);
+const IndexPage: NextPage<Props> = ({
+  cmsPosts,
+  qiitaPosts,
+  announcements,
+}) => {
+  if (cmsPosts.length !== 0) {
+    useSetCmsPosts(cmsPosts);
+  }
+  if (qiitaPosts.length !== 0) {
+    useSetQiitaPosts(qiitaPosts);
+  }
+  if (announcements.length !== 0) {
+    useSetAnnouncements(announcements);
   }
 
   return <IndexTemplate />;
@@ -19,16 +37,22 @@ const IndexPage: NextPage<Props> = ({ apiHealth }) => {
 
 export const getStaticProps = async () => {
   try {
-    const res = await healthCheckApiClient();
+    const cmsPostsRes = await fetchCmsPostsApiClient();
+    const qiitaPostsRes = await fetchQiitaPostsApiClient();
+    const announcementsRes = await fetchAnnouncementsApiClient();
     const props: Props = {
-      apiHealth: res,
+      cmsPosts: cmsPostsRes.contents,
+      qiitaPosts: qiitaPostsRes.contents,
+      announcements: announcementsRes.contents,
     };
 
     return { props };
   } catch (e) {
     console.error(e);
     const props: Props = {
-      apiHealth: null,
+      cmsPosts: [],
+      qiitaPosts: [],
+      announcements: [],
     };
 
     return { props };

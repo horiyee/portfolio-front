@@ -10,5 +10,5 @@ export const useSetApiHealth = (state: ApiHealth) => {
     if (apiHealth === null) {
       setApiHealth(state);
     }
-  }, [apiHealth, apiHealth]);
+  }, [state]);
 };
