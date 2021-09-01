@@ -1,7 +1,7 @@
 import { MarkdownPost } from '../markdownPost';
 
 export type FetchMarkdownPostsApiResponse = {
-  markdown_posts: MarkdownPost[];
+  markdownPosts: MarkdownPost[];
 };
 
 export type CreateMarkdownPostApiRequest = {

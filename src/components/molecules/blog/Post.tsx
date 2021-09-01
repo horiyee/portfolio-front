@@ -131,7 +131,7 @@ const Post: React.VFC<Props> = ({ post }) => {
 
       <InfoWrapper>
         <Header>
-          <UpdatedAt datetime={post.updatedAt} seperateWithPeriod />
+          <UpdatedAt datetime={post.updatedAt} dateOnly seperateWithPeriod />
           <CategoryName>{post.categoryName}</CategoryName>
         </Header>
 

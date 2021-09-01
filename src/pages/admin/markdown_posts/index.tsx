@@ -12,12 +12,12 @@ const AdminMarkdownPostsIndexPage: NextPage<Props> = ({ markdownPosts }) => {
   return <AdminMarkdownPostsIndexTemplate markdownPosts={markdownPosts} />;
 };
 
-export const getServerSideProps = async context => {
+export const getServerSideProps = async () => {
   try {
     const res = await fetchMarkdownPostsApiClient();
 
     const props: Props = {
-      markdownPosts: res.markdown_posts,
+      markdownPosts: res.markdownPosts,
     };
 
     return { props };
