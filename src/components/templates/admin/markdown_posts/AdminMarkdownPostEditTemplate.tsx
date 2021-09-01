@@ -47,6 +47,7 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
         if (confirm) {
           await updateMarkdownPostApiClient(id, markdownPost);
           alert('更新が完了しました。');
+          router.push(paths.admin.markdownPosts.index);
         }
       } catch (e) {
         console.error(e);
