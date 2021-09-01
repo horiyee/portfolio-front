@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { envVariables } from '../../../config/envVariables';
 import { paths } from '../../../config/paths';
+import LoadingContainer from '../../molecules/LoadingContainer';
 import AdminHeader from '../../organisms/admin/AdminHeader';
 
 type Props = {
@@ -60,7 +61,7 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
       <AdminHeader />
 
       <ContentsWrapper hasBottomActionBar={hasBottomActionBar}>
-        <Main>{children}</Main>
+        <Main>{loading ? <LoadingContainer /> : children}</Main>
       </ContentsWrapper>
     </Root>
   );
