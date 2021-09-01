@@ -20,8 +20,9 @@ const Root = styled.div`
 const Contents = styled.main`
   display: inline-block;
   width: 100%;
+  max-width: 700px;
+
   padding: 128px 32px;
-  ${mqPc(`max-width: 700px;`)}
 `;
 
 const PortfolioTemplate: React.VFC<Props> = ({ children }) => {
