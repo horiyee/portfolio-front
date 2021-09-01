@@ -33,7 +33,7 @@ const AdminMarkdownPostsNewTemplate: React.VFC = () => {
         try {
           const res = await createMarkdownPostApiClient(markdownPost);
           alert('投稿が完了しました。');
-          router.push(`${paths.admin.markdownPosts.index}/${res}/edit`);
+          router.push(`${paths.admin.markdownPosts.index}`);
         } catch {
           alert('投稿に失敗しました。');
         }
