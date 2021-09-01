@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { createMarkdownPostApiClient } from '../../../../api/clients/markdownPosts';
 import { paths } from '../../../../config/paths';
 import { colors } from '../../../../styles/variables';
+import { CreateMarkdownPostApiRequest } from '../../../../types/api/markdownPosts';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import BasicButton from '../../../atoms/buttons/BasicButton';
 import ClearIcon from '../../../atoms/icons/ClearIcon';
@@ -42,6 +44,19 @@ const AdminMarkdownPostsNewTemplate: React.VFC = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
+  const onClickPost = async (markdownPost: CreateMarkdownPostApiRequest) => {
+    const confirm = window.confirm(`記事『${title}』を投稿しますか？`);
+    if (confirm) {
+      try {
+        const res = await createMarkdownPostApiClient(markdownPost);
+        alert('投稿が完了しました。');
+        router.push(`${paths.admin.markdownPosts.index}/${res}/edit`);
+      } catch {
+        alert('投稿に失敗しました。');
+      }
+    }
+  };
+
   return (
     <AdminTemplate hasBottomActionBar>
       <AdminPageTitle>新規マークダウン記事</AdminPageTitle>
@@ -69,9 +84,7 @@ const AdminMarkdownPostsNewTemplate: React.VFC = () => {
           やめる
         </CancelButton>
         <PostButton
-          onClick={() => {
-            console.dir({ title: title, body: body });
-          }}
+          onClick={() => onClickPost({ title: title, body: body })}
           icon={<SendIcon />}
         >
           記事を投稿

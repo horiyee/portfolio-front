@@ -1,7 +1,4 @@
 export const apiPaths = {
-  index: '/',
-  ping: '/ping',
-  healthCheck: '/health_check',
   v1: {
     markdownPosts: '/v1/markdown_posts',
   },
