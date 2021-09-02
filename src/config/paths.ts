@@ -13,6 +13,6 @@ export const paths = {
   about: '/about',
   development: '/development',
   technology: '/technology',
-  blog: '/blog',
+  blog: { index: '/blog', posts: '/blog/posts' },
   notFound: '/404',
 } as const;

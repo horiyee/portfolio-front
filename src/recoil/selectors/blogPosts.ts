@@ -17,7 +17,7 @@ export const blogPostsState = selector<BlogPost[]>({
       const p: BlogPost = {
         id: post.id,
         title: post.title,
-        url: `${paths.blog}/posts/${post.id}`,
+        url: `${paths.blog.posts}/${post.id}`,
         thumbnailUrl: post.thumbnail.url,
         categoryName: post.category.name,
         createdAt: post.createdAt,

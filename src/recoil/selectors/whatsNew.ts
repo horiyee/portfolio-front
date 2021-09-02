@@ -19,7 +19,7 @@ export const whatsNewState = selector<WhatsNew[]>({
       const w: WhatsNew = {
         content: `ブログ記事『${post.title}』を書きました！`,
         categoryName: '記事更新',
-        url: `${paths.blog}/posts/${post.id}`,
+        url: `${paths.blog.posts}/${post.id}`,
         debug: false,
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,

@@ -29,7 +29,7 @@ const SideNavigation: React.VFC = () => {
       <PageNavigation href={paths.about}>About Me</PageNavigation>
       <PageNavigation href={paths.development}>Development</PageNavigation>
       <PageNavigation href={paths.technology}>Technology</PageNavigation>
-      <PageNavigation href={paths.blog}>Blog</PageNavigation>
+      <PageNavigation href={paths.blog.index}>Blog</PageNavigation>
     </Root>
   );
 };

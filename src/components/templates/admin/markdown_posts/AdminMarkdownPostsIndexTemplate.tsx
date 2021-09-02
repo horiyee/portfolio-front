@@ -36,7 +36,6 @@ const TBody = styled.tbody``;
 
 const TableRow = styled.tr`
   height: 64px;
-  ${hover(`background: ${colors.borderGray}`)};
 `;
 
 const TableData = styled.td`

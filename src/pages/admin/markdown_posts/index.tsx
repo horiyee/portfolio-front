@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 import { fetchMarkdownPostsApiClient } from '../../../api/clients/markdownPosts';
 import AdminMarkdownPostsIndexTemplate from '../../../components/templates/admin/markdown_posts/AdminMarkdownPostsIndexTemplate';
@@ -12,7 +12,7 @@ const AdminMarkdownPostsIndexPage: NextPage<Props> = ({ markdownPosts }) => {
   return <AdminMarkdownPostsIndexTemplate markdownPosts={markdownPosts} />;
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await fetchMarkdownPostsApiClient();
 

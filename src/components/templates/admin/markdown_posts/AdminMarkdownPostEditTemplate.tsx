@@ -37,6 +37,11 @@ const UpdateButton = styled(BasicButton)``;
 const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
   const router = useRouter();
 
+  if (markdownPost === null) {
+    router.push(paths.notFound);
+    return null;
+  }
+
   const [title, setTitle] = useState(markdownPost ? markdownPost.title : '');
   const [body, setBody] = useState(markdownPost ? markdownPost.body : '');
 

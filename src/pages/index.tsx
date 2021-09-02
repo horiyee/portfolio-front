@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import React from 'react';
 import IndexTemplate from '../components/templates/IndexTemplate';
 import { fetchCmsPostsApiClient } from '../api/clients/cmsPosts';
@@ -35,7 +35,7 @@ const IndexPage: NextPage<Props> = ({
   return <IndexTemplate />;
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const cmsPostsRes = await fetchCmsPostsApiClient();
     const qiitaPostsRes = await fetchQiitaPostsApiClient();

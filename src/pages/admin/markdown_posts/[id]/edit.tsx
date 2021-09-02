@@ -1,7 +1,11 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 import { fetchMarkdownPostApiClient } from '../../../../api/clients/markdownPosts';
 import AdminMarkdownPostEditTemplate from '../../../../components/templates/admin/markdown_posts/AdminMarkdownPostEditTemplate';
+import {
+  QueryParameterDuplicateError,
+  QueryParameterNaNError,
+} from '../../../../types';
 import { MarkdownPost } from '../../../../types/markdownPost';
 
 type Props = {
@@ -12,13 +16,17 @@ const AdminMarkdownPostEditPage: NextPage<Props> = ({ markdownPost }) => {
   return <AdminMarkdownPostEditTemplate markdownPost={markdownPost} />;
 };
 
-export const getServerSideProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const id = context.query.id;
 
   try {
+    if (typeof id !== `string`) {
+      throw new QueryParameterDuplicateError();
+    }
+
     const markdownPostId = Number(id);
     if (isNaN(markdownPostId)) {
-      throw new Error('invalid path parameter');
+      throw new QueryParameterNaNError();
     }
     const res = await fetchMarkdownPostApiClient(markdownPostId);
 
