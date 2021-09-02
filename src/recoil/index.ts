@@ -3,6 +3,7 @@ export const recoilKeys = {
     CMS_POSTS: 'CMS_POSTS',
     QIITA_POSTS: 'QIITA_POSTS',
     ANNOUNCEMENTS: 'ANNOUNCEMENTS',
+    MARKDOWN_POSTS: 'MARKDOWN_POSTS',
   },
   selectors: {
     BLOG_POSTS: 'BLOG_POSTS',
