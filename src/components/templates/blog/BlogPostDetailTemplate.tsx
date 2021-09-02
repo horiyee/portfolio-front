@@ -2,10 +2,11 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../config/paths';
-import { fontSize } from '../../../styles/mixins';
-import { fontFamilies } from '../../../styles/variables';
+import { fontSize, hoverWithTransition } from '../../../styles/mixins';
+import { colors, fontFamilies } from '../../../styles/variables';
 import { CmsPost } from '../../../types/cmsPost';
 import NextImage from '../../atoms/NextImage';
+import NextLink from '../../atoms/NextLink';
 import Time from '../../atoms/Time';
 import PostDetailBody from '../../molecules/blog/PostDetailBody';
 import BlogTemplate from '../common/BlogTemplate';
@@ -20,8 +21,28 @@ const BlogPostDetailWrapper = styled.article`
 `;
 
 const Navigation = styled.nav`
-  display: inline-block;
+  display: flex;
+  align-items: center;
   width: 100%;
+  padding: 24px 16px;
+`;
+
+const BlogIndexLink = styled(NextLink)`
+  ${hoverWithTransition(`
+    color: ${colors.defaultBlue};
+  `)};
+`;
+
+const NavigationDivider = styled.span`
+  padding: 0 8px;
+`;
+
+const CategoryName = styled.span`
+  font-weight: 300;
+
+  padding: 4px 16px;
+  border-radius: 28px;
+  border: 1px solid ${colors.borderBlack};
 `;
 
 const Thumbnail = styled(NextImage)``;
@@ -31,7 +52,9 @@ const Header = styled.header`
   width: 100%;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  padding: 32px 0;
+`;
 
 const HeaderAsideInfo = styled.aside`
   display: inline-block;
@@ -41,6 +64,10 @@ const HeaderAsideInfo = styled.aside`
 const StyledTime = styled(Time)`
   ${fontSize(18)};
   font-family: ${fontFamilies.enFont};
+`;
+
+const StyledPostDetailBody = styled(PostDetailBody)`
+  padding: 32px 0;
 `;
 
 const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
@@ -55,7 +82,11 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
   return (
     <BlogTemplate>
       <BlogPostDetailWrapper>
-        <Navigation></Navigation>
+        <Navigation>
+          <BlogIndexLink href={paths.blog.index}>ブログ記事</BlogIndexLink>
+          <NavigationDivider>―</NavigationDivider>
+          <CategoryName>{postDetail.category.name}</CategoryName>
+        </Navigation>
 
         <Thumbnail
           src={postDetail.thumbnail.url}
@@ -75,7 +106,7 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
           </HeaderAsideInfo>
         </Header>
 
-        <PostDetailBody postBody={postDetail.body} />
+        <StyledPostDetailBody postBody={postDetail.body} />
       </BlogPostDetailWrapper>
     </BlogTemplate>
   );

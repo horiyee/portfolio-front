@@ -93,7 +93,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
                 <EditLink
                   href={`${paths.admin.markdownPosts.index}/${markdownPost.id}/edit`}
                 >
-                  編集する
+                  編集
                 </EditLink>
               </TableData>
             </TableRow>

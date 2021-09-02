@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
 import React from 'react';
 import {
   fetchCmsPostApiClient,
@@ -14,12 +13,6 @@ type Props = {
   postDetail: CmsPost | null;
 };
 const BlogPostDetailPage: NextPage<Props> = ({ postDetail }) => {
-  const router = useRouter();
-  const { query } = router;
-  const id = query.id;
-
-  console.log(id);
-
   return <BlogPostDetailTemplate postDetail={postDetail} />;
 };
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/variables';
+import { classes } from '../../utils/classes';
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
 };
 
 const Root = styled.div`
@@ -51,6 +53,7 @@ const Root = styled.div`
     background: #2c2a2a;
     line-height: 1.8;
     color: #fff;
+    overflow-x: scroll;
   }
 
   code {
@@ -74,8 +77,8 @@ const Root = styled.div`
   }
 `;
 
-const StyledInnerHTML: React.VFC<Props> = ({ children }) => {
-  return <Root>{children}</Root>;
+const StyledInnerHTML: React.VFC<Props> = ({ children, className }) => {
+  return <Root className={classes(className)}>{children}</Root>;
 };
 
 export default StyledInnerHTML;
