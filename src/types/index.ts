@@ -3,6 +3,11 @@ export type Matrix = {
   y: number;
 };
 
+export type KeyValueData = {
+  key: any;
+  value: any;
+};
+
 export class QueryParameterNaNError extends Error {}
 
 export class QueryParameterDuplicateError extends Error {}
