@@ -11,13 +11,13 @@ import { CmsPost } from '../../types/cmsPost';
 import { MarkdownPost } from '../../types/markdownPost';
 import { QiitaPost } from '../../types/qiitaPost';
 
-type Props = {
+type StaticProps = {
   cmsPosts: CmsPost[];
   qiitaPosts: QiitaPost[];
   markdownPosts: MarkdownPost[] | null;
 };
 
-const BlogIndexPage: NextPage<Props> = ({
+const BlogIndexPage: NextPage<StaticProps> = ({
   cmsPosts,
   qiitaPosts,
   markdownPosts,
@@ -35,13 +35,13 @@ const BlogIndexPage: NextPage<Props> = ({
   return <BlogIndexTemplate />;
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   try {
     const cmsPostsRes = await fetchCmsPostsApiClient();
     const qiitaPostsRes = await fetchQiitaPostsApiClient();
     const markdownPostsRes = await fetchMarkdownPostsApiClient();
 
-    const props: Props = {
+    const props: StaticProps = {
       cmsPosts: cmsPostsRes.contents,
       qiitaPosts: qiitaPostsRes.contents,
       markdownPosts: markdownPostsRes.markdownPosts,
@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return { props };
   } catch (e) {
     console.error(e);
-    const props: Props = {
+    const props: StaticProps = {
       cmsPosts: [],
       qiitaPosts: [],
       markdownPosts: [],

@@ -9,10 +9,11 @@ import { paths } from '../../../config/paths';
 import { QueryParameterDuplicateError } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
 
-type Props = {
+type StaticProps = {
   postDetail: CmsPost | null;
 };
-const BlogPostDetailPage: NextPage<Props> = ({ postDetail }) => {
+
+const BlogPostDetailPage: NextPage<StaticProps> = ({ postDetail }) => {
   return <BlogPostDetailTemplate postDetail={postDetail} />;
 };
 
@@ -28,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 };
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getStaticProps: GetStaticProps<StaticProps> = async context => {
   const id = context.params.id;
 
   try {
@@ -37,7 +38,7 @@ export const getStaticProps: GetStaticProps = async context => {
     }
 
     const res = await fetchCmsPostApiClient(id);
-    const props: Props = {
+    const props: StaticProps = {
       postDetail: res,
     };
 
@@ -45,7 +46,7 @@ export const getStaticProps: GetStaticProps = async context => {
   } catch (e) {
     console.error(e);
 
-    const props: Props = {
+    const props: StaticProps = {
       postDetail: null,
     };
 

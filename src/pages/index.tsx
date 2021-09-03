@@ -11,13 +11,13 @@ import { QiitaPost } from '../types/qiitaPost';
 import { useSetQiitaPosts } from '../hooks/qiitaPosts';
 import { fetchAnnouncementsApiClient } from '../api/clients/announcements';
 
-type Props = {
+type StaticProps = {
   cmsPosts: CmsPost[];
   qiitaPosts: QiitaPost[];
   announcements: Announcement[];
 };
 
-const IndexPage: NextPage<Props> = ({
+const IndexPage: NextPage<StaticProps> = ({
   cmsPosts,
   qiitaPosts,
   announcements,
@@ -35,12 +35,12 @@ const IndexPage: NextPage<Props> = ({
   return <IndexTemplate />;
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   try {
     const cmsPostsRes = await fetchCmsPostsApiClient();
     const qiitaPostsRes = await fetchQiitaPostsApiClient();
     const announcementsRes = await fetchAnnouncementsApiClient();
-    const props: Props = {
+    const props: StaticProps = {
       cmsPosts: cmsPostsRes.contents,
       qiitaPosts: qiitaPostsRes.contents,
       announcements: announcementsRes.contents,
@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return { props };
   } catch (e) {
     console.error(e);
-    const props: Props = {
+    const props: StaticProps = {
       cmsPosts: [],
       qiitaPosts: [],
       announcements: [],

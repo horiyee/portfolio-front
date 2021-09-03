@@ -4,31 +4,34 @@ import { fetchMarkdownPostsApiClient } from '../../../api/clients/markdownPosts'
 import AdminMarkdownPostsIndexTemplate from '../../../components/templates/admin/markdown_posts/AdminMarkdownPostsIndexTemplate';
 import { MarkdownPost } from '../../../types/markdownPost';
 
-type Props = {
+type ServerSideProps = {
   markdownPosts: MarkdownPost[];
 };
 
-const AdminMarkdownPostsIndexPage: NextPage<Props> = ({ markdownPosts }) => {
+const AdminMarkdownPostsIndexPage: NextPage<ServerSideProps> = ({
+  markdownPosts,
+}) => {
   return <AdminMarkdownPostsIndexTemplate markdownPosts={markdownPosts} />;
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const res = await fetchMarkdownPostsApiClient();
+export const getServerSideProps: GetServerSideProps<ServerSideProps> =
+  async () => {
+    try {
+      const res = await fetchMarkdownPostsApiClient();
 
-    const props: Props = {
-      markdownPosts: res.markdownPosts,
-    };
+      const props: ServerSideProps = {
+        markdownPosts: res.markdownPosts,
+      };
 
-    return { props };
-  } catch (e) {
-    console.error(e);
-    const props: Props = {
-      markdownPosts: [],
-    };
+      return { props };
+    } catch (e) {
+      console.error(e);
+      const props: ServerSideProps = {
+        markdownPosts: [],
+      };
 
-    return { props };
-  }
-};
+      return { props };
+    }
+  };
 
 export default AdminMarkdownPostsIndexPage;
