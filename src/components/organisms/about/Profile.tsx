@@ -1,5 +1,4 @@
 import React from 'react';
-import NextImage from '../../atoms/NextImage';
 import StaticImage from '../../atoms/StaticImage';
 import Section from '../../molecules/Section';
 import childhoodImage from '../../../../public/images/childhood.jpg';
