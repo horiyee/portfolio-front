@@ -5,9 +5,9 @@ import { paths } from '../../../../config/paths';
 import { hover } from '../../../../styles/mixins';
 import { colors } from '../../../../styles/variables';
 import { MarkdownPost } from '../../../../types/markdownPost';
+import AdminBackButton from '../../../atoms/admin/AdminBackButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import BasicButton from '../../../atoms/buttons/BasicButton';
-import ArrowBackIcon from '../../../atoms/icons/ArrowBackIcon';
 import CreateIcon from '../../../atoms/icons/CreateIcon';
 import NextLink from '../../../atoms/NextLink';
 import Time from '../../../atoms/Time';
@@ -47,8 +47,6 @@ const EditLink = styled(NextLink)`
   opacity: 0.9;
   ${hover(`opacity: 1;`)};
 `;
-
-const BackButton = styled(BasicButton)``;
 
 const CreateButton = styled(BasicButton)``;
 
@@ -104,12 +102,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
       ) : null}
 
       <AdminBottomActionBar>
-        <BackButton
-          onClick={() => router.push(paths.admin.index)}
-          icon={<ArrowBackIcon />}
-        >
-          戻る
-        </BackButton>
+        <AdminBackButton pathToBack={paths.admin.index}>戻る</AdminBackButton>
         <CreateButton
           onClick={() => router.push(paths.admin.markdownPosts.new)}
           icon={<CreateIcon />}

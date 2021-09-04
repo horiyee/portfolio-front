@@ -5,10 +5,10 @@ import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminTemplate from '../../common/AdminTemplate';
 
-const AdminUsersIndexTemplate: React.VFC = () => {
+const AdminBookmarksIndexTemplate: React.VFC = () => {
   return (
     <AdminTemplate hasBottomActionBar>
-      <AdminPageTitle>Adminユーザー管理</AdminPageTitle>
+      <AdminPageTitle>ブックマーク管理</AdminPageTitle>
 
       <AdminBottomActionBar>
         <AdminBackButton pathToBack={paths.admin.index}>戻る</AdminBackButton>
@@ -17,4 +17,4 @@ const AdminUsersIndexTemplate: React.VFC = () => {
   );
 };
 
-export default AdminUsersIndexTemplate;
+export default AdminBookmarksIndexTemplate;

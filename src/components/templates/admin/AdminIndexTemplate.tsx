@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { paths } from '../../../config/paths';
 import { mqSp } from '../../../styles/mixins';
 import AdminIndexItem from '../../atoms/admin/AdminIndexItem';
+import BookmarksIcon from '../../atoms/icons/BookmarksIcon';
 import DescriptionIcon from '../../atoms/icons/DescriptionIcon';
 import PersonIcon from '../../atoms/icons/PersonIcon';
 import AdminTemplate from '../common/AdminTemplate';
@@ -33,6 +34,12 @@ const AdminIndexTemplate: React.VFC = () => {
           href={paths.admin.users.index}
         >
           Adminユーザー管理
+        </StyledAdminIndexItem>
+        <StyledAdminIndexItem
+          icon={<BookmarksIcon />}
+          href={paths.admin.bookmarks.index}
+        >
+          ブックマーク管理
         </StyledAdminIndexItem>
       </AdminItems>
     </AdminTemplate>

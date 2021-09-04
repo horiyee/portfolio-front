@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import React from 'react';
-import AdminMarkdownPostsNewTemplate from '../../../components/templates/admin/markdown_posts/AdminMarkdownPostsNewTemplate';
+import AdminMarkdownPostNewTemplate from '../../../components/templates/admin/markdown_posts/AdminMarkdownPostNewTemplate';
 
-const AdminMarkdownPostsNewPage: NextPage = () => {
-  return <AdminMarkdownPostsNewTemplate />;
+const AdminMarkdownPostNewPage: NextPage = () => {
+  return <AdminMarkdownPostNewTemplate />;
 };
 
-export default AdminMarkdownPostsNewPage;
+export default AdminMarkdownPostNewPage;

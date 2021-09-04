@@ -3,24 +3,18 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { createMarkdownPostApiClient } from '../../../../api/clients/markdownPosts';
 import { paths } from '../../../../config/paths';
-import { colors } from '../../../../styles/variables';
 import { CreateMarkdownPostApiRequest } from '../../../../types/api/markdownPosts';
+import AdminCancelButton from '../../../atoms/admin/AdminCancelButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import BasicButton from '../../../atoms/buttons/BasicButton';
-import ClearIcon from '../../../atoms/icons/ClearIcon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminMarkdownPostEditor from '../../../organisms/admin/AdminMarkdownPostEditor';
 import AdminTemplate from '../../common/AdminTemplate';
 
-const CancelButton = styled(BasicButton)`
-  color: ${colors.error};
-  fill: ${colors.error};
-`;
-
 const PostButton = styled(BasicButton)``;
 
-const AdminMarkdownPostsNewTemplate: React.VFC = () => {
+const AdminMarkdownPostNewTemplate: React.VFC = () => {
   const router = useRouter();
 
   const [title, setTitle] = useState('');
@@ -54,12 +48,9 @@ const AdminMarkdownPostsNewTemplate: React.VFC = () => {
       />
 
       <AdminBottomActionBar>
-        <CancelButton
-          onClick={() => router.push(paths.admin.markdownPosts.index)}
-          icon={<ClearIcon />}
-        >
+        <AdminCancelButton pathToBack={paths.admin.markdownPosts.index}>
           やめる
-        </CancelButton>
+        </AdminCancelButton>
         <PostButton
           onClick={() => onClickPost({ title: title, body: body })}
           icon={<SendIcon />}
@@ -71,4 +62,4 @@ const AdminMarkdownPostsNewTemplate: React.VFC = () => {
   );
 };
 
-export default AdminMarkdownPostsNewTemplate;
+export default AdminMarkdownPostNewTemplate;

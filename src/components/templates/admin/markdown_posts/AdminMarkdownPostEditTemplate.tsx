@@ -9,9 +9,9 @@ import { paths } from '../../../../config/paths';
 import { colors } from '../../../../styles/variables';
 import { CreateMarkdownPostApiRequest } from '../../../../types/api/markdownPosts';
 import { MarkdownPost } from '../../../../types/markdownPost';
+import AdminCancelButton from '../../../atoms/admin/AdminCancelButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import BasicButton from '../../../atoms/buttons/BasicButton';
-import ClearIcon from '../../../atoms/icons/ClearIcon';
 import DeleteIcon from '../../../atoms/icons/DeleteIcon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
@@ -21,11 +21,6 @@ import AdminTemplate from '../../common/AdminTemplate';
 type Props = {
   markdownPost: MarkdownPost | null;
 };
-
-const CancelButton = styled(BasicButton)`
-  color: ${colors.error};
-  fill: ${colors.error};
-`;
 
 const DeleteButton = styled(BasicButton)`
   color: ${colors.error};
@@ -88,12 +83,9 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
       />
 
       <AdminBottomActionBar>
-        <CancelButton
-          onClick={() => router.push(paths.admin.markdownPosts.index)}
-          icon={<ClearIcon />}
-        >
+        <AdminCancelButton pathToBack={paths.admin.markdownPosts.index}>
           やめる
-        </CancelButton>
+        </AdminCancelButton>
         <DeleteButton
           onClick={() => onClickDelete(markdownPost.id)}
           icon={<DeleteIcon />}
