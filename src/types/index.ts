@@ -8,6 +8,12 @@ export type KeyValueData = {
   value: any;
 };
 
+export type AlbumImage = {
+  src: StaticImageData;
+  alt: string;
+  link?: string;
+};
+
 export class QueryParameterNaNError extends Error {}
 
 export class QueryParameterDuplicateError extends Error {}

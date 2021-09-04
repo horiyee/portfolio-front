@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { fontSize, mqSp } from './mixins';
+import { fontSize } from './mixins';
 import { colors, fontFamilies } from './variables';
 
 export const GlobalStyle = createGlobalStyle`
@@ -41,8 +41,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    font-weight: 300;
-    ${mqSp(`font-weight: 400;`)}
+    font-weight: 400;
     ${fontSize(16)}
   }
 

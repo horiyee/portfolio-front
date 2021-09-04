@@ -3,7 +3,9 @@ import gitHubLogoImage from '../../public/icons/github-icon.png';
 import noteLogoImage from '../../public/icons/note-icon.png';
 import qiitaLogoImage from '../../public/icons/qiita-icon.png';
 import twitterLogoImage from '../../public/icons/twitter-icon.svg';
-import { KeyValueData } from '../types';
+import fujitsuPcImage from '../../public/images/fujitsu-pc.jpg';
+import sataHddImage from '../../public/images/sata-hdd.jpg';
+import { AlbumImage, KeyValueData } from '../types';
 import { schoolGrade } from '.';
 
 type Sns = {
@@ -63,4 +65,9 @@ export const profileListItems: KeyValueData[] = [
     key: '学年',
     value: `大学${schoolGrade}年（23卒）`,
   },
+];
+
+export const juniorHighAlbumImages: AlbumImage[] = [
+  { src: fujitsuPcImage, alt: '初めてのPC分解' },
+  { src: sataHddImage, alt: '初めてのSerial ATA ハードディスク' },
 ];

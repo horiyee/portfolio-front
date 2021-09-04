@@ -8,6 +8,8 @@ import SecondHeading from '../../atoms/SecondHeading';
 import Section from '../../molecules/Section';
 
 const CareerList = styled.ul`
+  display: inline-block;
+  width: 100%;
   list-style-type: none;
 `;
 
@@ -145,7 +147,7 @@ const AboutCareer: React.VFC = () => {
 
             <Description>
               詳しくは
-              <Link href={`${paths.about}#career`}>ブログ記事</Link>
+              <Link href={`${paths.blog.posts}/lsk8k8gpz`}>ブログ記事</Link>
               を参照。
             </Description>
           </InformationWrapper>

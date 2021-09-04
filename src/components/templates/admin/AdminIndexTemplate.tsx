@@ -5,6 +5,7 @@ import { mqSp } from '../../../styles/mixins';
 import AdminIndexItem from '../../atoms/admin/AdminIndexItem';
 import BookmarksIcon from '../../atoms/icons/BookmarksIcon';
 import DescriptionIcon from '../../atoms/icons/DescriptionIcon';
+import LinkIcon from '../../atoms/icons/LinkIcon';
 import PersonIcon from '../../atoms/icons/PersonIcon';
 import AdminTemplate from '../common/AdminTemplate';
 
@@ -29,17 +30,20 @@ const AdminIndexTemplate: React.VFC = () => {
         >
           マークダウン記事管理
         </StyledAdminIndexItem>
-        <StyledAdminIndexItem
-          icon={<PersonIcon />}
-          href={paths.admin.users.index}
-        >
-          Adminユーザー管理
+        <StyledAdminIndexItem icon={<LinkIcon />} href={'/'}>
+          外部記事管理
         </StyledAdminIndexItem>
         <StyledAdminIndexItem
           icon={<BookmarksIcon />}
           href={paths.admin.bookmarks.index}
         >
           ブックマーク管理
+        </StyledAdminIndexItem>
+        <StyledAdminIndexItem
+          icon={<PersonIcon />}
+          href={paths.admin.users.index}
+        >
+          Adminユーザー管理
         </StyledAdminIndexItem>
       </AdminItems>
     </AdminTemplate>
