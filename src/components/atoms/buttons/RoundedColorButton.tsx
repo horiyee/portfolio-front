@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { hover, mqSp } from '../../../styles/mixins';
 import { colors } from '../../../styles/variables';
 import { classes } from '../../../utils/classes';
 import Icon from '../icons/Icon';
@@ -9,6 +10,7 @@ type Props = {
   onClick: (arg: any) => void;
   icon?: React.ReactNode;
   className?: string;
+  disabled?: boolean;
 };
 
 const Root = styled.button`
@@ -19,13 +21,17 @@ const Root = styled.button`
 
   padding: 8px 16px;
 
-  background: ${colors.defaultBlue};
+  background: ${props =>
+    props.disabled ? colors.disabled : colors.defaultBlue};
   color: ${colors.white};
   fill: ${colors.white};
   opacity: 0.9;
-  &:hover {
-    opacity: 1;
-  }
+  ${hover(`opacity: 1;`)}
+
+  ${mqSp(`
+    width: 100%;
+    justify-content: center;
+  `)};
 `;
 
 type LabelProps = {
@@ -40,11 +46,16 @@ const RoundedColorButton: React.VFC<Props> = ({
   onClick,
   icon,
   className,
+  disabled,
 }) => {
   const hasIcon = Boolean(icon);
 
   return (
-    <Root className={classes(className)} onClick={arg => onClick(arg)}>
+    <Root
+      className={classes(className)}
+      onClick={arg => onClick(arg)}
+      disabled={disabled}
+    >
       {icon ? <Icon icon={icon} /> : null}
       <Label hasIcon={hasIcon}>{children}</Label>
     </Root>

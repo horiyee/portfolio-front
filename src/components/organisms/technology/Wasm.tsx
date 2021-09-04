@@ -1,68 +1,131 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { sums } from '../../../../wasm/pkg/wasm_bg.wasm';
+import { mqSp } from '../../../styles/mixins';
 import RoundedColorButton from '../../atoms/buttons/RoundedColorButton';
 import Paragraph from '../../atoms/Paragraph';
+import ResponsiveBreak from '../../atoms/ResponsiveBreak';
+import SecondHeading from '../../atoms/SecondHeading';
+import LabeledCheckBox from '../../molecules/LabeledCheckBox';
 import Section from '../../molecules/Section';
 
-const TechnologyWasm: React.VFC = () => {
-  const [wasmResults, setWasmResult] = useState<number[]>([]);
-  const [jsResults, setJsResult] = useState<number[]>([]);
+const MainContentsWrapper = styled.div`
+  display: inline-block;
+  width: 100%;
+  padding: 32px 0;
+`;
 
+const MainContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ${mqSp(`
+    flex-direction: column;
+    align-items: flex-start;
+  `)}
+
+  width: 100%;
+  padding: 8px 0;
+`;
+
+const TechnologyWasm: React.VFC = () => {
+  const [wasmResult, setWasmResult] = useState<number | null>(null);
+  const [jsResult, setJsResult] = useState<number | null>(null);
+
+  const [wasmCalculated, setWasmCalculated] = useState(false);
+  const [jsCalculated, setJsCalculated] = useState(false);
+
+  const [outputLogs, setOutputLogs] = useState(false);
+
+  const trial = 10000;
   const number = 10 ** 4;
 
-  console.log(wasmResults, jsResults);
+  useEffect(() => {
+    if (wasmResult) {
+      console.log(`wasm: ${wasmResult}ms`);
+    }
+  }, [wasmResult]);
+
+  useEffect(() => {
+    if (jsResult) {
+      console.log(`js: ${jsResult}ms`);
+    }
+  }, [jsResult]);
 
   const calculateWithWasm = () => {
-    let ms = 0;
-    while (ms === 0) {
-      const startTime = performance.now();
-      sums(number);
-      const endTime = performance.now();
+    setWasmCalculated(true);
 
-      ms = endTime - startTime;
+    const startTime = performance.now();
+    for (let i = 0; i < trial; i++) {
+      const a = sums(number);
+      if (outputLogs) {
+        console.log(a);
+      }
     }
-    setWasmResult([...wasmResults, ms]);
+    const endTime = performance.now();
+
+    const result = endTime - startTime;
+    setWasmResult(result);
   };
 
   const calculateWithJs = () => {
-    let ms = 0;
-    while (ms === 0) {
-      const startTime = performance.now();
+    setJsCalculated(true);
+
+    const startTime = performance.now();
+    for (let i = 0; i < trial; i++) {
       let a = 0;
-      for (let i = 0; i < number + 1; i++) {
+      for (let i = 1; i < number + 1; i++) {
         a += i;
       }
-      const endTime = performance.now();
-
-      ms = endTime - startTime;
+      if (outputLogs) {
+        console.log(a);
+      }
     }
-    setJsResult([...jsResults, ms]);
+    const endTime = performance.now();
+
+    const result = endTime - startTime;
+    setJsResult(result);
   };
-
-  const getAverage = useCallback((numbers: number[]) => {
-    if (numbers.length === 0) {
-      return 0;
-    }
-
-    let a = 0;
-    numbers.forEach(n => {
-      a += n;
-    });
-
-    return a / numbers.length;
-  }, []);
 
   return (
     <Section enHeading="WebAssembly" jpHeading="Wasmでの高速処理" id="wasm">
-      <Paragraph>1から10000までの累積和をfor文で求める</Paragraph>
-      <RoundedColorButton onClick={() => calculateWithWasm()}>
-        Wasmで計算
-      </RoundedColorButton>
-      <p>{getAverage(wasmResults)}ms</p>
-      <RoundedColorButton onClick={() => calculateWithJs()}>
-        JavaScriptで計算
-      </RoundedColorButton>
-      <p>{getAverage(jsResults)}ms</p>
+      <SecondHeading>
+        1から10000までの累積和を
+        <ResponsiveBreak sp />
+        for文で10000回求める
+      </SecondHeading>
+
+      <MainContentsWrapper>
+        <MainContent>
+          <RoundedColorButton
+            onClick={() => calculateWithWasm()}
+            disabled={wasmCalculated}
+          >
+            Wasmで計算
+          </RoundedColorButton>
+          <Paragraph>
+            実行時間：{wasmResult ? `${wasmResult}ms` : '未計測'}
+          </Paragraph>
+        </MainContent>
+        <MainContent>
+          <RoundedColorButton
+            onClick={() => calculateWithJs()}
+            disabled={jsCalculated}
+          >
+            JavaScriptで計算
+          </RoundedColorButton>
+          <Paragraph>
+            実行時間：{jsResult ? `${jsResult}ms` : '未計測'}
+          </Paragraph>
+        </MainContent>
+      </MainContentsWrapper>
+
+      <LabeledCheckBox
+        checked={outputLogs}
+        setChecked={setOutputLogs}
+        label="計算結果を毎回console.log出力する（かなり高負荷になります）"
+      />
     </Section>
   );
 };
