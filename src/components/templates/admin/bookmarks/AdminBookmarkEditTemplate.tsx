@@ -7,6 +7,7 @@ import { Bookmark } from '../../../../types/bookmark';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import ClearIcon from '../../../atoms/icons/ClearIcon';
+import DeleteIcon from '../../../atoms/icons/DeleteIcon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminLabeledInput from '../../../molecules/admin/AdminLabeledInput';
@@ -46,16 +47,23 @@ const AdminBookmarkEditTemplate: React.VFC<Props> = ({ bookmark }) => {
           やめる
         </AdminBottomActionButton>
         <AdminBottomActionButton
+          color="red"
+          icon={<DeleteIcon />}
+          onClick={() => bookmarkAdminApiClients.deleteBookmark(bookmark.id)}
+        >
+          削除
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
           icon={<SendIcon />}
           onClick={() =>
             bookmarkAdminApiClients.updateBookmark(
               bookmark.id,
-              bookmark.url,
-              bookmark.description,
+              url,
+              description,
             )
           }
         >
-          ブックマークを更新
+          更新
         </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>

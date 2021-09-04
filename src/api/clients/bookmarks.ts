@@ -41,3 +41,7 @@ export const updateBookmarkApiClient = async (
 ) => {
   await axios.put(getApiEndpoint(`${apiPaths.v1.bookmarks}/${id}`), bookmark);
 };
+
+export const deleteBookmarkApiClient = async (id: number) => {
+  await axios.delete(getApiEndpoint(`${apiPaths.v1.bookmarks}/${id}`));
+};

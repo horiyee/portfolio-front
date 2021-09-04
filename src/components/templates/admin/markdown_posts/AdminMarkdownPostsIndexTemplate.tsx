@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
+import { useBookmarkAdminApiClients } from '../../../../hooks/bookmarks';
+import { useMarkdownPostAdminApiClients } from '../../../../hooks/markdownPosts';
 import {
   AdminTable,
   AdminTableData,
@@ -11,7 +13,7 @@ import {
   AdminTHead,
 } from '../../../../styles/components';
 import { hover } from '../../../../styles/mixins';
-import { colors } from '../../../../styles/variables';
+import { colors, underlinedBlueLinkStyle } from '../../../../styles/variables';
 import { MarkdownPost } from '../../../../types/markdownPost';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
@@ -27,15 +29,19 @@ type Props = {
 };
 
 const EditLink = styled(NextLink)`
-  color: ${colors.defaultBlue};
-  opacity: 0.9;
-  ${hover(`opacity: 1;`)};
+  ${underlinedBlueLinkStyle};
+`;
+
+const DeleteButton = styled.button`
+  margin-left: 8px;
+  ${underlinedBlueLinkStyle};
 `;
 
 const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
   markdownPosts,
 }) => {
   const router = useRouter();
+  const markdownPostAdminApiClients = useMarkdownPostAdminApiClients();
 
   return (
     <AdminTemplate hasBottomActionBar>
@@ -76,6 +82,15 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
                   >
                     編集
                   </EditLink>
+                  <DeleteButton
+                    onClick={() =>
+                      markdownPostAdminApiClients.deleteMarkdownPost(
+                        markdownPost.id,
+                      )
+                    }
+                  >
+                    削除
+                  </DeleteButton>
                 </AdminTableData>
               </AdminTableRow>
             ))}

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
+import { useBookmarkAdminApiClients } from '../../../../hooks/bookmarks';
 import {
   AdminTable,
   AdminTableData,
@@ -10,7 +11,7 @@ import {
   AdminTBody,
   AdminTHead,
 } from '../../../../styles/components';
-import { colors } from '../../../../styles/variables';
+import { colors, underlinedBlueLinkStyle } from '../../../../styles/variables';
 import { Bookmark } from '../../../../types/bookmark';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
@@ -26,12 +27,17 @@ type Props = {
 };
 
 const Link = styled(NextLink)`
-  color: ${colors.defaultBlue};
-  text-decoration: underline;
+  ${underlinedBlueLinkStyle};
+`;
+
+const Button = styled.button`
+  margin-left: 8px;
+  ${underlinedBlueLinkStyle};
 `;
 
 const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
   const router = useRouter();
+  const bookmarkAdminApiClients = useBookmarkAdminApiClients();
 
   return (
     <AdminTemplate hasBottomActionBar>
@@ -55,7 +61,9 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
               <AdminTableRow key={index}>
                 <AdminTableData>{bookmark.id}</AdminTableData>
                 <AdminTableData>
-                  <Link href={bookmark.url}>開く（新規タブ）</Link>
+                  <Link href={bookmark.url}>
+                    開く{bookmark.url.includes('http') ? '（新規タブ）' : null}
+                  </Link>
                 </AdminTableData>
                 <AdminTableData>{bookmark.description}</AdminTableData>
                 <AdminTableData>
@@ -70,6 +78,13 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
                   >
                     編集
                   </Link>
+                  <Button
+                    onClick={() =>
+                      bookmarkAdminApiClients.deleteBookmark(bookmark.id)
+                    }
+                  >
+                    削除
+                  </Button>
                 </AdminTableData>
               </AdminTableRow>
             ))}

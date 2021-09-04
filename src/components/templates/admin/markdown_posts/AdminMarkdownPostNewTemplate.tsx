@@ -41,7 +41,7 @@ const AdminMarkdownPostNewTemplate: React.VFC = () => {
           }
           icon={<SendIcon />}
         >
-          記事を投稿
+          投稿
         </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>

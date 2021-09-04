@@ -27,3 +27,9 @@ export const breakPoints = {
 export const zIndexes = {
   header: 10000,
 };
+
+// TODO: try apply hover()
+export const underlinedBlueLinkStyle = `
+  color: ${colors.defaultBlue};
+  text-decoration: underline;
+`;

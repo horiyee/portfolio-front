@@ -44,7 +44,7 @@ const AdminBookmarkNewTemplate: React.VFC = () => {
           icon={<AddIcon />}
           onClick={() => bookmarkAdminApiClients.postBookmark(url, description)}
         >
-          ブックマークを追加
+          登録
         </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>

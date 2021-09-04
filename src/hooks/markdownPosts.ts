@@ -30,7 +30,13 @@ export const useMarkdownPostAdminApiClients = () => {
   const router = useRouter();
 
   const postMarkdownPost = useCallback(async (title: string, body: string) => {
+    if (title === '') {
+      alert('タイトルを入力してください。');
+      return;
+    }
+
     const confirm = window.confirm(`記事を投稿しますか？`);
+
     if (confirm) {
       const markdownPost: CreateMarkdownPostApiRequest = {
         title,
@@ -49,6 +55,11 @@ export const useMarkdownPostAdminApiClients = () => {
 
   const updateMarkdownPost = useCallback(
     async (id: number, title: string, body: string) => {
+      if (title === '') {
+        alert('タイトルを入力してください。');
+        return;
+      }
+
       const confirm = window.confirm(`記事を更新しますか？`);
 
       if (confirm) {
@@ -72,6 +83,7 @@ export const useMarkdownPostAdminApiClients = () => {
 
   const deleteMarkdownPost = useCallback(async (id: number) => {
     const confirm = window.confirm('記事を削除しますか？');
+
     if (confirm) {
       try {
         await deleteMarkdownPostApiClient(id);
@@ -79,7 +91,7 @@ export const useMarkdownPostAdminApiClients = () => {
         router.push(paths.admin.markdownPosts.index);
       } catch (e) {
         console.error(e);
-        alert('記事の削除に失敗しました。');
+        alert('削除に失敗しました。');
       }
     }
   }, []);

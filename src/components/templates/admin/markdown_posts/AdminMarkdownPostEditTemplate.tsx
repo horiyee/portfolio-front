@@ -48,7 +48,7 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
           }
           icon={<DeleteIcon />}
         >
-          記事を削除
+          削除
         </AdminBottomActionButton>
         <AdminBottomActionButton
           onClick={() =>
@@ -60,7 +60,7 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
           }
           icon={<SendIcon />}
         >
-          記事を更新
+          更新
         </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>

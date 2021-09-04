@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../config/paths';
 import { fontSize } from '../../../styles/mixins';
-import { colors } from '../../../styles/variables';
+import { colors, underlinedBlueLinkStyle } from '../../../styles/variables';
 import NextLink from '../../atoms/NextLink';
 import SecondHeading from '../../atoms/SecondHeading';
 import Section from '../../molecules/Section';
@@ -45,8 +45,7 @@ const Description = styled.p`
 `;
 
 const Link = styled(NextLink)`
-  text-decoration: underline;
-  color: ${colors.defaultBlue};
+  ${underlinedBlueLinkStyle};
 `;
 
 const AboutCareer: React.VFC = () => {

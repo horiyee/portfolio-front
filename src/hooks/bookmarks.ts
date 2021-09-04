@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import {
   createBookmarkApiClient,
+  deleteBookmarkApiClient,
   updateBookmarkApiClient,
 } from '../api/clients/bookmarks';
 import { paths } from '../config/paths';
@@ -66,8 +67,24 @@ export const useBookmarkAdminApiClients = () => {
     [],
   );
 
+  const deleteBookmark = useCallback(async (id: number) => {
+    const confirm = window.confirm('ブックマークを削除しますか？');
+
+    if (confirm) {
+      try {
+        await deleteBookmarkApiClient(id);
+        alert('ブックマークを削除しました。');
+        router.push(paths.admin.bookmarks.index);
+      } catch (e) {
+        console.error(e);
+        alert('削除に失敗しました。');
+      }
+    }
+  }, []);
+
   return {
     postBookmark,
     updateBookmark,
+    deleteBookmark,
   };
 };

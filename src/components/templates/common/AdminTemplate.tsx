@@ -38,6 +38,8 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
 
   const [session, loading] = useSession();
 
+  console.log(loading, session);
+
   useEffect(() => {
     if (isReady) {
       if (pathname.includes('admin')) {
@@ -61,7 +63,9 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
       <AdminHeader />
 
       <ContentsWrapper hasBottomActionBar={hasBottomActionBar}>
-        <Main>{loading ? <LoadingContainer /> : children}</Main>
+        <Main>
+          {loading || session === null ? <LoadingContainer /> : children}
+        </Main>
       </ContentsWrapper>
     </Root>
   );
