@@ -8,6 +8,8 @@ import BlogPostDetailTemplate from '../../../components/templates/blog/BlogPostD
 import { paths } from '../../../config/paths';
 import { QueryParameterDuplicateError } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
+import { syntaxHighlighter } from '../../../utils/syntaxHighlight';
+import 'highlight.js/styles/vs2015.css';
 
 type StaticProps = {
   postDetail: CmsPost | null;
@@ -38,8 +40,13 @@ export const getStaticProps: GetStaticProps<StaticProps> = async context => {
     }
 
     const res = await fetchCmsPostApiClient(id);
+    const syntaxHighlightedBody = syntaxHighlighter(res.body);
+
     const props: StaticProps = {
-      postDetail: res,
+      postDetail: {
+        ...res,
+        body: syntaxHighlightedBody,
+      },
     };
 
     return { props };

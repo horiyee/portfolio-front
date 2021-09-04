@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors, underlinedBlueLinkStyle } from '../../styles/variables';
+import { underlinedBlueLinkStyle } from '../../styles/variables';
 import { classes } from '../../utils/classes';
 
 type Props = {
@@ -47,12 +47,11 @@ const Root = styled.div`
   }
 
   pre {
-    padding: 16px;
+    /* padding: 16px; */
     margin: 16px 0;
-    background: #2c2a2a;
+    /* background: #2c2a2a; */
     line-height: 1.8;
     color: #fff;
-    overflow-x: scroll;
   }
 
   code {
