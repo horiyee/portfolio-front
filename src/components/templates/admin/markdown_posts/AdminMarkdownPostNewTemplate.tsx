@@ -1,9 +1,7 @@
-import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { createMarkdownPostApiClient } from '../../../../api/clients/markdownPosts';
 import { paths } from '../../../../config/paths';
-import { CreateMarkdownPostApiRequest } from '../../../../types/api/markdownPosts';
+import { useMarkdownPostAdminApiClients } from '../../../../hooks/markdownPosts';
 import AdminCancelButton from '../../../atoms/admin/AdminCancelButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import BasicButton from '../../../atoms/buttons/BasicButton';
@@ -15,26 +13,10 @@ import AdminTemplate from '../../common/AdminTemplate';
 const PostButton = styled(BasicButton)``;
 
 const AdminMarkdownPostNewTemplate: React.VFC = () => {
-  const router = useRouter();
+  const markdownPostAdminApiClients = useMarkdownPostAdminApiClients();
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-
-  const onClickPost = useCallback(
-    async (markdownPost: CreateMarkdownPostApiRequest) => {
-      const confirm = window.confirm(`記事を投稿しますか？`);
-      if (confirm) {
-        try {
-          const res = await createMarkdownPostApiClient(markdownPost);
-          alert('投稿が完了しました。');
-          router.push(`${paths.admin.markdownPosts.index}`);
-        } catch {
-          alert('投稿に失敗しました。');
-        }
-      }
-    },
-    [],
-  );
 
   return (
     <AdminTemplate hasBottomActionBar>
@@ -52,7 +34,9 @@ const AdminMarkdownPostNewTemplate: React.VFC = () => {
           やめる
         </AdminCancelButton>
         <PostButton
-          onClick={() => onClickPost({ title: title, body: body })}
+          onClick={() =>
+            markdownPostAdminApiClients.postMarkdownPost(title, body)
+          }
           icon={<SendIcon />}
         >
           記事を投稿

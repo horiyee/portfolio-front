@@ -30,7 +30,10 @@ const AdminIndexTemplate: React.VFC = () => {
         >
           マークダウン記事管理
         </StyledAdminIndexItem>
-        <StyledAdminIndexItem icon={<LinkIcon />} href={'/'}>
+        <StyledAdminIndexItem
+          icon={<LinkIcon />}
+          href={paths.admin.externalPosts.index}
+        >
           外部記事管理
         </StyledAdminIndexItem>
         <StyledAdminIndexItem

@@ -5,6 +5,10 @@ export const paths = {
       index: '/admin/markdown_posts',
       new: '/admin/markdown_posts/new',
     },
+    externalPosts: {
+      index: '/admin/external_posts',
+      new: '/admin/external_posts/new',
+    },
     bookmarks: {
       index: '/admin/bookmarks',
       new: '/admin/bookmarks/new',
