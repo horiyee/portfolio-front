@@ -13,9 +13,6 @@ export const paths = {
       index: '/admin/bookmarks',
       new: '/admin/bookmarks/new',
     },
-    users: {
-      index: '/admin/users',
-    },
   },
   index: '/',
   about: '/about',

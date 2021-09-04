@@ -6,7 +6,6 @@ import AdminIndexItem from '../../atoms/admin/AdminIndexItem';
 import BookmarksIcon from '../../atoms/icons/BookmarksIcon';
 import DescriptionIcon from '../../atoms/icons/DescriptionIcon';
 import LinkIcon from '../../atoms/icons/LinkIcon';
-import PersonIcon from '../../atoms/icons/PersonIcon';
 import AdminTemplate from '../common/AdminTemplate';
 
 const AdminItems = styled.div`
@@ -41,12 +40,6 @@ const AdminIndexTemplate: React.VFC = () => {
           href={paths.admin.bookmarks.index}
         >
           ブックマーク管理
-        </StyledAdminIndexItem>
-        <StyledAdminIndexItem
-          icon={<PersonIcon />}
-          href={paths.admin.users.index}
-        >
-          Adminユーザー管理
         </StyledAdminIndexItem>
       </AdminItems>
     </AdminTemplate>
