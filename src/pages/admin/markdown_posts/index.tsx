@@ -5,7 +5,7 @@ import AdminMarkdownPostsIndexTemplate from '../../../components/templates/admin
 import { MarkdownPost } from '../../../types/markdownPost';
 
 type ServerSideProps = {
-  markdownPosts: MarkdownPost[];
+  markdownPosts: MarkdownPost[] | null;
 };
 
 const AdminMarkdownPostsIndexPage: NextPage<ServerSideProps> = ({
