@@ -35,6 +35,9 @@ const ThumbnailWrapper = styled.button<ThumbnailWrapperProps>`
 `;
 
 const Thumbnail = styled(StaticImage)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 64px;
   height: 64px;
 `;
