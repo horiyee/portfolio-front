@@ -47,19 +47,19 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
     <AdminTemplate hasBottomActionBar>
       <AdminPageTitle>マークダウン記事管理</AdminPageTitle>
 
-      {markdownPosts ? (
-        <AdminTable>
-          <AdminTHead>
-            <AdminTableRow>
-              <AdminTableHeader>ID</AdminTableHeader>
-              <AdminTableHeader>タイトル</AdminTableHeader>
-              <AdminTableHeader>本文</AdminTableHeader>
-              <AdminTableHeader>作成日時</AdminTableHeader>
-              <AdminTableHeader>更新日時</AdminTableHeader>
-              <AdminTableHeader>操作</AdminTableHeader>　
-            </AdminTableRow>
-          </AdminTHead>
+      <AdminTable>
+        <AdminTHead>
+          <AdminTableRow>
+            <AdminTableHeader>ID</AdminTableHeader>
+            <AdminTableHeader>タイトル</AdminTableHeader>
+            <AdminTableHeader>本文</AdminTableHeader>
+            <AdminTableHeader>作成日時</AdminTableHeader>
+            <AdminTableHeader>更新日時</AdminTableHeader>
+            <AdminTableHeader>操作</AdminTableHeader>　
+          </AdminTableRow>
+        </AdminTHead>
 
+        {markdownPosts ? (
           <AdminTBody>
             {markdownPosts.map((markdownPost, index) => (
               <AdminTableRow key={index}>
@@ -95,8 +95,8 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
               </AdminTableRow>
             ))}
           </AdminTBody>
-        </AdminTable>
-      ) : null}
+        ) : null}
+      </AdminTable>
 
       <AdminBottomActionBar>
         <AdminBottomActionButton

@@ -38,8 +38,6 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
 
   const [session, loading] = useSession();
 
-  console.log(loading, session);
-
   useEffect(() => {
     if (isReady) {
       if (pathname.includes('admin')) {

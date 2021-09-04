@@ -43,19 +43,19 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
     <AdminTemplate hasBottomActionBar>
       <AdminPageTitle>ブックマーク管理</AdminPageTitle>
 
-      {bookmarks ? (
-        <AdminTable>
-          <AdminTHead>
-            <AdminTableRow>
-              <AdminTableHeader>ID</AdminTableHeader>
-              <AdminTableHeader>リンク先</AdminTableHeader>
-              <AdminTableHeader>備考</AdminTableHeader>
-              <AdminTableHeader>作成日時</AdminTableHeader>
-              <AdminTableHeader>更新日時</AdminTableHeader>
-              <AdminTableHeader>操作</AdminTableHeader>
-            </AdminTableRow>
-          </AdminTHead>
+      <AdminTable>
+        <AdminTHead>
+          <AdminTableRow>
+            <AdminTableHeader>ID</AdminTableHeader>
+            <AdminTableHeader>リンク先</AdminTableHeader>
+            <AdminTableHeader>備考</AdminTableHeader>
+            <AdminTableHeader>作成日時</AdminTableHeader>
+            <AdminTableHeader>更新日時</AdminTableHeader>
+            <AdminTableHeader>操作</AdminTableHeader>
+          </AdminTableRow>
+        </AdminTHead>
 
+        {bookmarks ? (
           <AdminTBody>
             {bookmarks.map((bookmark, index) => (
               <AdminTableRow key={index}>
@@ -89,8 +89,8 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
               </AdminTableRow>
             ))}
           </AdminTBody>
-        </AdminTable>
-      ) : null}
+        ) : null}
+      </AdminTable>
 
       <AdminBottomActionBar>
         <AdminBottomActionButton

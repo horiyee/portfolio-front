@@ -1,4 +1,4 @@
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { paths } from '../../../../config/paths';
 import { useMarkdownPostAdminApiClients } from '../../../../hooks/markdownPosts';
@@ -11,6 +11,7 @@ import AdminMarkdownPostEditor from '../../../organisms/admin/AdminMarkdownPostE
 import AdminTemplate from '../../common/AdminTemplate';
 
 const AdminMarkdownPostNewTemplate: React.VFC = () => {
+  const router = useRouter();
   const markdownPostAdminApiClients = useMarkdownPostAdminApiClients();
 
   const [title, setTitle] = useState('');

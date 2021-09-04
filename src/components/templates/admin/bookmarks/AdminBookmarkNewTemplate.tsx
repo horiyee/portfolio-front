@@ -1,4 +1,4 @@
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { paths } from '../../../../config/paths';
 import { useBookmarkAdminApiClients } from '../../../../hooks/bookmarks';
@@ -12,6 +12,7 @@ import AdminLabeledInput from '../../../molecules/admin/AdminLabeledInput';
 import AdminTemplate from '../../common/AdminTemplate';
 
 const AdminBookmarkNewTemplate: React.VFC = () => {
+  const router = useRouter();
   const bookmarkAdminApiClients = useBookmarkAdminApiClients();
 
   const [url, setUrl] = useState('');
