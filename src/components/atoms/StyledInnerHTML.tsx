@@ -52,7 +52,6 @@ const Root = styled.div`
     /* background: #2c2a2a; */
     line-height: 1.8;
     color: #fff;
-    overflow-x: scroll;
   }
 
   code {
