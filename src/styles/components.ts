@@ -45,3 +45,8 @@ export const AdminTableRow = styled.tr`
 export const AdminTableData = styled.td`
   padding: 0 8px;
 `;
+
+export const AdminFormItemWrapper = styled.div`
+  padding: 8px 0;
+  margin: 8px 0;
+`;

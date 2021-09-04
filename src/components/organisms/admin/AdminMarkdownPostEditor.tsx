@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AdminFormItemWrapper } from '../../../styles/components';
 import AdminLabeledInput from '../../molecules/admin/AdminLabeledInput';
 import MarkdownEditor from '../MarkdownEditor';
 
@@ -14,11 +15,6 @@ const Root = styled.form`
   width: 100%;
 `;
 
-const ItemWrapper = styled.div`
-  padding: 8px 0;
-  margin: 8px 0;
-`;
-
 const Label = styled.label`
   line-height: 2;
 `;
@@ -31,15 +27,15 @@ const AdminMarkdownPostEditor: React.VFC<Props> = ({
 }) => {
   return (
     <Root>
-      <ItemWrapper>
+      <AdminFormItemWrapper>
         <AdminLabeledInput label="タイトル" value={title} setValue={setTitle} />
-      </ItemWrapper>
-      <ItemWrapper>
+      </AdminFormItemWrapper>
+      <AdminFormItemWrapper>
         <Label>
           本文（マークダウン形式）
           <MarkdownEditor markdown={body} setMarkdown={setBody} />
         </Label>
-      </ItemWrapper>
+      </AdminFormItemWrapper>
     </Root>
   );
 };
