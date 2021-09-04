@@ -1,10 +1,11 @@
+import router from 'next/router';
 import React from 'react';
 import { paths } from '../../../../config/paths';
 import { useBookmarkAdminApiClients } from '../../../../hooks/bookmarks';
-import AdminCancelButton from '../../../atoms/admin/AdminCancelButton';
+import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
-import BasicButton from '../../../atoms/buttons/BasicButton';
 import AddIcon from '../../../atoms/icons/AddIcon';
+import ClearIcon from '../../../atoms/icons/ClearIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminTemplate from '../../common/AdminTemplate';
 
@@ -16,15 +17,19 @@ const AdminBookmarkNewTemplate: React.VFC = () => {
       <AdminPageTitle>新規ブックマーク</AdminPageTitle>
 
       <AdminBottomActionBar>
-        <AdminCancelButton pathToBack={paths.admin.bookmarks.index}>
+        <AdminBottomActionButton
+          onClick={() => router.push(paths.admin.bookmarks.index)}
+          icon={<ClearIcon />}
+          color="red"
+        >
           やめる
-        </AdminCancelButton>
-        <BasicButton
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
           icon={<AddIcon />}
-          onClick={() => bookmarkAdminApiClients.post('', '')}
+          onClick={() => bookmarkAdminApiClients.postBookmark('', '')}
         >
           ブックマークを追加
-        </BasicButton>
+        </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>
   );

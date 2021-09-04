@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Input from '../../atoms/Input';
+import AdminLabeledInput from '../../molecules/admin/AdminLabeledInput';
 import MarkdownEditor from '../MarkdownEditor';
 
 type Props = {
@@ -23,10 +23,6 @@ const Label = styled.label`
   line-height: 2;
 `;
 
-const TitleInput = styled(Input)`
-  width: 100%;
-`;
-
 const AdminMarkdownPostEditor: React.VFC<Props> = ({
   title,
   body,
@@ -36,10 +32,7 @@ const AdminMarkdownPostEditor: React.VFC<Props> = ({
   return (
     <Root>
       <ItemWrapper>
-        <Label>
-          タイトル
-          <TitleInput value={title} onChange={setTitle} />
-        </Label>
+        <AdminLabeledInput label="タイトル" value={title} setValue={setTitle} />
       </ItemWrapper>
       <ItemWrapper>
         <Label>

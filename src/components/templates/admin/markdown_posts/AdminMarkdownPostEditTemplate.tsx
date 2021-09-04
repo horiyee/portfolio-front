@@ -1,13 +1,11 @@
-import { useRouter } from 'next/router';
+import router from 'next/router';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
 import { useMarkdownPostAdminApiClients } from '../../../../hooks/markdownPosts';
-import { colors } from '../../../../styles/variables';
 import { MarkdownPost } from '../../../../types/markdownPost';
-import AdminCancelButton from '../../../atoms/admin/AdminCancelButton';
+import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
-import BasicButton from '../../../atoms/buttons/BasicButton';
+import ClearIcon from '../../../atoms/icons/ClearIcon';
 import DeleteIcon from '../../../atoms/icons/DeleteIcon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
@@ -15,24 +13,11 @@ import AdminMarkdownPostEditor from '../../../organisms/admin/AdminMarkdownPostE
 import AdminTemplate from '../../common/AdminTemplate';
 
 type Props = {
-  markdownPost: MarkdownPost | null;
+  markdownPost: MarkdownPost;
 };
 
-const DeleteButton = styled(BasicButton)`
-  color: ${colors.error};
-  fill: ${colors.error};
-`;
-
-const UpdateButton = styled(BasicButton)``;
-
 const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
-  const router = useRouter();
   const markdownPostAdminApiClients = useMarkdownPostAdminApiClients();
-
-  if (markdownPost === null) {
-    router.push(paths.notFound);
-    return null;
-  }
 
   const [title, setTitle] = useState(markdownPost ? markdownPost.title : '');
   const [body, setBody] = useState(markdownPost ? markdownPost.body : '');
@@ -49,18 +34,23 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
       />
 
       <AdminBottomActionBar>
-        <AdminCancelButton pathToBack={paths.admin.markdownPosts.index}>
+        <AdminBottomActionButton
+          color="red"
+          icon={<ClearIcon />}
+          onClick={() => router.push(paths.admin.markdownPosts.index)}
+        >
           やめる
-        </AdminCancelButton>
-        <DeleteButton
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
+          color="red"
           onClick={() =>
             markdownPostAdminApiClients.deleteMarkdownPost(markdownPost.id)
           }
           icon={<DeleteIcon />}
         >
           記事を削除
-        </DeleteButton>
-        <UpdateButton
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
           onClick={() =>
             markdownPostAdminApiClients.updateMarkdownPost(
               markdownPost.id,
@@ -71,7 +61,7 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
           icon={<SendIcon />}
         >
           記事を更新
-        </UpdateButton>
+        </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>
   );

@@ -1,49 +1,48 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { fetchMarkdownPostApiClient } from '../../../../api/clients/markdownPosts';
-import AdminMarkdownPostEditTemplate from '../../../../components/templates/admin/markdown_posts/AdminMarkdownPostEditTemplate';
+import { fetchBookmarkApiClient } from '../../../../api/clients/bookmarks';
+import AdminBookmarkEditTemplate from '../../../../components/templates/admin/bookmarks/AdminBookmarkEditTemplate';
 import { paths } from '../../../../config/paths';
 import {
   QueryParameterDuplicateError,
   QueryParameterNaNError,
 } from '../../../../types';
-import { MarkdownPost } from '../../../../types/markdownPost';
+import { Bookmark } from '../../../../types/bookmark';
 
 type ServerSideProps = {
-  markdownPost: MarkdownPost | null;
+  bookmark: Bookmark | null;
 };
 
-const AdminMarkdownPostEditPage: NextPage<ServerSideProps> = ({
-  markdownPost,
-}) => {
+const AdminBookmarkEditPage: NextPage<ServerSideProps> = ({ bookmark }) => {
   const router = useRouter();
 
-  if (markdownPost === null) {
+  if (bookmark === null) {
     router.push(paths.notFound);
     return null;
   }
 
-  return <AdminMarkdownPostEditTemplate markdownPost={markdownPost} />;
+  return <AdminBookmarkEditTemplate bookmark={bookmark} />;
 };
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> =
   async context => {
-    const id = context.query.id;
+    const id = context.params.id;
 
     try {
       if (typeof id !== `string`) {
         throw new QueryParameterDuplicateError();
       }
 
-      const markdownPostId = Number(id);
-      if (isNaN(markdownPostId)) {
+      const bookmarkId = Number(id);
+      if (isNaN(bookmarkId)) {
         throw new QueryParameterNaNError();
       }
-      const res = await fetchMarkdownPostApiClient(markdownPostId);
+
+      const res = await fetchBookmarkApiClient(bookmarkId);
 
       const props: ServerSideProps = {
-        markdownPost: res,
+        bookmark: res,
       };
 
       return { props };
@@ -51,11 +50,11 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> =
       console.error(e);
 
       const props: ServerSideProps = {
-        markdownPost: null,
+        bookmark: null,
       };
 
       return { props };
     }
   };
 
-export default AdminMarkdownPostEditPage;
+export default AdminBookmarkEditPage;

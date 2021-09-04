@@ -1,16 +1,14 @@
+import router from 'next/router';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
 import { useMarkdownPostAdminApiClients } from '../../../../hooks/markdownPosts';
-import AdminCancelButton from '../../../atoms/admin/AdminCancelButton';
+import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
-import BasicButton from '../../../atoms/buttons/BasicButton';
+import ClearIcon from '../../../atoms/icons/ClearIcon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminMarkdownPostEditor from '../../../organisms/admin/AdminMarkdownPostEditor';
 import AdminTemplate from '../../common/AdminTemplate';
-
-const PostButton = styled(BasicButton)``;
 
 const AdminMarkdownPostNewTemplate: React.VFC = () => {
   const markdownPostAdminApiClients = useMarkdownPostAdminApiClients();
@@ -30,17 +28,21 @@ const AdminMarkdownPostNewTemplate: React.VFC = () => {
       />
 
       <AdminBottomActionBar>
-        <AdminCancelButton pathToBack={paths.admin.markdownPosts.index}>
+        <AdminBottomActionButton
+          onClick={() => router.push(paths.admin.markdownPosts.index)}
+          icon={<ClearIcon />}
+          color="red"
+        >
           やめる
-        </AdminCancelButton>
-        <PostButton
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
           onClick={() =>
             markdownPostAdminApiClients.postMarkdownPost(title, body)
           }
           icon={<SendIcon />}
         >
           記事を投稿
-        </PostButton>
+        </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>
   );

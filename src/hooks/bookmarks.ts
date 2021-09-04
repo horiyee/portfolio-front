@@ -7,7 +7,7 @@ import { CreateBookmarkApiRequest } from '../types/api/bookmarks';
 export const useBookmarkAdminApiClients = () => {
   const router = useRouter();
 
-  const post = useCallback(async (url: string, description: string) => {
+  const postBookmark = useCallback(async (url: string, description: string) => {
     const confirm = window.confirm('ブックマークを登録しますか？');
 
     if (confirm) {
@@ -28,6 +28,6 @@ export const useBookmarkAdminApiClients = () => {
   }, []);
 
   return {
-    post,
+    postBookmark,
   };
 };

@@ -2,12 +2,20 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
+import {
+  AdminTable,
+  AdminTableData,
+  AdminTableHeader,
+  AdminTableRow,
+  AdminTBody,
+  AdminTHead,
+} from '../../../../styles/components';
 import { hover } from '../../../../styles/mixins';
 import { colors } from '../../../../styles/variables';
 import { MarkdownPost } from '../../../../types/markdownPost';
-import AdminBackButton from '../../../atoms/admin/AdminBackButton';
+import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
-import BasicButton from '../../../atoms/buttons/BasicButton';
+import ArrowBackIcon from '../../../atoms/icons/ArrowBackIcon';
 import CreateIcon from '../../../atoms/icons/CreateIcon';
 import NextLink from '../../../atoms/NextLink';
 import Time from '../../../atoms/Time';
@@ -18,37 +26,11 @@ type Props = {
   markdownPosts: MarkdownPost[] | null;
 };
 
-const Table = styled.table`
-  display: inline-block;
-  width: 100%;
-  padding: 48px 0;
-`;
-
-const THead = styled.thead`
-  height: 48px;
-`;
-
-const TableHeader = styled.th`
-  padding: 0 8px;
-`;
-
-const TBody = styled.tbody``;
-
-const TableRow = styled.tr`
-  height: 64px;
-`;
-
-const TableData = styled.td`
-  padding: 0 8px;
-`;
-
 const EditLink = styled(NextLink)`
   color: ${colors.defaultBlue};
   opacity: 0.9;
   ${hover(`opacity: 1;`)};
 `;
-
-const CreateButton = styled(BasicButton)``;
 
 const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
   markdownPosts,
@@ -60,55 +42,60 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
       <AdminPageTitle>マークダウン記事管理</AdminPageTitle>
 
       {markdownPosts ? (
-        <Table>
-          <THead>
-            <TableRow>
-              <TableHeader>ID</TableHeader>
-              <TableHeader>タイトル</TableHeader>
-              <TableHeader>本文</TableHeader>
-              <TableHeader>作成日時</TableHeader>
-              <TableHeader>更新日時</TableHeader>
-              <TableHeader>操作</TableHeader>　
-            </TableRow>
-          </THead>
+        <AdminTable>
+          <AdminTHead>
+            <AdminTableRow>
+              <AdminTableHeader>ID</AdminTableHeader>
+              <AdminTableHeader>タイトル</AdminTableHeader>
+              <AdminTableHeader>本文</AdminTableHeader>
+              <AdminTableHeader>作成日時</AdminTableHeader>
+              <AdminTableHeader>更新日時</AdminTableHeader>
+              <AdminTableHeader>操作</AdminTableHeader>　
+            </AdminTableRow>
+          </AdminTHead>
 
-          <TBody>
+          <AdminTBody>
             {markdownPosts.map((markdownPost, index) => (
-              <TableRow key={index}>
-                <TableData>{markdownPost.id}</TableData>
-                <TableData>{markdownPost.title}</TableData>
-                <TableData>
+              <AdminTableRow key={index}>
+                <AdminTableData>{markdownPost.id}</AdminTableData>
+                <AdminTableData>{markdownPost.title}</AdminTableData>
+                <AdminTableData>
                   {markdownPost.body.length > 40
                     ? `${markdownPost.body.slice(0, 40)} …`
                     : markdownPost.body}
-                </TableData>
-                <TableData>
+                </AdminTableData>
+                <AdminTableData>
                   <Time datetime={markdownPost.createdAt} />
-                </TableData>
-                <TableData>
+                </AdminTableData>
+                <AdminTableData>
                   <Time datetime={markdownPost.updatedAt} />
-                </TableData>
-                <TableData>
+                </AdminTableData>
+                <AdminTableData>
                   <EditLink
                     href={`${paths.admin.markdownPosts.index}/${markdownPost.id}/edit`}
                   >
                     編集
                   </EditLink>
-                </TableData>
-              </TableRow>
+                </AdminTableData>
+              </AdminTableRow>
             ))}
-          </TBody>
-        </Table>
+          </AdminTBody>
+        </AdminTable>
       ) : null}
 
       <AdminBottomActionBar>
-        <AdminBackButton pathToBack={paths.admin.index}>戻る</AdminBackButton>
-        <CreateButton
+        <AdminBottomActionButton
+          onClick={() => router.push(paths.admin.index)}
+          icon={<ArrowBackIcon />}
+        >
+          戻る
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
           onClick={() => router.push(paths.admin.markdownPosts.new)}
           icon={<CreateIcon />}
         >
           記事を書く
-        </CreateButton>
+        </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>
   );

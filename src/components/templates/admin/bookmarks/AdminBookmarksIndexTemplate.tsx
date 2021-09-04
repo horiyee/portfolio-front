@@ -1,28 +1,95 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
-import AdminBackButton from '../../../atoms/admin/AdminBackButton';
+import {
+  AdminTable,
+  AdminTableData,
+  AdminTableHeader,
+  AdminTableRow,
+  AdminTBody,
+  AdminTHead,
+} from '../../../../styles/components';
+import { colors } from '../../../../styles/variables';
+import { Bookmark } from '../../../../types/bookmark';
+import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
-import BasicButton from '../../../atoms/buttons/BasicButton';
 import AddIcon from '../../../atoms/icons/AddIcon';
+import ArrowBackIcon from '../../../atoms/icons/ArrowBackIcon';
+import NextLink from '../../../atoms/NextLink';
+import Time from '../../../atoms/Time';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminTemplate from '../../common/AdminTemplate';
 
-const AdminBookmarksIndexTemplate: React.VFC = () => {
+type Props = {
+  bookmarks: Bookmark[];
+};
+
+const Link = styled(NextLink)`
+  color: ${colors.defaultBlue};
+  text-decoration: underline;
+`;
+
+const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
   const router = useRouter();
 
   return (
     <AdminTemplate hasBottomActionBar>
       <AdminPageTitle>ブックマーク管理</AdminPageTitle>
 
+      {bookmarks ? (
+        <AdminTable>
+          <AdminTHead>
+            <AdminTableRow>
+              <AdminTableHeader>ID</AdminTableHeader>
+              <AdminTableHeader>リンク先</AdminTableHeader>
+              <AdminTableHeader>備考</AdminTableHeader>
+              <AdminTableHeader>作成日時</AdminTableHeader>
+              <AdminTableHeader>更新日時</AdminTableHeader>
+              <AdminTableHeader>操作</AdminTableHeader>
+            </AdminTableRow>
+          </AdminTHead>
+
+          <AdminTBody>
+            {bookmarks.map((bookmark, index) => (
+              <AdminTableRow key={index}>
+                <AdminTableData>{bookmark.id}</AdminTableData>
+                <AdminTableData>
+                  <Link href={bookmark.url}>開く（新規タブ）</Link>
+                </AdminTableData>
+                <AdminTableData>{bookmark.description}</AdminTableData>
+                <AdminTableData>
+                  <Time datetime={bookmark.createdAt} />
+                </AdminTableData>
+                <AdminTableData>
+                  <Time datetime={bookmark.updatedAt} />
+                </AdminTableData>
+                <AdminTableData>
+                  <Link
+                    href={`${paths.admin.bookmarks.index}/${bookmark.id}/edit`}
+                  >
+                    編集
+                  </Link>
+                </AdminTableData>
+              </AdminTableRow>
+            ))}
+          </AdminTBody>
+        </AdminTable>
+      ) : null}
+
       <AdminBottomActionBar>
-        <AdminBackButton pathToBack={paths.admin.index}>戻る</AdminBackButton>
-        <BasicButton
+        <AdminBottomActionButton
+          onClick={() => router.push(paths.admin.index)}
+          icon={<ArrowBackIcon />}
+        >
+          戻る
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
           icon={<AddIcon />}
           onClick={() => router.push(paths.admin.bookmarks.new)}
         >
           追加
-        </BasicButton>
+        </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>
   );
