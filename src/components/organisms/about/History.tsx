@@ -94,7 +94,7 @@ const AboutHistory: React.VFC = () => {
         </HistoryListItem>
 
         <HistoryListItem>
-          <SecondHeading useEnFont>2018</SecondHeading>
+          <Period useEnFont>2018</Period>
 
           <StyledPhotoAlbum albumImages={roninAlbumImages} />
 
@@ -104,7 +104,7 @@ const AboutHistory: React.VFC = () => {
         </HistoryListItem>
 
         <HistoryListItem>
-          <SecondHeading useEnFont>2019 -</SecondHeading>
+          <Period useEnFont>2019 -</Period>
 
           <StyledPhotoAlbum albumImages={universityAlbumImages} />
 
