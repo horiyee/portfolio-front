@@ -2,7 +2,6 @@ import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
-import { getUrl } from '../../../config';
 import { envVariables } from '../../../config/envVariables';
 import { paths } from '../../../config/paths';
 import { MetaData } from '../../../types';
@@ -76,8 +75,8 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
   }, [session, loading, pathname, isReady]);
 
   const metaData: MetaData = {
-    pageTitle: 'Portfolio Admin',
-    pagePath: getUrl(paths.admin.index),
+    pageTitle: 'Admin',
+    pagePath: paths.admin.index,
     noIndex: true,
   };
 

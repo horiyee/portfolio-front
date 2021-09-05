@@ -4,7 +4,7 @@ export const domain = 'k-hori.com';
 
 export const getUrl = (path: string) => {
   if (envVariables.NODE_ENV === 'development') {
-    return `http://localhost:8000`;
+    return `http://localhost:8000${path}`;
   }
   return `https://${domain}${path}`;
 };
