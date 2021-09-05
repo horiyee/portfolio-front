@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import { classes } from '../../utils/classes';
-import StyledInnerHTML from '../atoms/StyledInnerHTML';
+import InnerHTMLStyler from '../atoms/InnerHTMLStyler';
 
 type Props = {
   markdown: string;
@@ -22,12 +22,18 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
   }
 `;
 
+const StyledInnerHTMLStyler = styled(InnerHTMLStyler)`
+  pre {
+    padding: 16px;
+  }
+`;
+
 const MarkdownPreview: React.VFC<Props> = ({ markdown, className }) => {
   return (
     <Root className={classes(className)}>
-      <StyledInnerHTML>
+      <StyledInnerHTMLStyler>
         <StyledReactMarkdown>{markdown}</StyledReactMarkdown>
-      </StyledInnerHTML>
+      </StyledInnerHTMLStyler>
     </Root>
   );
 };

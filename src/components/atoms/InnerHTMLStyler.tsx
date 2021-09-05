@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { underlinedBlueLinkStyle } from '../../styles/variables';
+import { colors, underlinedBlueLinkStyle } from '../../styles/variables';
 import { classes } from '../../utils/classes';
 
 type Props = {
@@ -47,14 +47,26 @@ const Root = styled.div`
   }
 
   pre {
-    /* padding: 16px; */
     margin: 16px 0;
-    /* background: #2c2a2a; */
+    background: #1e1e1e;
     line-height: 1.8;
     color: #fff;
+
+    code {
+      margin: 0;
+      background: none;
+      border-radius: 0;
+    }
   }
 
   code {
+    margin: 0 4px;
+    padding: 2px 4px;
+
+    border-radius: 4px;
+
+    background: ${colors.borderGray};
+
     font-size: inherit;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -75,8 +87,8 @@ const Root = styled.div`
   }
 `;
 
-const StyledInnerHTML: React.VFC<Props> = ({ children, className }) => {
+const InnerHTMLStyler: React.VFC<Props> = ({ children, className }) => {
   return <Root className={classes(className)}>{children}</Root>;
 };
 
-export default StyledInnerHTML;
+export default InnerHTMLStyler;

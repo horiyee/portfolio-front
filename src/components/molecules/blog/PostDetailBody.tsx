@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { classes } from '../../../utils/classes';
-import StyledInnerHTML from '../../atoms/StyledInnerHTML';
+import InnerHTMLStyler from '../../atoms/InnerHTMLStyler';
 
 type Props = {
   postBody: string;
@@ -15,9 +15,9 @@ const Root = styled.main`
 
 const PostDetailBody: React.VFC<Props> = ({ postBody, className }) => {
   return (
-    <StyledInnerHTML className={classes(className)}>
+    <InnerHTMLStyler className={classes(className)}>
       <Root dangerouslySetInnerHTML={{ __html: postBody }} />
-    </StyledInnerHTML>
+    </InnerHTMLStyler>
   );
 };
 
