@@ -17,6 +17,9 @@ export type AlbumImage = {
 export type MetaData = {
   pageTitle: string;
   commonTitle?: string;
+  description?: string;
+  pagePath: string;
+  ogpImageUrl?: string;
 };
 
 export class QueryParameterNaNError extends Error {}

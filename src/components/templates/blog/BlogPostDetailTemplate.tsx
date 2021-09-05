@@ -83,6 +83,9 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
   const metaData: MetaData = {
     pageTitle: postDetail.title,
     commonTitle: 'hori-blog',
+    pagePath: `${paths.blog.posts}/${postDetail.id}`,
+    ogpImageUrl: postDetail.thumbnail.url,
+    description: '',
   };
 
   return (
