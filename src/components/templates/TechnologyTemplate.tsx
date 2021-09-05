@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mqPc } from '../../styles/mixins';
+import { MetaData } from '../../types';
 import HorizontalLine from '../atoms/HorizontalLine';
 import TechnologyDrawingCanvas from '../organisms/technology/DrawingCanvas';
 import TechnologyMarkdownEditor from '../organisms/technology/MarkdownEditor';
@@ -14,8 +15,12 @@ const DrawingCanvasWrapper = styled.div`
 `;
 
 const TechnologyTemplate: React.VFC = () => {
+  const metaData: MetaData = {
+    pageTitle: 'TECHNOLOGY',
+  };
+
   return (
-    <PortfolioTemplate>
+    <PortfolioTemplate metaData={metaData}>
       <DrawingCanvasWrapper>
         <TechnologyDrawingCanvas />
         <HorizontalLine />

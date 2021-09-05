@@ -4,12 +4,16 @@ import {
   ContentsWrapper,
   SideNavigationWrapper,
 } from '../../../styles/components';
-import { mqPc } from '../../../styles/mixins';
+import { MetaData } from '../../../types';
+import NextHead from '../../atoms/NextHead';
 import Header from '../../organisms/Header';
 import SideNavigation from '../../organisms/SideNavigation';
 
 type Props = {
   children?: React.ReactNode;
+  metaData: {
+    pageTitle: string;
+  };
 };
 
 const Root = styled.div`
@@ -25,9 +29,11 @@ const Contents = styled.main`
   padding: 128px 32px;
 `;
 
-const PortfolioTemplate: React.VFC<Props> = ({ children }) => {
+const PortfolioTemplate: React.VFC<Props> = ({ children, metaData }) => {
   return (
     <Root>
+      <NextHead {...metaData} />
+
       <Header />
 
       <SideNavigationWrapper>

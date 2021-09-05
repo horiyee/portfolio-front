@@ -14,6 +14,11 @@ export type AlbumImage = {
   link?: string;
 };
 
+export type MetaData = {
+  pageTitle: string;
+  commonTitle?: string;
+};
+
 export class QueryParameterNaNError extends Error {}
 
 export class QueryParameterDuplicateError extends Error {}

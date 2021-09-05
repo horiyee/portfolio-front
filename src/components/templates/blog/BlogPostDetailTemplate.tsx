@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { paths } from '../../../config/paths';
 import { fontSize, hoverWithTransition } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
+import { MetaData } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
 import NextImage from '../../atoms/NextImage';
 import NextLink from '../../atoms/NextLink';
@@ -79,8 +80,13 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
     return null;
   }
 
+  const metaData: MetaData = {
+    pageTitle: postDetail.title,
+    commonTitle: 'hori-blog',
+  };
+
   return (
-    <BlogTemplate>
+    <BlogTemplate metaData={metaData}>
       <BlogPostDetailWrapper>
         <Navigation>
           <BlogIndexLink href={paths.blog.index}>ブログ記事</BlogIndexLink>
