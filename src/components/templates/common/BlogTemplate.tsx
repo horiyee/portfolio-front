@@ -4,16 +4,14 @@ import {
   ContentsWrapper,
   SideNavigationWrapper,
 } from '../../../styles/components';
+import { MetaData } from '../../../types';
 import NextHead from '../../atoms/NextHead';
 import Header from '../../organisms/Header';
 import SideNavigation from '../../organisms/SideNavigation';
 
 type Props = {
   children?: React.ReactNode;
-  metaData: {
-    pageTitle: string;
-    commonTitle?: string;
-  };
+  metaData: MetaData;
 };
 
 const Root = styled.div`

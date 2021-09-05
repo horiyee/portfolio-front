@@ -11,9 +11,7 @@ import SideNavigation from '../../organisms/SideNavigation';
 
 type Props = {
   children?: React.ReactNode;
-  metaData: {
-    pageTitle: string;
-  };
+  metaData: MetaData;
 };
 
 const Root = styled.div`
