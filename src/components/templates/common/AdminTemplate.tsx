@@ -1,6 +1,6 @@
 import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { envVariables } from '../../../config/envVariables';
 import { paths } from '../../../config/paths';
@@ -38,6 +38,24 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
 
   const [session, loading] = useSession();
 
+  // TODO: implement custom hooks
+
+  const isAllowedAdminUserLoggedIn = useMemo(() => {
+    if (loading) {
+      return false;
+    }
+
+    if (session === null) {
+      return false;
+    }
+
+    if (session.user.email === envVariables.GITHUB_OAUTH_ALLOW_USER_EMAIL) {
+      return true;
+    }
+
+    return false;
+  }, [session, loading]);
+
   useEffect(() => {
     if (isReady) {
       if (pathname.includes('admin')) {
@@ -46,9 +64,7 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
             signIn();
             return;
           }
-          if (
-            session.user.email !== envVariables.GITHUB_OAUTH_ALLOW_USER_EMAIL
-          ) {
+          if (isAllowedAdminUserLoggedIn === false) {
             router.push(paths.index);
           }
         }
@@ -62,7 +78,11 @@ const AdminTemplate: React.VFC<Props> = ({ children, hasBottomActionBar }) => {
 
       <ContentsWrapper hasBottomActionBar={hasBottomActionBar}>
         <Main>
-          {loading || session === null ? <LoadingContainer /> : children}
+          {loading || isAllowedAdminUserLoggedIn === false ? (
+            <LoadingContainer />
+          ) : (
+            children
+          )}
         </Main>
       </ContentsWrapper>
     </Root>
