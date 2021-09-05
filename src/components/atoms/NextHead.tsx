@@ -22,23 +22,27 @@ const NextHead: React.VFC<Props> = ({
     <Head>
       <title>{title}</title>
 
-      {noIndex ? <meta name="robots" content="noindex" /> : null}
-
-      <meta name="description" content={description} />
-      <meta name="og:title" content={title} />
-      <meta name="og:type" content="website" />
-      <meta name="og:url" content={url} />
-      <meta name="og:image" content={ogpImageUrl} />
-      <meta name="og:image:width" content="1200" />
-      <meta name="og:image:height" content="630" />
-      <meta name="og:site_name" content={siteName} />
-      <meta name="og:description" content={description} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content="@horri1520" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:url" content={url} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogpImageUrl} />
+      {noIndex ? (
+        <meta name="robots" content="noindex" />
+      ) : (
+        <>
+          <meta name="description" content={description} />
+          <meta name="og:title" content={title} />
+          <meta name="og:type" content="website" />
+          <meta name="og:url" content={url} />
+          <meta name="og:image" content={ogpImageUrl} />
+          <meta name="og:image:width" content="1200" />
+          <meta name="og:image:height" content="630" />
+          <meta name="og:site_name" content={siteName} />
+          <meta name="og:description" content={description} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:creator" content="@horri1520" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:url" content={url} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:image" content={ogpImageUrl} />
+        </>
+      )}
     </Head>
   );
 };
