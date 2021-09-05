@@ -20,6 +20,7 @@ export type MetaData = {
   description?: string;
   pagePath: string;
   ogpImageUrl?: string;
+  noIndex?: boolean;
 };
 
 export class QueryParameterNaNError extends Error {}

@@ -11,6 +11,7 @@ const NextHead: React.VFC<Props> = ({
   description = '学生エンジニア 堀内 凱登 / Kaito Horiuchi (hori) のポートフォリオ・ブログです。',
   pagePath,
   ogpImageUrl = getUrl('/ogp.jpg'),
+  noIndex,
 }) => {
   const siteName = 'Portfolio of Kaito Horiuchi';
 
@@ -20,6 +21,8 @@ const NextHead: React.VFC<Props> = ({
   return (
     <Head>
       <title>{title}</title>
+
+      {noIndex ? <meta name="robots" content="noindex" /> : null}
 
       <meta name="description" content={description} />
       <meta name="og:title" content={title} />
