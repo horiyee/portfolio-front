@@ -20,7 +20,7 @@ const Decoration = styled.div`
   display: inline-block;
   width: 32px;
   height: 2px;
-  background: ${colors.defaultBlue};
+  background: ${colors.darkBlue};
 
   margin: 0 16px 8px 0;
 `;

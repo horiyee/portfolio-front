@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../config/paths';
-import { fontSize } from '../../../styles/mixins';
+import { fontSize, hoverWithTransition } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
 import { classes } from '../../../utils/classes';
 import NextLink from '../NextLink';
@@ -23,12 +23,14 @@ const Root = styled(NextLink)<RootProps>`
   padding: 2px 0 2px 20px;
 
   border-left: 2px solid
-    ${props => (props.isActive ? colors.defaultBlue : colors.white)};
+    ${props => (props.isActive ? colors.darkBlue : colors.white)};
 
   font-family: ${fontFamilies.enFont};
   text-transform: uppercase;
   ${fontSize(20)};
   font-weight: 300;
+
+  ${hoverWithTransition(`color: ${colors.defaultBlue};`)};
 `;
 
 const PageNavigation: React.VFC<Props> = ({ href, children, className }) => {
