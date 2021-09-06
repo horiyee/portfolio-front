@@ -4,6 +4,7 @@ import { paths } from '../../../config/paths';
 import { fontSize } from '../../../styles/mixins';
 import { colors, underlinedBlueLinkStyle } from '../../../styles/variables';
 import NextLink from '../../atoms/NextLink';
+import Paragraph from '../../atoms/Paragraph';
 import SecondHeading from '../../atoms/SecondHeading';
 import Section from '../../molecules/Section';
 
@@ -37,11 +38,8 @@ const Role = styled.h4`
   line-height: 1.6;
 `;
 
-const Description = styled.p`
+const Description = styled(Paragraph)`
   padding: 16px 0;
-
-  font-weight: 400;
-  line-height: 1.8;
 `;
 
 const Link = styled(NextLink)`

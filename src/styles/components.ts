@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mqPc } from './mixins';
+import { mqPc, mqSp } from './mixins';
 
 export const SideNavigationWrapper = styled.div`
   display: none;
@@ -49,4 +49,24 @@ export const AdminTableData = styled.td`
 export const AdminFormItemWrapper = styled.div`
   padding: 8px 0;
   margin: 8px 0;
+`;
+
+export const TechnologyMainContentsWrapper = styled.div`
+  display: inline-block;
+  width: 100%;
+  padding: 32px 0;
+`;
+
+export const TechnologyMainContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ${mqSp(`
+    flex-direction: column;
+    align-items: flex-start;
+  `)}
+
+  width: 100%;
+  padding: 8px 0;
 `;

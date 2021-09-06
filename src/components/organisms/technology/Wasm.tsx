@@ -1,33 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { sums } from '../../../../wasm/pkg/wasm_bg.wasm';
-import { mqSp } from '../../../styles/mixins';
+import {
+  TechnologyMainContent,
+  TechnologyMainContentsWrapper,
+} from '../../../styles/components';
+import {
+  accumulateWithJs,
+  accumulateWithWasm,
+} from '../../../utils/technology/accumulate';
 import RoundedColorButton from '../../atoms/buttons/RoundedColorButton';
 import Paragraph from '../../atoms/Paragraph';
 import ResponsiveBreak from '../../atoms/ResponsiveBreak';
 import SecondHeading from '../../atoms/SecondHeading';
 import LabeledCheckBox from '../../molecules/LabeledCheckBox';
 import Section from '../../molecules/Section';
-
-const MainContentsWrapper = styled.div`
-  display: inline-block;
-  width: 100%;
-  padding: 32px 0;
-`;
-
-const MainContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  ${mqSp(`
-    flex-direction: column;
-    align-items: flex-start;
-  `)}
-
-  width: 100%;
-  padding: 8px 0;
-`;
 
 const TechnologyWasm: React.VFC = () => {
   const [wasmResult, setWasmResult] = useState<number | null>(null);
@@ -57,12 +42,7 @@ const TechnologyWasm: React.VFC = () => {
     setWasmCalculated(true);
 
     const startTime = performance.now();
-    for (let i = 0; i < trial; i++) {
-      const a = sums(number);
-      if (outputLogs) {
-        console.log(a);
-      }
-    }
+    accumulateWithWasm(trial, number, outputLogs);
     const endTime = performance.now();
 
     const result = endTime - startTime;
@@ -73,15 +53,7 @@ const TechnologyWasm: React.VFC = () => {
     setJsCalculated(true);
 
     const startTime = performance.now();
-    for (let i = 0; i < trial; i++) {
-      let a = 0;
-      for (let i = 1; i < number + 1; i++) {
-        a += i;
-      }
-      if (outputLogs) {
-        console.log(a);
-      }
-    }
+    accumulateWithJs(trial, number, outputLogs);
     const endTime = performance.now();
 
     const result = endTime - startTime;
@@ -91,13 +63,17 @@ const TechnologyWasm: React.VFC = () => {
   return (
     <Section enHeading="WebAssembly" jpHeading="Wasmでの高速処理" id="wasm">
       <SecondHeading>
-        1から10000までの累積和を
+        1から{number}までの累積和を
         <ResponsiveBreak sp />
-        for文で10000回求める
+        for文で{trial}回求める
       </SecondHeading>
+      <br />
+      <Paragraph>
+        for文で累積和を求める関数をJSとWebAssembly(Rust)とでそれぞれ実装し、実行時間を比較します。
+      </Paragraph>
 
-      <MainContentsWrapper>
-        <MainContent>
+      <TechnologyMainContentsWrapper>
+        <TechnologyMainContent>
           <RoundedColorButton
             onClick={() => calculateWithWasm()}
             disabled={wasmCalculated}
@@ -107,8 +83,8 @@ const TechnologyWasm: React.VFC = () => {
           <Paragraph>
             実行時間：{wasmResult ? `${wasmResult}ms` : '未計測'}
           </Paragraph>
-        </MainContent>
-        <MainContent>
+        </TechnologyMainContent>
+        <TechnologyMainContent>
           <RoundedColorButton
             onClick={() => calculateWithJs()}
             disabled={jsCalculated}
@@ -118,8 +94,8 @@ const TechnologyWasm: React.VFC = () => {
           <Paragraph>
             実行時間：{jsResult ? `${jsResult}ms` : '未計測'}
           </Paragraph>
-        </MainContent>
-      </MainContentsWrapper>
+        </TechnologyMainContent>
+      </TechnologyMainContentsWrapper>
 
       <LabeledCheckBox
         checked={outputLogs}

@@ -9,6 +9,7 @@ import {
   universityAlbumImages,
 } from '../../../contents/aboutPage';
 import { fontSize } from '../../../styles/mixins';
+import Paragraph from '../../atoms/Paragraph';
 import SecondHeading from '../../atoms/SecondHeading';
 import Section from '../../molecules/Section';
 import PhotoAlbum from '../PhotoAlbum';
@@ -32,11 +33,8 @@ const StyledPhotoAlbum = styled(PhotoAlbum)`
   padding-bottom: 24px;
 `;
 
-const Description = styled.p`
+const Description = styled(Paragraph)`
   padding: 16px 0;
-
-  font-weight: 400;
-  line-height: 1.8;
 `;
 
 const AboutHistory: React.VFC = () => {
