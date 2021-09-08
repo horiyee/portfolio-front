@@ -26,7 +26,7 @@ const ClipboardCopyButton: React.VFC<Props> = ({ data, className }) => {
   return (
     <Root
       className={classes(className)}
-      icon={<Icon icon={<LinkIcon />} />}
+      icon={<LinkIcon />}
       onClick={() => navigatorUtilities.copyStringToClipboard(data)}
     />
   );

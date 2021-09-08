@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { getUrl } from '../../../config';
 import { paths } from '../../../config/paths';
-import { fontSize, hoverWithTransition } from '../../../styles/mixins';
+import { fontSize, hoverWithTransition, mqSp } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
 import { MetaData, WebShareData } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
@@ -28,16 +28,18 @@ const Navigation = styled.nav`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 24px 16px;
+  padding: 24px -0;
 `;
 
 const BlogIndexLink = styled(NextLink)`
+  ${mqSp(`display: none;`)};
   ${hoverWithTransition(`
     color: ${colors.defaultBlue};
   `)};
 `;
 
 const NavigationDivider = styled.span`
+  ${mqSp(`display: none;`)};
   padding: 0 8px;
 `;
 
@@ -91,7 +93,7 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
   }
 
   const pagePath = `${paths.blog.posts}/${postDetail.id}`;
-  const description = `ブログ記事『${postDetail.title}』`;
+  const description = `hori-blog『${postDetail.title}』`;
   const title = postDetail.title;
 
   const metaData: MetaData = {

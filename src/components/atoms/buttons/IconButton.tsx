@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { classes } from '../../../utils/classes';
+import Icon from '../icons/Icon';
 
 type Props = {
   icon: React.ReactNode;
@@ -16,10 +17,15 @@ const Root = styled.button`
   padding: 4px;
 `;
 
+const StyledIcon = styled(Icon)`
+  width: 28px;
+  height: 28px;
+`;
+
 const IconButton: React.VFC<Props> = ({ icon, onClick, className }) => {
   return (
     <Root className={classes(className)} onClick={() => onClick()}>
-      {icon}
+      <StyledIcon icon={icon} />
     </Root>
   );
 };

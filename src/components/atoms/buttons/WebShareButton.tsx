@@ -27,7 +27,7 @@ const WebShareButton: React.VFC<Props> = ({ webShareData, className }) => {
   return (
     <Root
       className={classes(className)}
-      icon={<Icon icon={<ShareIcon />} />}
+      icon={<ShareIcon />}
       onClick={() => navigatorUtilities.callWebShareApi(webShareData)}
     />
   );
