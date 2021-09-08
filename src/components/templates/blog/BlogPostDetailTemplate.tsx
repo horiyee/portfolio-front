@@ -7,11 +7,12 @@ import { fontSize, hoverWithTransition } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
 import { MetaData, WebShareData } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
+import ClipboardCopyButton from '../../atoms/buttons/ClipboardCopyButton';
+import WebShareButton from '../../atoms/buttons/WebShareButton';
 import NextImage from '../../atoms/NextImage';
 import NextLink from '../../atoms/NextLink';
 import Time from '../../atoms/Time';
-import PostDetailBody from '../../molecules/blog/PostDetailBody';
-import ShareButtons from '../../molecules/blog/ShareButtons';
+import BlogPostDetailBody from '../../molecules/blog/PostDetailBody';
 import BlogTemplate from '../common/BlogTemplate';
 
 type Props = {
@@ -71,7 +72,12 @@ const StyledTime = styled(Time)`
   font-family: ${fontFamilies.enFont};
 `;
 
-const StyledPostDetailBody = styled(PostDetailBody)`
+const ShareButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StyledBlogPostDetailBody = styled(BlogPostDetailBody)`
   padding: 32px 0;
 `;
 
@@ -127,11 +133,14 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
               dateOnly
             />
 
-            <ShareButtons webShareData={webShareData} />
+            <ShareButtonsWrapper>
+              <ClipboardCopyButton data={webShareData.url} />
+              <WebShareButton webShareData={webShareData} />
+            </ShareButtonsWrapper>
           </HeaderAsideInfo>
         </Header>
 
-        <StyledPostDetailBody postBody={postDetail.body} />
+        <StyledBlogPostDetailBody postBody={postDetail.body} />
       </BlogPostDetailWrapper>
     </BlogTemplate>
   );

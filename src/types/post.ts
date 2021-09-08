@@ -1,4 +1,4 @@
-export type BlogPost = {
+export type Post = {
   id: string;
   title: string;
   url: string;

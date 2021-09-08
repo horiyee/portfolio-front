@@ -1,20 +1,20 @@
 import { selector } from 'recoil';
 import { recoilKeys } from '..';
 import { paths } from '../../config/paths';
-import { BlogPost } from '../../types/blogPost';
+import { Post } from '../../types/post';
 import { cmsPostsState } from '../atoms/cmsPosts';
 import { qiitaPostsState } from '../atoms/qiitaPosts';
 
-export const blogPostsState = selector<BlogPost[]>({
+export const blogPostsState = selector<Post[]>({
   key: recoilKeys.selectors.BLOG_POSTS,
   get: ({ get }) => {
     const cmsPosts = get(cmsPostsState);
     const qiitaPosts = get(qiitaPostsState);
 
-    const blogPosts: BlogPost[] = [];
+    const blogPosts: Post[] = [];
 
     cmsPosts.forEach(post => {
-      const p: BlogPost = {
+      const p: Post = {
         id: post.id,
         title: post.title,
         url: `${paths.blog.posts}/${post.id}`,
@@ -28,7 +28,7 @@ export const blogPostsState = selector<BlogPost[]>({
     });
 
     qiitaPosts.forEach(post => {
-      const p: BlogPost = {
+      const p: Post = {
         id: post.id,
         title: post.title,
         url: post.url,

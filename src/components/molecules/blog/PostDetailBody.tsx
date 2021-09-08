@@ -13,7 +13,7 @@ const Root = styled.main`
   width: 100%;
 `;
 
-const PostDetailBody: React.VFC<Props> = ({ postBody, className }) => {
+const BlogPostDetailBody: React.VFC<Props> = ({ postBody, className }) => {
   return (
     <InnerHTMLStyler className={classes(className)}>
       <Root dangerouslySetInnerHTML={{ __html: postBody }} />
@@ -21,4 +21,4 @@ const PostDetailBody: React.VFC<Props> = ({ postBody, className }) => {
   );
 };
 
-export default PostDetailBody;
+export default BlogPostDetailBody;

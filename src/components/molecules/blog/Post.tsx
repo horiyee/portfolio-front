@@ -7,7 +7,7 @@ import {
   mqSp,
 } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
-import type { BlogPost } from '../../../types/blogPost';
+import type { Post } from '../../../types/post';
 import ChevronRightIcon from '../../atoms/icons/ChevronRightIcon';
 import Icon from '../../atoms/icons/Icon';
 import NextImage from '../../atoms/NextImage';
@@ -15,7 +15,7 @@ import NextLink from '../../atoms/NextLink';
 import Time from '../../atoms/Time';
 
 type Props = {
-  post: BlogPost;
+  post: Post;
 };
 
 const Root = styled.article`
@@ -119,7 +119,7 @@ const Link = styled(NextLink)`
   border-radius: 28px;
 `;
 
-const Post: React.VFC<Props> = ({ post }) => {
+const BlogPost: React.VFC<Props> = ({ post }) => {
   return (
     <Root>
       <Thumbnail
@@ -151,4 +151,4 @@ const Post: React.VFC<Props> = ({ post }) => {
   );
 };
 
-export default Post;
+export default BlogPost;

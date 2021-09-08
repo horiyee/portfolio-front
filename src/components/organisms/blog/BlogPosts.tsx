@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { blogPostsState } from '../../../recoil/selectors/blogPosts';
-import Post from '../../molecules/blog/Post';
+import BlogPost from '../../molecules/blog/Post';
 
 const Root = styled.div`
   display: inline-block;
@@ -15,7 +15,7 @@ const BlogPosts: React.VFC = () => {
   return (
     <Root>
       {blogPosts.map((post, index) => (
-        <Post post={post} key={index} />
+        <BlogPost post={post} key={index} />
       ))}
     </Root>
   );
