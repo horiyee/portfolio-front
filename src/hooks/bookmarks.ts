@@ -67,20 +67,25 @@ export const useBookmarkAdminApiClients = () => {
     [],
   );
 
-  const deleteBookmark = useCallback(async (id: number) => {
-    const confirm = window.confirm('ブックマークを削除しますか？');
+  const deleteBookmark = useCallback(
+    async (id: number, description: string) => {
+      const confirm = window.confirm(
+        `ブックマーク『${description}』を削除しますか？`,
+      );
 
-    if (confirm) {
-      try {
-        await deleteBookmarkApiClient(id);
-        alert('ブックマークを削除しました。');
-        router.push(paths.admin.bookmarks.index);
-      } catch (e) {
-        console.error(e);
-        alert('削除に失敗しました。');
+      if (confirm) {
+        try {
+          await deleteBookmarkApiClient(id);
+          alert('ブックマークを削除しました。');
+          router.push(paths.admin.bookmarks.index);
+        } catch (e) {
+          console.error(e);
+          alert('削除に失敗しました。');
+        }
       }
-    }
-  }, []);
+    },
+    [],
+  );
 
   return {
     postBookmark,

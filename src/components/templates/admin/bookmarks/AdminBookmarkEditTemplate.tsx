@@ -50,7 +50,12 @@ const AdminBookmarkEditTemplate: React.VFC<Props> = ({ bookmark }) => {
         <AdminBottomActionButton
           color="red"
           icon={<DeleteIcon />}
-          onClick={() => bookmarkAdminApiClients.deleteBookmark(bookmark.id)}
+          onClick={() =>
+            bookmarkAdminApiClients.deleteBookmark(
+              bookmark.id,
+              bookmark.description,
+            )
+          }
         >
           削除
         </AdminBottomActionButton>

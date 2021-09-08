@@ -92,7 +92,7 @@ const TechnologyReactHooks: React.VFC = () => {
       <LabeledCheckBox
         checked={outputLogs}
         setChecked={setOutputLogs}
-        label="計算結果を毎回console.log出力する（かなり高負荷になります）"
+        label="responseを毎回console.log出力する（かなり高負荷になります）"
       />
     </Section>
   );

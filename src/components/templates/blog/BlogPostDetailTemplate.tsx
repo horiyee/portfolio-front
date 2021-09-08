@@ -1,15 +1,17 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+import { getUrl } from '../../../config';
 import { paths } from '../../../config/paths';
 import { fontSize, hoverWithTransition } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
-import { MetaData } from '../../../types';
+import { MetaData, WebShareData } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
 import NextImage from '../../atoms/NextImage';
 import NextLink from '../../atoms/NextLink';
 import Time from '../../atoms/Time';
 import PostDetailBody from '../../molecules/blog/PostDetailBody';
+import ShareButtons from '../../molecules/blog/ShareButtons';
 import BlogTemplate from '../common/BlogTemplate';
 
 type Props = {
@@ -58,7 +60,9 @@ const Title = styled.h1`
 `;
 
 const HeaderAsideInfo = styled.aside`
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
 `;
 
@@ -80,12 +84,22 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
     return null;
   }
 
+  const pagePath = `${paths.blog.posts}/${postDetail.id}`;
+  const description = `ブログ記事『${postDetail.title}』`;
+  const title = postDetail.title;
+
   const metaData: MetaData = {
-    pageTitle: postDetail.title,
+    pageTitle: title,
     commonTitle: 'hori-blog',
-    pagePath: `${paths.blog.posts}/${postDetail.id}`,
+    pagePath: pagePath,
     ogpImageUrl: postDetail.thumbnail.url,
-    description: `ブログ記事『${postDetail.title}』`,
+    description: description,
+  };
+
+  const webShareData: WebShareData = {
+    url: getUrl(pagePath),
+    text: description,
+    title: title,
   };
 
   return (
@@ -112,6 +126,8 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
               seperateWithPeriod
               dateOnly
             />
+
+            <ShareButtons webShareData={webShareData} />
           </HeaderAsideInfo>
         </Header>
 

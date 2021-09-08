@@ -23,6 +23,12 @@ export type MetaData = {
   noIndex?: boolean;
 };
 
+export type WebShareData = {
+  url: string;
+  text: string;
+  title: string;
+};
+
 export class QueryParameterNaNError extends Error {}
 
 export class QueryParameterDuplicateError extends Error {}

@@ -28,11 +28,11 @@ const TechnologyTemplate: React.VFC = () => {
         <HorizontalLine />
       </DrawingCanvasWrapper>
 
-      <TechnologyMarkdownEditor />
+      <TechnologyReactHooks />
       <HorizontalLine />
       <TechnologyWasm />
       <HorizontalLine />
-      <TechnologyReactHooks />
+      <TechnologyMarkdownEditor />
     </PortfolioTemplate>
   );
 };

@@ -67,7 +67,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
                 <AdminTableData>{markdownPost.title}</AdminTableData>
                 <AdminTableData>
                   {markdownPost.body.length > 40
-                    ? `${markdownPost.body.slice(0, 40)} …`
+                    ? `${markdownPost.body.slice(0, 40)}…`
                     : markdownPost.body}
                 </AdminTableData>
                 <AdminTableData>
@@ -86,6 +86,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
                     onClick={() =>
                       markdownPostAdminApiClients.deleteMarkdownPost(
                         markdownPost.id,
+                        markdownPost.title,
                       )
                     }
                   >

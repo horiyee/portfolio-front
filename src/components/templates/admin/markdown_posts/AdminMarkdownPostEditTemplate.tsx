@@ -45,7 +45,10 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
         <AdminBottomActionButton
           color="red"
           onClick={() =>
-            markdownPostAdminApiClients.deleteMarkdownPost(markdownPost.id)
+            markdownPostAdminApiClients.deleteMarkdownPost(
+              markdownPost.id,
+              markdownPost.title,
+            )
           }
           icon={<DeleteIcon />}
         >

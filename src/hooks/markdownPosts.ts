@@ -81,8 +81,8 @@ export const useMarkdownPostAdminApiClients = () => {
     [],
   );
 
-  const deleteMarkdownPost = useCallback(async (id: number) => {
-    const confirm = window.confirm('記事を削除しますか？');
+  const deleteMarkdownPost = useCallback(async (id: number, title: string) => {
+    const confirm = window.confirm(`記事『${title}』を削除しますか？`);
 
     if (confirm) {
       try {

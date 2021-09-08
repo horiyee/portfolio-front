@@ -5,7 +5,7 @@ import { classes } from '../../../utils/classes';
 import Icon from '../icons/Icon';
 
 type Props = {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   onClick: (arg: any) => void;
   icon?: React.ReactNode;
   className?: string;

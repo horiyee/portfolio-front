@@ -48,7 +48,7 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
           <AdminTableRow>
             <AdminTableHeader>ID</AdminTableHeader>
             <AdminTableHeader>リンク先</AdminTableHeader>
-            <AdminTableHeader>備考</AdminTableHeader>
+            <AdminTableHeader>ひとくちメモ</AdminTableHeader>
             <AdminTableHeader>作成日時</AdminTableHeader>
             <AdminTableHeader>更新日時</AdminTableHeader>
             <AdminTableHeader>操作</AdminTableHeader>
@@ -65,7 +65,11 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
                     開く{bookmark.url.includes('http') ? '（新規タブ）' : null}
                   </Link>
                 </AdminTableData>
-                <AdminTableData>{bookmark.description}</AdminTableData>
+                <AdminTableData>
+                  {bookmark.description.length > 25
+                    ? `${bookmark.description.slice(0, 25)}…`
+                    : bookmark.description}
+                </AdminTableData>
                 <AdminTableData>
                   <Time datetime={bookmark.createdAt} />
                 </AdminTableData>
@@ -80,7 +84,10 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
                   </Link>
                   <Button
                     onClick={() =>
-                      bookmarkAdminApiClients.deleteBookmark(bookmark.id)
+                      bookmarkAdminApiClients.deleteBookmark(
+                        bookmark.id,
+                        bookmark.description,
+                      )
                     }
                   >
                     削除
