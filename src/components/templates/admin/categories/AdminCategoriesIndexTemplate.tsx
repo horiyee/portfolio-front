@@ -84,7 +84,7 @@ const AdminCategoriesIndexTemplate: React.VFC<Props> = ({ categories }) => {
 
       <AdminBottomActionBar>
         <AdminBottomActionButton
-          onClick={() => router.push(paths.admin.categories.index)}
+          onClick={() => router.push(paths.admin.index)}
           icon={<ArrowBackIcon />}
         >
           戻る

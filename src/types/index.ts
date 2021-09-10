@@ -29,6 +29,11 @@ export type WebShareData = {
   title: string;
 };
 
+export type SelectorOption = {
+  value: string;
+  label: string;
+};
+
 export class QueryParameterNaNError extends Error {}
 
 export class QueryParameterDuplicateError extends Error {}

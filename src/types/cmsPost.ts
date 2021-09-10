@@ -1,4 +1,3 @@
-import { Category } from './category';
 import { Thumbnail } from './thumbnail';
 
 export type CmsPost = {
@@ -6,7 +5,14 @@ export type CmsPost = {
   title: string;
   body: string;
   thumbnail: Thumbnail;
-  category: Category;
+  category: {
+    id: number;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    revisedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

@@ -6,6 +6,7 @@ import { useExternalPostAdminApiClients } from '../../../../hooks/externalPosts'
 import { AdminForm, AdminFormItemWrapper } from '../../../../styles/components';
 import { SelectorOption } from '../../../../types';
 import { Category } from '../../../../types/category';
+import { ExternalPost } from '../../../../types/externalPost';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminFormLabel from '../../../atoms/admin/AdminFormLabel';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
@@ -17,6 +18,7 @@ import AdminLabeledSelector from '../../../molecules/admin/AdminLabeledSelector'
 import AdminTemplate from '../../common/AdminTemplate';
 
 type Props = {
+  externalPost: ExternalPost;
   categories: Category[];
 };
 
@@ -25,7 +27,10 @@ const ThumbnailPreview = styled.img`
   aspect-ratio: 1200 / 630;
 `;
 
-const AdminExternalPostNewTemplate: React.VFC<Props> = ({ categories }) => {
+const AdminExternalPostEditTemplate: React.VFC<Props> = ({
+  externalPost,
+  categories,
+}) => {
   const router = useRouter();
   const externalPostAdminApiClients = useExternalPostAdminApiClients();
 
@@ -33,11 +38,11 @@ const AdminExternalPostNewTemplate: React.VFC<Props> = ({ categories }) => {
     category => ({ value: String(category.id), label: category.name }),
   );
 
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
-  const [thumbnailUrl, setThumbnailUrl] = useState('');
-  const [categoryId, setCategoryId] = useState('1');
-  const [publishedAt, setPublishedAt] = useState('');
+  const [title, setTitle] = useState(externalPost.title);
+  const [url, setUrl] = useState(externalPost.url);
+  const [thumbnailUrl, setThumbnailUrl] = useState(externalPost.thumbnailUrl);
+  const [categoryId, setCategoryId] = useState(String(externalPost.categoryId));
+  const [publishedAt, setPublishedAt] = useState(externalPost.publishedAt);
 
   return (
     <AdminTemplate hasBottomActionBar>
@@ -99,7 +104,8 @@ const AdminExternalPostNewTemplate: React.VFC<Props> = ({ categories }) => {
         <AdminBottomActionButton
           icon={<SendIcon />}
           onClick={() =>
-            externalPostAdminApiClients.postExternalPost(
+            externalPostAdminApiClients.updateExternalPost(
+              externalPost.id,
               title,
               url,
               thumbnailUrl,
@@ -115,4 +121,4 @@ const AdminExternalPostNewTemplate: React.VFC<Props> = ({ categories }) => {
   );
 };
 
-export default AdminExternalPostNewTemplate;
+export default AdminExternalPostEditTemplate;

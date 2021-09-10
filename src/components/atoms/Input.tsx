@@ -7,6 +7,7 @@ type Props = {
   value: string;
   onChange: (value: string) => void;
   className?: string;
+  type?: string;
 };
 
 const Root = styled.input`
@@ -16,12 +17,13 @@ const Root = styled.input`
   padding: 8px;
 `;
 
-const Input: React.VFC<Props> = ({ value, onChange, className }) => {
+const Input: React.VFC<Props> = ({ value, onChange, className, type }) => {
   return (
     <Root
       className={classes(className)}
       value={value}
       onChange={e => onChange(e.target.value)}
+      type={type}
     />
   );
 };

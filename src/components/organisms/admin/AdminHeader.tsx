@@ -3,13 +3,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../config/paths';
 import { fontSize } from '../../../styles/mixins';
-import { colors, fontFamilies } from '../../../styles/variables';
+import { colors, fontFamilies, zIndexes } from '../../../styles/variables';
 import NextLink from '../../atoms/NextLink';
 
 const Root = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+
+  z-index: ${zIndexes.header};
 
   display: flex;
   align-items: center;

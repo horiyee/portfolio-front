@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
 import {
   AdminTable,
@@ -9,25 +8,21 @@ import {
   AdminTableRow,
   AdminTBody,
   AdminTHead,
+  AdminUnderlinedBlueButton,
+  AdminUnderlinedBlueLink,
 } from '../../../../styles/components';
-import { underlinedBlueLinkStyle } from '../../../../styles/variables';
 import { ExternalPost } from '../../../../types/externalPost';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import AddIcon from '../../../atoms/icons/AddIcon';
 import ArrowBackIcon from '../../../atoms/icons/ArrowBackIcon';
-import NextImage from '../../../atoms/NextImage';
-import NextLink from '../../../atoms/NextLink';
+import Time from '../../../atoms/Time';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminTemplate from '../../common/AdminTemplate';
 
 type Props = {
   externalPosts: ExternalPost[];
 };
-
-const Link = styled(NextLink)`
-  ${underlinedBlueLinkStyle};
-`;
 
 const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
   externalPosts,
@@ -57,19 +52,40 @@ const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
             {externalPosts.map((externalPost, index) => (
               <AdminTableRow key={index}>
                 <AdminTableData>{externalPost.id}</AdminTableData>
-                <AdminTableData>{externalPost.title}</AdminTableData>
                 <AdminTableData>
-                  <Link href={externalPost.url}>開く（新規タブ）</Link>
+                  {externalPost.title.length > 30
+                    ? `${externalPost.title.slice(0, 30)}…`
+                    : externalPost.title}
                 </AdminTableData>
                 <AdminTableData>
-                  <NextImage
-                    src={externalPost.thumbnailUrl}
-                    alt={`外部記事${externalPost.title}のサムネイル`}
-                  />
+                  <AdminUnderlinedBlueLink href={externalPost.url}>
+                    開く（新規タブ）
+                  </AdminUnderlinedBlueLink>
                 </AdminTableData>
-                <AdminTableData>{externalPost.createdAt}</AdminTableData>
-                <AdminTableData>{externalPost.updatedAt}</AdminTableData>
-                <AdminTableData>{externalPost.publishedAt}</AdminTableData>
+                <AdminTableData>
+                  <AdminUnderlinedBlueLink href={externalPost.thumbnailUrl}>
+                    開く（新規タブ）
+                  </AdminUnderlinedBlueLink>
+                </AdminTableData>
+                <AdminTableData>
+                  <Time datetime={externalPost.publishedAt} />
+                </AdminTableData>
+                <AdminTableData>
+                  <Time datetime={externalPost.createdAt} />
+                </AdminTableData>
+                <AdminTableData>
+                  <Time datetime={externalPost.updatedAt} />
+                </AdminTableData>
+                <AdminTableData>
+                  <AdminUnderlinedBlueLink
+                    href={`${paths.admin.externalPosts.index}/${externalPost.id}/edit`}
+                  >
+                    編集
+                  </AdminUnderlinedBlueLink>
+                  <AdminUnderlinedBlueButton hasMarginLeft onClick={() => {}}>
+                    削除
+                  </AdminUnderlinedBlueButton>
+                </AdminTableData>
               </AdminTableRow>
             ))}
           </AdminTBody>
