@@ -7,4 +7,5 @@ export type FetchMarkdownPostsApiResponse = {
 export type MarkdownPostApiRequest = {
   title: string;
   body: string;
+  categoryId: number;
 };

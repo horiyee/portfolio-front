@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { paths } from '../../../../config/paths';
+import { useGetCategorySelectorOptions } from '../../../../hooks/categories';
 import { useMarkdownPostAdminApiClients } from '../../../../hooks/markdownPosts';
+import { AdminForm, AdminFormItemWrapper } from '../../../../styles/components';
+import { Category } from '../../../../types/category';
 import { MarkdownPost } from '../../../../types/markdownPost';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
@@ -9,30 +12,48 @@ import ClearIcon from '../../../atoms/icons/ClearIcon';
 import DeleteIcon from '../../../atoms/icons/DeleteIcon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
+import AdminLabeledSelector from '../../../molecules/admin/AdminLabeledSelector';
 import AdminMarkdownPostEditor from '../../../organisms/admin/AdminMarkdownPostEditor';
 import AdminTemplate from '../../common/AdminTemplate';
 
 type Props = {
   markdownPost: MarkdownPost;
+  categories: Category[];
 };
 
-const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
+const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({
+  markdownPost,
+  categories,
+}) => {
   const router = useRouter();
+  const getCategorySelectorOptions = useGetCategorySelectorOptions();
   const markdownPostAdminApiClients = useMarkdownPostAdminApiClients();
 
-  const [title, setTitle] = useState(markdownPost ? markdownPost.title : '');
-  const [body, setBody] = useState(markdownPost ? markdownPost.body : '');
+  const [title, setTitle] = useState(markdownPost.title);
+  const [body, setBody] = useState(markdownPost.body);
+  const [categoryId, setCategoryId] = useState(String(markdownPost.categoryId));
 
   return (
     <AdminTemplate hasBottomActionBar>
       <AdminPageTitle>マークダウン記事編集</AdminPageTitle>
 
-      <AdminMarkdownPostEditor
-        title={title}
-        body={body}
-        setTitle={setTitle}
-        setBody={setBody}
-      />
+      <AdminForm>
+        <AdminFormItemWrapper>
+          <AdminLabeledSelector
+            label="カテゴリ"
+            value={categoryId}
+            setValue={setCategoryId}
+            options={getCategorySelectorOptions(categories)}
+          />
+        </AdminFormItemWrapper>
+
+        <AdminMarkdownPostEditor
+          title={title}
+          body={body}
+          setTitle={setTitle}
+          setBody={setBody}
+        />
+      </AdminForm>
 
       <AdminBottomActionBar>
         <AdminBottomActionButton
@@ -60,6 +81,7 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({ markdownPost }) => {
               markdownPost.id,
               title,
               body,
+              categoryId,
             )
           }
           icon={<SendIcon />}

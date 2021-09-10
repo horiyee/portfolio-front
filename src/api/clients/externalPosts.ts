@@ -43,3 +43,7 @@ export const updateExternalPostApiClient = async (
     externalPost,
   );
 };
+
+export const deleteExternalPostApiClient = async (id: number) => {
+  await axios.delete(getApiEndpoint(`${apiPaths.v1.externalPosts}/${id}`));
+};

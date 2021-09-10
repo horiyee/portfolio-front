@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
+import { useGetCategorySelectorOptions } from '../../../../hooks/categories';
 import { useExternalPostAdminApiClients } from '../../../../hooks/externalPosts';
 import { AdminForm, AdminFormItemWrapper } from '../../../../styles/components';
 import { SelectorOption } from '../../../../types';
@@ -27,11 +28,8 @@ const ThumbnailPreview = styled.img`
 
 const AdminExternalPostNewTemplate: React.VFC<Props> = ({ categories }) => {
   const router = useRouter();
+  const getCategorySelectorOptions = useGetCategorySelectorOptions();
   const externalPostAdminApiClients = useExternalPostAdminApiClients();
-
-  const categorySelectorOptions: SelectorOption[] = categories.map(
-    category => ({ value: String(category.id), label: category.name }),
-  );
 
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
@@ -64,7 +62,7 @@ const AdminExternalPostNewTemplate: React.VFC<Props> = ({ categories }) => {
         <AdminFormItemWrapper>
           <AdminLabeledSelector
             label="カテゴリ"
-            options={categorySelectorOptions}
+            options={getCategorySelectorOptions(categories)}
             value={categoryId}
             setValue={setCategoryId}
           />

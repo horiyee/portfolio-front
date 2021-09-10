@@ -26,34 +26,50 @@ export const useSetMarkdownPosts = (state: MarkdownPost[]) => {
 export const useMarkdownPostAdminApiClients = () => {
   const router = useRouter();
 
-  const postMarkdownPost = useCallback(async (title: string, body: string) => {
-    if (title === '') {
-      alert('タイトルを入力してください。');
-      return;
-    }
-
-    const confirm = window.confirm(`記事を投稿しますか？`);
-
-    if (confirm) {
-      const markdownPost: MarkdownPostApiRequest = {
-        title,
-        body,
-      };
-
-      try {
-        await createMarkdownPostApiClient(markdownPost);
-        alert('投稿が完了しました。');
-        router.push(`${paths.admin.markdownPosts.index}`);
-      } catch {
-        alert('投稿に失敗しました。');
-      }
-    }
-  }, []);
-
-  const updateMarkdownPost = useCallback(
-    async (id: number, title: string, body: string) => {
+  const postMarkdownPost = useCallback(
+    async (title: string, body: string, categoryId: string) => {
       if (title === '') {
         alert('タイトルを入力してください。');
+        return;
+      }
+
+      const parsedCategoryId = Number(categoryId);
+      if (isNaN(parsedCategoryId)) {
+        alert('カテゴリIDが不正です。');
+        return;
+      }
+
+      const confirm = window.confirm(`記事を投稿しますか？`);
+
+      if (confirm) {
+        const markdownPost: MarkdownPostApiRequest = {
+          title,
+          body,
+          categoryId: parsedCategoryId,
+        };
+
+        try {
+          await createMarkdownPostApiClient(markdownPost);
+          alert('投稿が完了しました。');
+          router.push(`${paths.admin.markdownPosts.index}`);
+        } catch {
+          alert('投稿に失敗しました。');
+        }
+      }
+    },
+    [],
+  );
+
+  const updateMarkdownPost = useCallback(
+    async (id: number, title: string, body: string, categoryId: string) => {
+      if (title === '') {
+        alert('タイトルを入力してください。');
+        return;
+      }
+
+      const parsedCategoryId = Number(categoryId);
+      if (isNaN(parsedCategoryId)) {
+        alert('カテゴリIDが不正です。');
         return;
       }
 
@@ -63,6 +79,7 @@ export const useMarkdownPostAdminApiClients = () => {
         const markdownPost: MarkdownPostApiRequest = {
           title,
           body,
+          categoryId: parsedCategoryId,
         };
 
         try {

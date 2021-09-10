@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import {
   createExternalPostApiClient,
+  deleteExternalPostApiClient,
   updateExternalPostApiClient,
 } from '../api/clients/externalPosts';
 import { paths } from '../config/paths';
@@ -106,5 +107,20 @@ export const useExternalPostAdminApiClients = () => {
     [],
   );
 
-  return { postExternalPost, updateExternalPost };
+  const deleteExternalPost = useCallback(async (id: number, title: string) => {
+    const confirm = window.confirm(`外部記事『${title}』を削除しますか？`);
+
+    if (confirm) {
+      try {
+        await deleteExternalPostApiClient(id);
+        alert('外部記事を削除しました。');
+        router.push(paths.admin.externalPosts.index);
+      } catch (e) {
+        console.error(e);
+        alert('削除に失敗しました。');
+      }
+    }
+  }, []);
+
+  return { postExternalPost, updateExternalPost, deleteExternalPost };
 };

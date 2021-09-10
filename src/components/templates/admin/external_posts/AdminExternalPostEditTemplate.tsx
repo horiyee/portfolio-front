@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
+import { useGetCategorySelectorOptions } from '../../../../hooks/categories';
 import { useExternalPostAdminApiClients } from '../../../../hooks/externalPosts';
 import { AdminForm, AdminFormItemWrapper } from '../../../../styles/components';
 import { SelectorOption } from '../../../../types';
@@ -32,11 +33,8 @@ const AdminExternalPostEditTemplate: React.VFC<Props> = ({
   categories,
 }) => {
   const router = useRouter();
+  const getCategorySelectorOptions = useGetCategorySelectorOptions();
   const externalPostAdminApiClients = useExternalPostAdminApiClients();
-
-  const categorySelectorOptions: SelectorOption[] = categories.map(
-    category => ({ value: String(category.id), label: category.name }),
-  );
 
   const [title, setTitle] = useState(externalPost.title);
   const [url, setUrl] = useState(externalPost.url);
@@ -69,7 +67,7 @@ const AdminExternalPostEditTemplate: React.VFC<Props> = ({
         <AdminFormItemWrapper>
           <AdminLabeledSelector
             label="カテゴリ"
-            options={categorySelectorOptions}
+            options={getCategorySelectorOptions(categories)}
             value={categoryId}
             setValue={setCategoryId}
           />
@@ -100,6 +98,17 @@ const AdminExternalPostEditTemplate: React.VFC<Props> = ({
           onClick={() => router.push(paths.admin.externalPosts.index)}
         >
           やめる
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
+          icon={<ClearIcon />}
+          onClick={() =>
+            externalPostAdminApiClients.deleteExternalPost(
+              externalPost.id,
+              title,
+            )
+          }
+        >
+          削除
         </AdminBottomActionButton>
         <AdminBottomActionButton
           icon={<SendIcon />}

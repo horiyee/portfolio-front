@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { paths } from '../../../../config/paths';
+import { useExternalPostAdminApiClients } from '../../../../hooks/externalPosts';
 import {
   AdminTable,
   AdminTableData,
@@ -28,6 +29,7 @@ const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
   externalPosts,
 }) => {
   const router = useRouter();
+  const externalPostAdminApiClients = useExternalPostAdminApiClients();
 
   return (
     <AdminTemplate hasBottomActionBar>
@@ -82,7 +84,15 @@ const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
                   >
                     編集
                   </AdminUnderlinedBlueLink>
-                  <AdminUnderlinedBlueButton hasMarginLeft onClick={() => {}}>
+                  <AdminUnderlinedBlueButton
+                    hasMarginLeft
+                    onClick={() =>
+                      externalPostAdminApiClients.deleteExternalPost(
+                        externalPost.id,
+                        externalPost.title,
+                      )
+                    }
+                  >
                     削除
                   </AdminUnderlinedBlueButton>
                 </AdminTableData>

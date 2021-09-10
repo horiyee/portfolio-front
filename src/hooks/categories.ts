@@ -6,7 +6,23 @@ import {
   updateCategoryApiClient,
 } from '../api/clients/categories';
 import { paths } from '../config/paths';
+import { SelectorOption } from '../types';
 import { CategoryApiRequest } from '../types/api/categories';
+import { Category } from '../types/category';
+
+export const useGetCategorySelectorOptions = () => {
+  const getCategorySelectorOptions = useCallback(
+    (categories: Category[]): SelectorOption[] => {
+      return categories.map(category => ({
+        value: String(category.id),
+        label: category.name,
+      }));
+    },
+    [],
+  );
+
+  return getCategorySelectorOptions;
+};
 
 export const useCategoryAdminApiClients = () => {
   const router = useRouter();
