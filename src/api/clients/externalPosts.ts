@@ -2,14 +2,13 @@ import axios from 'axios';
 import { getApiEndpoint } from '../../config';
 import { apiPaths } from '../../config/apiPaths';
 import {
-  CreateExternalPostApiRequest,
+  ExternalPostApiRequest,
   FetchExternalPostsApiResponse,
-  UpdateExternalPostApiRequest,
 } from '../../types/api/externalPosts';
 import { ExternalPost } from '../../types/externalPost';
 
 export const createExternalPostApiClient = async (
-  externalPost: CreateExternalPostApiRequest,
+  externalPost: ExternalPostApiRequest,
 ) => {
   const res = await axios.post<number>(
     getApiEndpoint(apiPaths.v1.externalPosts),
@@ -37,7 +36,7 @@ export const fetchExternalPostsApiClient = async () => {
 
 export const updateExternalPostApiClient = async (
   id: number,
-  externalPost: UpdateExternalPostApiRequest,
+  externalPost: ExternalPostApiRequest,
 ) => {
   await axios.put(
     getApiEndpoint(`${apiPaths.v1.externalPosts}/${id}`),

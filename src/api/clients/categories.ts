@@ -2,15 +2,12 @@ import axios from 'axios';
 import { getApiEndpoint } from '../../config';
 import { apiPaths } from '../../config/apiPaths';
 import {
-  CreateCategoryApiRequest,
+  CategoryApiRequest,
   FetchCategoriesApiResponse,
-  UpdateCategoryApiRequest,
 } from '../../types/api/categories';
 import { Category } from '../../types/category';
 
-export const createCategoryApiClient = async (
-  category: CreateCategoryApiRequest,
-) => {
+export const createCategoryApiClient = async (category: CategoryApiRequest) => {
   const res = await axios.post<number>(
     getApiEndpoint(apiPaths.v1.categories),
     category,
@@ -37,7 +34,7 @@ export const fetchCategoryApiClient = async (id: number) => {
 
 export const updateCategoryApiClient = async (
   id: number,
-  category: UpdateCategoryApiRequest,
+  category: CategoryApiRequest,
 ) => {
   await axios.put(getApiEndpoint(`${apiPaths.v1.categories}/${id}`), category);
 };

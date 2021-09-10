@@ -2,14 +2,13 @@ import axios from 'axios';
 import { getApiEndpoint } from '../../config';
 import { apiPaths } from '../../config/apiPaths';
 import {
-  CreateMarkdownPostApiRequest,
   FetchMarkdownPostsApiResponse,
-  UpdateMarkdownPostApiRequest,
+  MarkdownPostApiRequest,
 } from '../../types/api/markdownPosts';
 import { MarkdownPost } from '../../types/markdownPost';
 
 export const createMarkdownPostApiClient = async (
-  markdownPost: CreateMarkdownPostApiRequest,
+  markdownPost: MarkdownPostApiRequest,
 ) => {
   const res = await axios.post<number>(
     getApiEndpoint(apiPaths.v1.markdownPosts),
@@ -37,7 +36,7 @@ export const fetchMarkdownPostApiClient = async (id: number) => {
 
 export const updateMarkdownPostApiClient = async (
   id: number,
-  markdownPost: UpdateMarkdownPostApiRequest,
+  markdownPost: MarkdownPostApiRequest,
 ) => {
   await axios.put(
     getApiEndpoint(`${apiPaths.v1.markdownPosts}/${id}`),

@@ -5,7 +5,7 @@ import {
   updateExternalPostApiClient,
 } from '../api/clients/externalPosts';
 import { paths } from '../config/paths';
-import { CreateExternalPostApiRequest } from '../types/api/externalPosts';
+import { ExternalPostApiRequest } from '../types/api/externalPosts';
 
 export const useExternalPostAdminApiClients = () => {
   const router = useRouter();
@@ -37,7 +37,7 @@ export const useExternalPostAdminApiClients = () => {
       const confirm = window.confirm(`外部記事を登録しますか？`);
 
       if (confirm) {
-        const externalPost: CreateExternalPostApiRequest = {
+        const externalPost: ExternalPostApiRequest = {
           title,
           url,
           thumbnailUrl,
@@ -86,7 +86,7 @@ export const useExternalPostAdminApiClients = () => {
       const confirm = window.confirm(`外部記事を更新しますか？`);
 
       if (confirm) {
-        const externalPost: CreateExternalPostApiRequest = {
+        const externalPost: ExternalPostApiRequest = {
           title,
           url,
           thumbnailUrl,

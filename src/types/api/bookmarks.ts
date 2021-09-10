@@ -4,12 +4,7 @@ export type FetchBookmarksApiResponse = {
   bookmarks: Bookmark[];
 };
 
-export type CreateBookmarkApiRequest = {
-  url: string;
-  description: string;
-};
-
-export type UpdateBookmarkApiRequest = {
+export type BookmarkApiRequest = {
   url: string;
   description: string;
 };

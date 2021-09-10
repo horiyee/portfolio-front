@@ -8,10 +8,7 @@ import {
 } from '../api/clients/markdownPosts';
 import { paths } from '../config/paths';
 import { markdownPostsState } from '../recoil/atoms/markdownPosts';
-import {
-  CreateMarkdownPostApiRequest,
-  UpdateMarkdownPostApiRequest,
-} from '../types/api/markdownPosts';
+import { MarkdownPostApiRequest } from '../types/api/markdownPosts';
 import { MarkdownPost } from '../types/markdownPost';
 
 export const useSetMarkdownPosts = (state: MarkdownPost[]) => {
@@ -38,7 +35,7 @@ export const useMarkdownPostAdminApiClients = () => {
     const confirm = window.confirm(`記事を投稿しますか？`);
 
     if (confirm) {
-      const markdownPost: CreateMarkdownPostApiRequest = {
+      const markdownPost: MarkdownPostApiRequest = {
         title,
         body,
       };
@@ -63,7 +60,7 @@ export const useMarkdownPostAdminApiClients = () => {
       const confirm = window.confirm(`記事を更新しますか？`);
 
       if (confirm) {
-        const markdownPost: UpdateMarkdownPostApiRequest = {
+        const markdownPost: MarkdownPostApiRequest = {
           title,
           body,
         };

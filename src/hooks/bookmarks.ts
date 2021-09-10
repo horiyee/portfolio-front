@@ -6,10 +6,7 @@ import {
   updateBookmarkApiClient,
 } from '../api/clients/bookmarks';
 import { paths } from '../config/paths';
-import {
-  CreateBookmarkApiRequest,
-  UpdateBookmarkApiRequest,
-} from '../types/api/bookmarks';
+import { BookmarkApiRequest } from '../types/api/bookmarks';
 
 export const useBookmarkAdminApiClients = () => {
   const router = useRouter();
@@ -23,7 +20,7 @@ export const useBookmarkAdminApiClients = () => {
     const confirm = window.confirm('ブックマークを登録しますか？');
 
     if (confirm) {
-      const bookmark: CreateBookmarkApiRequest = {
+      const bookmark: BookmarkApiRequest = {
         url,
         description,
       };
@@ -49,7 +46,7 @@ export const useBookmarkAdminApiClients = () => {
       const confirm = window.confirm(`ブックマークを更新しますか？`);
 
       if (confirm) {
-        const bookmark: UpdateBookmarkApiRequest = {
+        const bookmark: BookmarkApiRequest = {
           url,
           description,
         };

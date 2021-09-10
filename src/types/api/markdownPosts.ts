@@ -4,12 +4,7 @@ export type FetchMarkdownPostsApiResponse = {
   markdownPosts: MarkdownPost[];
 };
 
-export type CreateMarkdownPostApiRequest = {
-  title: string;
-  body: string;
-};
-
-export type UpdateMarkdownPostApiRequest = {
+export type MarkdownPostApiRequest = {
   title: string;
   body: string;
 };

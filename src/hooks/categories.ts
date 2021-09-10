@@ -6,10 +6,7 @@ import {
   updateCategoryApiClient,
 } from '../api/clients/categories';
 import { paths } from '../config/paths';
-import {
-  CreateCategoryApiRequest,
-  UpdateCategoryApiRequest,
-} from '../types/api/categories';
+import { CategoryApiRequest } from '../types/api/categories';
 
 export const useCategoryAdminApiClients = () => {
   const router = useRouter();
@@ -23,7 +20,7 @@ export const useCategoryAdminApiClients = () => {
     const confirm = window.confirm('カテゴリを追加しますか？');
 
     if (confirm) {
-      const category: CreateCategoryApiRequest = {
+      const category: CategoryApiRequest = {
         name,
       };
 
@@ -47,7 +44,7 @@ export const useCategoryAdminApiClients = () => {
     const confirm = window.confirm(`カテゴリを更新しますか？`);
 
     if (confirm) {
-      const category: UpdateCategoryApiRequest = {
+      const category: CategoryApiRequest = {
         name,
       };
 

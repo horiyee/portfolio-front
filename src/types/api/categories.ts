@@ -4,10 +4,6 @@ export type FetchCategoriesApiResponse = {
   categories: Category[];
 };
 
-export type CreateCategoryApiRequest = {
-  name: string;
-};
-
-export type UpdateCategoryApiRequest = {
+export type CategoryApiRequest = {
   name: string;
 };
