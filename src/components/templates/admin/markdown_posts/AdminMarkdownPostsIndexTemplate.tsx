@@ -11,6 +11,8 @@ import {
   AdminTableRow,
   AdminTBody,
   AdminTHead,
+  AdminUnderlinedBlueButton,
+  AdminUnderlinedBlueLink,
 } from '../../../../styles/components';
 import { hover } from '../../../../styles/mixins';
 import { colors, underlinedBlueLinkStyle } from '../../../../styles/variables';
@@ -27,15 +29,6 @@ import AdminTemplate from '../../common/AdminTemplate';
 type Props = {
   markdownPosts: MarkdownPost[] | null;
 };
-
-const EditLink = styled(NextLink)`
-  ${underlinedBlueLinkStyle};
-`;
-
-const DeleteButton = styled.button`
-  margin-left: 8px;
-  ${underlinedBlueLinkStyle};
-`;
 
 const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
   markdownPosts,
@@ -77,12 +70,13 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
                   <Time datetime={markdownPost.updatedAt} />
                 </AdminTableData>
                 <AdminTableData>
-                  <EditLink
+                  <AdminUnderlinedBlueLink
                     href={`${paths.admin.markdownPosts.index}/${markdownPost.id}/edit`}
                   >
                     編集
-                  </EditLink>
-                  <DeleteButton
+                  </AdminUnderlinedBlueLink>
+                  <AdminUnderlinedBlueButton
+                    hasMarginLeft
                     onClick={() =>
                       markdownPostAdminApiClients.deleteMarkdownPost(
                         markdownPost.id,
@@ -91,7 +85,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
                     }
                   >
                     削除
-                  </DeleteButton>
+                  </AdminUnderlinedBlueButton>
                 </AdminTableData>
               </AdminTableRow>
             ))}

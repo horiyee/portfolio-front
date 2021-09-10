@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { paths } from '../../../../config/paths';
-import { useBookmarkAdminApiClients } from '../../../../hooks/bookmarks';
+import { useCategoryAdminApiClients } from '../../../../hooks/categories';
 import {
   AdminTable,
   AdminTableData,
@@ -12,7 +12,7 @@ import {
   AdminUnderlinedBlueButton,
   AdminUnderlinedBlueLink,
 } from '../../../../styles/components';
-import { Bookmark } from '../../../../types/bookmark';
+import { Category } from '../../../../types/category';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import AddIcon from '../../../atoms/icons/AddIcon';
@@ -22,62 +22,54 @@ import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar'
 import AdminTemplate from '../../common/AdminTemplate';
 
 type Props = {
-  bookmarks: Bookmark[];
+  categories: Category[];
 };
 
-const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
+const AdminCategoriesIndexTemplate: React.VFC<Props> = ({ categories }) => {
   const router = useRouter();
-  const bookmarkAdminApiClients = useBookmarkAdminApiClients();
+  const categoryAdminApiClients = useCategoryAdminApiClients();
 
   return (
     <AdminTemplate hasBottomActionBar>
-      <AdminPageTitle>ブックマーク管理</AdminPageTitle>
+      <AdminPageTitle>カテゴリ管理</AdminPageTitle>
 
       <AdminTable>
         <AdminTHead>
           <AdminTableRow>
             <AdminTableHeader>ID</AdminTableHeader>
-            <AdminTableHeader>リンク先</AdminTableHeader>
-            <AdminTableHeader>ひとくちメモ</AdminTableHeader>
-            <AdminTableHeader>作成日時</AdminTableHeader>
-            <AdminTableHeader>更新日時</AdminTableHeader>
+            <AdminTableHeader>カテゴリ名</AdminTableHeader>
+            <AdminTableHeader>記事数</AdminTableHeader>
+            <AdminTableHeader>作成日</AdminTableHeader>
+            <AdminTableHeader>更新日</AdminTableHeader>
             <AdminTableHeader>操作</AdminTableHeader>
           </AdminTableRow>
         </AdminTHead>
 
-        {bookmarks ? (
+        {categories ? (
           <AdminTBody>
-            {bookmarks.map((bookmark, index) => (
+            {categories.map((category, index) => (
               <AdminTableRow key={index}>
-                <AdminTableData>{bookmark.id}</AdminTableData>
+                <AdminTableData>{category.id}</AdminTableData>
+                <AdminTableData>{category.name}</AdminTableData>
+                <AdminTableData>{category.posts_count}</AdminTableData>
                 <AdminTableData>
-                  <AdminUnderlinedBlueLink href={bookmark.url}>
-                    開く{bookmark.url.includes('http') ? '（新規タブ）' : null}
-                  </AdminUnderlinedBlueLink>
+                  <Time datetime={category.createdAt} />
                 </AdminTableData>
                 <AdminTableData>
-                  {bookmark.description.length > 25
-                    ? `${bookmark.description.slice(0, 25)}…`
-                    : bookmark.description}
-                </AdminTableData>
-                <AdminTableData>
-                  <Time datetime={bookmark.createdAt} />
-                </AdminTableData>
-                <AdminTableData>
-                  <Time datetime={bookmark.updatedAt} />
+                  <Time datetime={category.updatedAt} />
                 </AdminTableData>
                 <AdminTableData>
                   <AdminUnderlinedBlueLink
-                    href={`${paths.admin.bookmarks.index}/${bookmark.id}/edit`}
+                    href={`${paths.admin.categories.index}/${category.id}/edit`}
                   >
                     編集
                   </AdminUnderlinedBlueLink>
                   <AdminUnderlinedBlueButton
                     hasMarginLeft
                     onClick={() =>
-                      bookmarkAdminApiClients.deleteBookmark(
-                        bookmark.id,
-                        bookmark.description,
+                      categoryAdminApiClients.deleteCategory(
+                        category.id,
+                        category.name,
                       )
                     }
                   >
@@ -92,14 +84,14 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
 
       <AdminBottomActionBar>
         <AdminBottomActionButton
-          onClick={() => router.push(paths.admin.index)}
+          onClick={() => router.push(paths.admin.categories.index)}
           icon={<ArrowBackIcon />}
         >
           戻る
         </AdminBottomActionButton>
         <AdminBottomActionButton
+          onClick={() => router.push(paths.admin.categories.new)}
           icon={<AddIcon />}
-          onClick={() => router.push(paths.admin.bookmarks.new)}
         >
           追加
         </AdminBottomActionButton>
@@ -108,4 +100,4 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
   );
 };
 
-export default AdminBookmarksIndexTemplate;
+export default AdminCategoriesIndexTemplate;

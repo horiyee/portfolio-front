@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import NextLink from '../components/atoms/NextLink';
 import { mqPc, mqSp } from './mixins';
+import { underlinedBlueLinkStyle } from './variables';
 
 export const SideNavigationWrapper = styled.div`
   display: none;
@@ -20,6 +22,18 @@ export const ContentsWrapper = styled.div`
   justify-content: center;
   width: 100%;
   ${mqPc(`padding-left: 320px;`)};
+`;
+
+export const AdminUnderlinedBlueLink = styled(NextLink)`
+  ${underlinedBlueLinkStyle};
+`;
+
+type AdminUnderlinedBlueButtonProps = {
+  hasMarginLeft?: boolean;
+};
+export const AdminUnderlinedBlueButton = styled.button<AdminUnderlinedBlueButtonProps>`
+  margin-left: ${props => (props.hasMarginLeft ? '8px' : '0')};
+  ${underlinedBlueLinkStyle};
 `;
 
 export const AdminTable = styled.table`
@@ -44,6 +58,11 @@ export const AdminTableRow = styled.tr`
 
 export const AdminTableData = styled.td`
   padding: 0 8px;
+`;
+
+export const AdminForm = styled.form`
+  display: inline-block;
+  width: 100%;
 `;
 
 export const AdminFormItemWrapper = styled.div`

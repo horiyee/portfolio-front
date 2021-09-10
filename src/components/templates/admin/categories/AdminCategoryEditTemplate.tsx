@@ -1,57 +1,59 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { paths } from '../../../../config/paths';
-import { useBookmarkAdminApiClients } from '../../../../hooks/bookmarks';
+import { useCategoryAdminApiClients } from '../../../../hooks/categories';
 import { AdminForm, AdminFormItemWrapper } from '../../../../styles/components';
+import { Category } from '../../../../types/category';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
-import AddIcon from '../../../atoms/icons/AddIcon';
 import ClearIcon from '../../../atoms/icons/ClearIcon';
+import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminLabeledInput from '../../../molecules/admin/AdminLabeledInput';
 import AdminTemplate from '../../common/AdminTemplate';
 
-const AdminBookmarkNewTemplate: React.VFC = () => {
-  const router = useRouter();
-  const bookmarkAdminApiClients = useBookmarkAdminApiClients();
+type Props = {
+  category: Category | null;
+};
 
-  const [url, setUrl] = useState('');
-  const [description, setDescription] = useState('');
+const AdminCategoryEditTemplate: React.VFC<Props> = ({ category }) => {
+  const router = useRouter();
+  const categoryAdminApiClients = useCategoryAdminApiClients();
+
+  const [categoryName, setCategoryName] = useState(category.name);
 
   return (
-    <AdminTemplate hasBottomActionBar>
-      <AdminPageTitle>新規ブックマーク</AdminPageTitle>
+    <AdminTemplate>
+      <AdminPageTitle>新規カテゴリ</AdminPageTitle>
 
       <AdminForm>
         <AdminFormItemWrapper>
-          <AdminLabeledInput label="URL" value={url} setValue={setUrl} />
-        </AdminFormItemWrapper>
-        <AdminFormItemWrapper>
           <AdminLabeledInput
-            label="備考"
-            value={description}
-            setValue={setDescription}
+            label="カテゴリ名"
+            value={categoryName}
+            setValue={setCategoryName}
           />
         </AdminFormItemWrapper>
       </AdminForm>
 
       <AdminBottomActionBar>
         <AdminBottomActionButton
-          onClick={() => router.push(paths.admin.bookmarks.index)}
-          icon={<ClearIcon />}
           color="red"
+          onClick={() => router.push(paths.admin.categories.index)}
+          icon={<ClearIcon />}
         >
           やめる
         </AdminBottomActionButton>
         <AdminBottomActionButton
-          icon={<AddIcon />}
-          onClick={() => bookmarkAdminApiClients.postBookmark(url, description)}
+          onClick={() =>
+            categoryAdminApiClients.updateCategory(category.id, categoryName)
+          }
+          icon={<SendIcon />}
         >
-          登録
+          更新
         </AdminBottomActionButton>
       </AdminBottomActionBar>
     </AdminTemplate>
   );
 };
-
-export default AdminBookmarkNewTemplate;
+export default AdminCategoryEditTemplate;

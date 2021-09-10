@@ -1,8 +1,7 @@
 export type Category = {
-  id: string;
+  id: number;
   name: string;
+  posts_count: number;
   createdAt: string;
   updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
 };

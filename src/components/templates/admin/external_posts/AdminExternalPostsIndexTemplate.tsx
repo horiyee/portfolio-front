@@ -48,6 +48,7 @@ const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
             <AdminTableHeader>公開日時</AdminTableHeader>
             <AdminTableHeader>登録日時</AdminTableHeader>
             <AdminTableHeader>更新日時</AdminTableHeader>
+            <AdminTableHeader>操作</AdminTableHeader>
           </AdminTableRow>
         </AdminTHead>
 
