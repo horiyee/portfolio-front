@@ -24,7 +24,7 @@ const AdminCategoryEditTemplate: React.VFC<Props> = ({ category }) => {
 
   return (
     <AdminTemplate>
-      <AdminPageTitle>新規カテゴリ</AdminPageTitle>
+      <AdminPageTitle>カテゴリ編集</AdminPageTitle>
 
       <AdminForm>
         <AdminFormItemWrapper>
@@ -43,6 +43,15 @@ const AdminCategoryEditTemplate: React.VFC<Props> = ({ category }) => {
           icon={<ClearIcon />}
         >
           やめる
+        </AdminBottomActionButton>
+        <AdminBottomActionButton
+          color="red"
+          icon={<ClearIcon />}
+          onClick={() =>
+            categoryAdminApiClients.deleteCategory(category.id, categoryName)
+          }
+        >
+          削除
         </AdminBottomActionButton>
         <AdminBottomActionButton
           onClick={() =>

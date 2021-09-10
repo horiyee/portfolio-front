@@ -44,7 +44,7 @@ const AdminExternalPostEditTemplate: React.VFC<Props> = ({
 
   return (
     <AdminTemplate hasBottomActionBar>
-      <AdminPageTitle>新規外部記事</AdminPageTitle>
+      <AdminPageTitle>外部記事編集</AdminPageTitle>
 
       <AdminForm>
         <AdminFormItemWrapper>
@@ -100,6 +100,7 @@ const AdminExternalPostEditTemplate: React.VFC<Props> = ({
           やめる
         </AdminBottomActionButton>
         <AdminBottomActionButton
+          color="red"
           icon={<ClearIcon />}
           onClick={() =>
             externalPostAdminApiClients.deleteExternalPost(
