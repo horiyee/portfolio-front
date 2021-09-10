@@ -28,9 +28,9 @@ const TechnologyTemplate: React.VFC = () => {
         <HorizontalLine />
       </DrawingCanvasWrapper>
 
-      <TechnologyReactHooks />
-      <HorizontalLine />
       <TechnologyWasm />
+      <HorizontalLine />
+      <TechnologyReactHooks />
       <HorizontalLine />
       <TechnologyMarkdownEditor />
     </PortfolioTemplate>

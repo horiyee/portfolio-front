@@ -9,6 +9,10 @@ export const paths = {
       index: '/admin/external_posts',
       new: '/admin/external_posts/new',
     },
+    categories: {
+      index: '/admin/categories',
+      new: '/admin/categories/new',
+    },
     bookmarks: {
       index: '/admin/bookmarks',
       new: '/admin/bookmarks/new',

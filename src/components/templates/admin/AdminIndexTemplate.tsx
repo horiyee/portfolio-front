@@ -4,6 +4,7 @@ import { paths } from '../../../config/paths';
 import { mqSp } from '../../../styles/mixins';
 import AdminIndexItem from '../../atoms/admin/AdminIndexItem';
 import BookmarksIcon from '../../atoms/icons/BookmarksIcon';
+import CategoryIcon from '../../atoms/icons/CategoryIcon';
 import DescriptionIcon from '../../atoms/icons/DescriptionIcon';
 import LinkIcon from '../../atoms/icons/LinkIcon';
 import AdminTemplate from '../common/AdminTemplate';
@@ -34,6 +35,12 @@ const AdminIndexTemplate: React.VFC = () => {
           href={paths.admin.externalPosts.index}
         >
           外部記事管理
+        </StyledAdminIndexItem>
+        <StyledAdminIndexItem
+          icon={<CategoryIcon />}
+          href={paths.admin.categories.index}
+        >
+          カテゴリ管理
         </StyledAdminIndexItem>
         <StyledAdminIndexItem
           icon={<BookmarksIcon />}
