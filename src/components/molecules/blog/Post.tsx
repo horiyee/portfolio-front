@@ -61,7 +61,7 @@ const Header = styled.header`
   `)}
 `;
 
-const UpdatedAt = styled(Time)`
+const PublishedAt = styled(Time)`
   ${fontSize(18)};
   font-family: ${fontFamilies.enFont};
 
@@ -131,7 +131,11 @@ const BlogPost: React.VFC<Props> = ({ post }) => {
 
       <InfoWrapper>
         <Header>
-          <UpdatedAt datetime={post.updatedAt} dateOnly seperateWithPeriod />
+          <PublishedAt
+            datetime={post.publishedAt}
+            dateOnly
+            seperateWithPeriod
+          />
           <CategoryName>{post.categoryName}</CategoryName>
         </Header>
 

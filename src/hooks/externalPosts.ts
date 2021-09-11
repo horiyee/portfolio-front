@@ -1,12 +1,25 @@
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import {
   createExternalPostApiClient,
   deleteExternalPostApiClient,
   updateExternalPostApiClient,
 } from '../api/clients/externalPosts';
 import { paths } from '../config/paths';
+import { externalPostsState } from '../recoil/atoms/externalPosts';
 import { ExternalPostApiRequest } from '../types/api/externalPosts';
+import { ExternalPost } from '../types/externalPost';
+
+export const useSetExternalPosts = (state: ExternalPost[]) => {
+  const [externalPosts, setExternalPosts] = useRecoilState(externalPostsState);
+
+  useEffect(() => {
+    if (externalPosts.length === 0) {
+      setExternalPosts(state);
+    }
+  }, [state]);
+};
 
 export const useExternalPostAdminApiClients = () => {
   const router = useRouter();

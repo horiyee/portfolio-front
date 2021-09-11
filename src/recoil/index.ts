@@ -1,7 +1,7 @@
 export const recoilKeys = {
   atoms: {
     CMS_POSTS: 'CMS_POSTS',
-    QIITA_POSTS: 'QIITA_POSTS',
+    EXTERNAL_POSTS: 'EXTERNAL_POSTS',
     ANNOUNCEMENTS: 'ANNOUNCEMENTS',
     MARKDOWN_POSTS: 'MARKDOWN_POSTS',
   },

@@ -3,13 +3,13 @@ import { recoilKeys } from '..';
 import { paths } from '../../config/paths';
 import { Post } from '../../types/post';
 import { cmsPostsState } from '../atoms/cmsPosts';
-import { qiitaPostsState } from '../atoms/qiitaPosts';
+import { externalPostsState } from '../atoms/externalPosts';
 
 export const blogPostsState = selector<Post[]>({
   key: recoilKeys.selectors.BLOG_POSTS,
   get: ({ get }) => {
     const cmsPosts = get(cmsPostsState);
-    const qiitaPosts = get(qiitaPostsState);
+    const externalPosts = get(externalPostsState);
 
     const blogPosts: Post[] = [];
 
@@ -22,20 +22,22 @@ export const blogPostsState = selector<Post[]>({
         categoryName: post.category.name,
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,
+        publishedAt: post.publishedAt,
       };
 
       blogPosts.push(p);
     });
 
-    qiitaPosts.forEach(post => {
+    externalPosts.forEach(post => {
       const p: Post = {
-        id: post.id,
+        id: String(post.id),
         title: post.title,
         url: post.url,
         thumbnailUrl: post.thumbnailUrl,
-        categoryName: post.category.name,
+        categoryName: post.categoryName,
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,
+        publishedAt: post.publishedAt,
       };
 
       blogPosts.push(p);
@@ -43,8 +45,8 @@ export const blogPostsState = selector<Post[]>({
 
     const sortedBlogPosts = blogPosts.concat();
     sortedBlogPosts.sort((a, b) => {
-      const _a = new Date(a.updatedAt);
-      const _b = new Date(b.updatedAt);
+      const _a = new Date(a.publishedAt);
+      const _b = new Date(b.publishedAt);
 
       if (_a < _b) {
         return 1;

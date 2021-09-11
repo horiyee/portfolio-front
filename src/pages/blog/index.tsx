@@ -1,32 +1,33 @@
 import { GetStaticProps, NextPage } from 'next';
 import React from 'react';
 import { fetchCmsPostsApiClient } from '../../api/clients/cmsPosts';
+import { fetchExternalPostsApiClient } from '../../api/clients/externalPosts';
 import { fetchMarkdownPostsApiClient } from '../../api/clients/markdownPosts';
-import { fetchQiitaPostsApiClient } from '../../api/clients/qiitaPosts';
 import BlogIndexTemplate from '../../components/templates/blog/BlogIndexTemplate';
+import { debugCategoryNames } from '../../config';
 import { useSetCmsPosts } from '../../hooks/cmsPosts';
+import { useSetExternalPosts } from '../../hooks/externalPosts';
 import { useSetMarkdownPosts } from '../../hooks/markdownPosts';
-import { useSetQiitaPosts } from '../../hooks/qiitaPosts';
 import { CmsPost } from '../../types/cmsPost';
+import { ExternalPost } from '../../types/externalPost';
 import { MarkdownPost } from '../../types/markdownPost';
-import { QiitaPost } from '../../types/qiitaPost';
 
 type StaticProps = {
   cmsPosts: CmsPost[];
-  qiitaPosts: QiitaPost[];
+  externalPosts: ExternalPost[];
   markdownPosts: MarkdownPost[] | null;
 };
 
 const BlogIndexPage: NextPage<StaticProps> = ({
   cmsPosts,
-  qiitaPosts,
+  externalPosts,
   markdownPosts,
 }) => {
   if (cmsPosts.length !== 0) {
     useSetCmsPosts(cmsPosts);
   }
-  if (qiitaPosts.length !== 0) {
-    useSetQiitaPosts(qiitaPosts);
+  if (externalPosts.length !== 0) {
+    useSetExternalPosts(externalPosts);
   }
   if (markdownPosts) {
     useSetMarkdownPosts(markdownPosts);
@@ -38,13 +39,19 @@ const BlogIndexPage: NextPage<StaticProps> = ({
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   try {
     const cmsPostsRes = await fetchCmsPostsApiClient();
-    const qiitaPostsRes = await fetchQiitaPostsApiClient();
+    const externalPostsRes = await fetchExternalPostsApiClient();
     const markdownPostsRes = await fetchMarkdownPostsApiClient();
 
     const props: StaticProps = {
-      cmsPosts: cmsPostsRes.contents,
-      qiitaPosts: qiitaPostsRes.contents,
-      markdownPosts: markdownPostsRes.markdownPosts,
+      cmsPosts: cmsPostsRes.contents.filter(
+        post => debugCategoryNames.includes(post.category.name) === false,
+      ),
+      externalPosts: externalPostsRes.externalPosts.filter(
+        post => debugCategoryNames.includes(post.categoryName) === false,
+      ),
+      markdownPosts: markdownPostsRes.markdownPosts.filter(
+        post => debugCategoryNames.includes(post.categoryName) === false,
+      ),
     };
 
     return { props };
@@ -52,7 +59,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
     console.error(e);
     const props: StaticProps = {
       cmsPosts: [],
-      qiitaPosts: [],
+      externalPosts: [],
       markdownPosts: [],
     };
 

@@ -19,6 +19,7 @@ module.exports = {
       'qiita-user-contents.imgix.net',
       'staging-qiita-user-contents.imgix.net',
       'assets.st-note.com',
+      'd291vdycu0ht11.cloudfront.net',
     ],
   },
   webpack(config, { isServer }) {

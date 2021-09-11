@@ -6,4 +6,5 @@ export type Post = {
   categoryName: string;
   createdAt: string;
   updatedAt: string;
+  publishedAt: string;
 };

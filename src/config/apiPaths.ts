@@ -9,6 +9,5 @@ export const apiPaths = {
 
 export const cmsPaths = {
   posts: '/posts',
-  qiitaPosts: '/qiita_posts',
   announcements: '/announcements',
 } as const;

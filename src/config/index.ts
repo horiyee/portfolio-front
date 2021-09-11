@@ -24,3 +24,8 @@ export const apiRequestHeaders = {
 export const cmsRequestHeaders = {
   'X-API-KEY': envVariables.CMS_KEY,
 };
+
+export const debugCategoryNames =
+  envVariables.NODE_ENV === 'production'
+    ? ['debug', 'prv memo', 'note記事']
+    : [];
