@@ -72,6 +72,6 @@ export const whatsNewState = selector<WhatsNew[]>({
       return 0;
     });
 
-    return sortedWhatsNew;
+    return sortedWhatsNew.slice(0, 3);
   },
 });
