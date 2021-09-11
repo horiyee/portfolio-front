@@ -1,8 +1,9 @@
 import { NextPage } from 'next';
 import React from 'react';
+import NotFoundTemplate from '../components/templates/NotFoundTemplate';
 
 const NotFoundPage: NextPage = () => {
-  return <div>404 Not found.</div>;
+  return <NotFoundTemplate />;
 };
 
 export default NotFoundPage;
