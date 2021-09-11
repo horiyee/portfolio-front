@@ -32,6 +32,7 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding-bottom: 24px;
 `;
 
 const StyledTime = styled(Time)`
@@ -53,7 +54,6 @@ const Main = styled.main`
   ${mqSp(`flex-direction: column;`)};
   align-items: center;
   width: 100%;
-  padding: 24px 0;
 `;
 
 const StyledNextImage = styled(NextImage)`
@@ -63,6 +63,7 @@ const StyledNextImage = styled(NextImage)`
     width: 100%;
     margin: 0;
   `)};
+  padding-bottom: 24px;
 `;
 
 type ContentProps = {
@@ -72,7 +73,6 @@ const Content = styled.p<ContentProps>`
   width: ${props => (props.fullWidth ? '100%' : ' calc(100% - 224px)')};
   ${mqSp(`
     width: 100%;
-    padding-top: 24px;
   `)};
 `;
 
@@ -80,6 +80,8 @@ const Footer = styled.footer`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+
+  padding-top: 24px;
 `;
 
 const StyledLink = styled(NextLink)`
