@@ -25,7 +25,8 @@ export const breakPoints = {
 };
 
 export const zIndexes = {
-  header: 10000,
+  mobileMenu: 10000,
+  header: 9999,
 };
 
 // TODO: try apply hover()

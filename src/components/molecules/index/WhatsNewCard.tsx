@@ -72,7 +72,7 @@ const Content = styled.p<ContentProps>`
   width: ${props => (props.fullWidth ? '100%' : ' calc(100% - 224px)')};
   ${mqSp(`
     width: 100%;
-    padding-top: 16px;
+    padding: 24px 0 16px 0;
   `)};
 `;
 

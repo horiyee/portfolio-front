@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { paths } from '../../config/paths';
+import { showMobileMenuState } from '../../recoil/atoms/showMobileMenu';
 import { fontSize, mqPc } from '../../styles/mixins';
 import { colors, fontFamilies, zIndexes } from '../../styles/variables';
+import IconButton from '../atoms/buttons/IconButton';
+import MenuIcon from '../atoms/icons/MenuIcon';
 import NextLink from '../atoms/NextLink';
 
 const Root = styled.header`
@@ -15,6 +19,8 @@ const Root = styled.header`
   z-index: ${zIndexes.header};
 
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
 
   padding: 16px 32px;
@@ -32,7 +38,13 @@ const IndexLink = styled(NextLink)`
   text-transform: uppercase;
 `;
 
+const StyledIconButton = styled(IconButton)`
+  fill: ${colors.buttonGray};
+`;
+
 const Header: React.VFC = () => {
+  const setShowMobileMenu = useSetRecoilState(showMobileMenuState);
+
   return (
     <Root>
       <IndexLink href={paths.index}>
@@ -40,6 +52,11 @@ const Header: React.VFC = () => {
         <br />
         Kaito Horiuchi
       </IndexLink>
+
+      <StyledIconButton
+        icon={<MenuIcon />}
+        onClick={() => setShowMobileMenu(true)}
+      />
     </Root>
   );
 };

@@ -1,11 +1,15 @@
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { showMobileMenuState } from '../../../recoil/atoms/showMobileMenu';
 import {
   ContentsWrapper,
   SideNavigationWrapper,
 } from '../../../styles/components';
 import { MetaData } from '../../../types';
 import NextHead from '../../atoms/NextHead';
+import MobileMenu from '../../molecules/MobileMenu';
 import Header from '../../organisms/Header';
 import SideNavigation from '../../organisms/SideNavigation';
 
@@ -28,6 +32,16 @@ const Contents = styled.main`
 `;
 
 const BlogTemplate: React.VFC<Props> = ({ children, metaData }) => {
+  const router = useRouter();
+  const { pathname } = router;
+
+  const [showMobileMenu, setShowMobileMenu] =
+    useRecoilState(showMobileMenuState);
+
+  useEffect(() => {
+    setShowMobileMenu(false);
+  }, [pathname]);
+
   return (
     <Root>
       <NextHead {...metaData} />
@@ -41,6 +55,8 @@ const BlogTemplate: React.VFC<Props> = ({ children, metaData }) => {
       <ContentsWrapper>
         <Contents>{children}</Contents>
       </ContentsWrapper>
+
+      {showMobileMenu ? <MobileMenu /> : null}
     </Root>
   );
 };
