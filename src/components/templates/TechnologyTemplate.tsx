@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../config/paths';
+import { MobilePageTitle } from '../../styles/components';
 import { mqPc } from '../../styles/mixins';
 import { MetaData } from '../../types';
 import HorizontalLine from '../atoms/HorizontalLine';
@@ -23,6 +24,8 @@ const TechnologyTemplate: React.VFC = () => {
 
   return (
     <PortfolioTemplate metaData={metaData}>
+      <MobilePageTitle>Technology</MobilePageTitle>
+
       <DrawingCanvasWrapper>
         <TechnologyDrawingCanvas />
         <HorizontalLine />

@@ -5,7 +5,7 @@ import { showMobileMenuState } from '../../recoil/atoms/showMobileMenu';
 import { colors, zIndexes } from '../../styles/variables';
 import IconButton from '../atoms/buttons/IconButton';
 import ClearIcon from '../atoms/icons/ClearIcon';
-import SideNavigation from '../organisms/SideNavigation';
+import SideNavigation from './SideNavigation';
 
 const Root = styled.main`
   position: absolute;

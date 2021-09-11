@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import NextLink from '../components/atoms/NextLink';
-import { mqPc, mqSp } from './mixins';
-import { underlinedBlueLinkStyle } from './variables';
+import { fontSize, mqPc, mqSp, mqTablet } from './mixins';
+import { fontFamilies, underlinedBlueLinkStyle } from './variables';
 
 export const SideNavigationWrapper = styled.div`
   display: none;
@@ -88,4 +88,20 @@ export const TechnologyMainContent = styled.div`
 
   width: 100%;
   padding: 8px 0;
+`;
+
+export const MobilePageTitle = styled.h1`
+  ${mqPc(`display: none`)};
+  ${mqTablet(`display: none`)};
+
+  text-align: center;
+  text-transform: uppercase;
+
+  font-family: ${fontFamilies.enFont};
+  font-weight: 400;
+  ${fontSize(28)};
+
+  letter-spacing: 2px;
+
+  padding: 32px 0 48px 0;
 `;

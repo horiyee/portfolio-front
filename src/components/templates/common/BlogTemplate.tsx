@@ -9,7 +9,7 @@ import {
 } from '../../../styles/components';
 import { MetaData } from '../../../types';
 import NextHead from '../../atoms/NextHead';
-import MobileMenu from '../../molecules/MobileMenu';
+import MobileMenu from '../../organisms/MobileMenu';
 import Header from '../../organisms/Header';
 import SideNavigation from '../../organisms/SideNavigation';
 

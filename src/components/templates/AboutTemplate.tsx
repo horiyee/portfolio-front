@@ -1,5 +1,6 @@
 import React from 'react';
 import { paths } from '../../config/paths';
+import { MobilePageTitle } from '../../styles/components';
 import { MetaData } from '../../types';
 import HorizontalLine from '../atoms/HorizontalLine';
 import AboutCareer from '../organisms/about/Career';
@@ -15,6 +16,7 @@ const AboutTemplate: React.VFC = () => {
 
   return (
     <PortfolioTemplate metaData={metaData}>
+      <MobilePageTitle>About Me</MobilePageTitle>
       <AboutProfile />
       <HorizontalLine />
       <AboutCareer />
