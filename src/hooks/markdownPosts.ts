@@ -34,7 +34,7 @@ export const useMarkdownPostAdminApiClients = () => {
       }
 
       const parsedCategoryId = Number(categoryId);
-      if (isNaN(parsedCategoryId)) {
+      if (isNaN(parsedCategoryId) || parsedCategoryId === 0) {
         alert('カテゴリIDが不正です。');
         return;
       }
@@ -68,7 +68,7 @@ export const useMarkdownPostAdminApiClients = () => {
       }
 
       const parsedCategoryId = Number(categoryId);
-      if (isNaN(parsedCategoryId)) {
+      if (isNaN(parsedCategoryId) || parsedCategoryId === 0) {
         alert('カテゴリIDが不正です。');
         return;
       }

@@ -11,35 +11,56 @@ import { BookmarkApiRequest } from '../types/api/bookmarks';
 export const useBookmarkAdminApiClients = () => {
   const router = useRouter();
 
-  const postBookmark = useCallback(async (url: string, description: string) => {
-    if (url === '') {
-      alert('URLを入力してください。');
-      return;
-    }
-
-    const confirm = window.confirm('ブックマークを登録しますか？');
-
-    if (confirm) {
-      const bookmark: BookmarkApiRequest = {
-        url,
-        description,
-      };
-
-      try {
-        await createBookmarkApiClient(bookmark);
-        alert('登録が完了しました。');
-        router.push(paths.admin.bookmarks.index);
-      } catch (e) {
-        console.error(e);
-        alert('登録に失敗しました。');
-      }
-    }
-  }, []);
-
-  const updateBookmark = useCallback(
-    async (id: number, url: string, description: string) => {
+  const postBookmark = useCallback(
+    async (url: string, description: string, categoryId: string) => {
       if (url === '') {
         alert('URLを入力してください。');
+        return;
+      }
+
+      const parsedCategoryId = Number(categoryId);
+      if (isNaN(parsedCategoryId) || parsedCategoryId === 0) {
+        alert('カテゴリIDが不正です。');
+        return;
+      }
+
+      const confirm = window.confirm('ブックマークを登録しますか？');
+
+      if (confirm) {
+        const bookmark: BookmarkApiRequest = {
+          url,
+          description,
+          categoryId: parsedCategoryId,
+        };
+
+        try {
+          await createBookmarkApiClient(bookmark);
+          alert('登録が完了しました。');
+          router.push(paths.admin.bookmarks.index);
+        } catch (e) {
+          console.error(e);
+          alert('登録に失敗しました。');
+        }
+      }
+    },
+    [],
+  );
+
+  const updateBookmark = useCallback(
+    async (
+      id: number,
+      url: string,
+      description: string,
+      categoryId: string,
+    ) => {
+      if (url === '') {
+        alert('URLを入力してください。');
+        return;
+      }
+
+      const parsedCategoryId = Number(categoryId);
+      if (isNaN(parsedCategoryId) || parsedCategoryId === 0) {
+        alert('カテゴリIDが不正です。');
         return;
       }
 
@@ -49,6 +70,7 @@ export const useBookmarkAdminApiClients = () => {
         const bookmark: BookmarkApiRequest = {
           url,
           description,
+          categoryId: parsedCategoryId,
         };
 
         try {

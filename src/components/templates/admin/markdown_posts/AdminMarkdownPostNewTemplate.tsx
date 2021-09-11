@@ -25,7 +25,7 @@ const AdminMarkdownPostNewTemplate: React.VFC<Props> = ({ categories }) => {
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [categoryId, setCategoryId] = useState('1');
+  const [categoryId, setCategoryId] = useState(String(categories[0].id));
 
   return (
     <AdminTemplate hasBottomActionBar>

@@ -7,4 +7,5 @@ export type FetchBookmarksApiResponse = {
 export type BookmarkApiRequest = {
   url: string;
   description: string;
+  categoryId: number;
 };

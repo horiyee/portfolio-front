@@ -33,7 +33,7 @@ const AdminExternalPostNewTemplate: React.VFC<Props> = ({ categories }) => {
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
   const [thumbnailUrl, setThumbnailUrl] = useState('');
-  const [categoryId, setCategoryId] = useState('1');
+  const [categoryId, setCategoryId] = useState(String(categories[0].id));
   const [publishedAt, setPublishedAt] = useState('');
 
   return (

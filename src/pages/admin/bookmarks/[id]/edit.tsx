@@ -2,6 +2,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { fetchBookmarkApiClient } from '../../../../api/clients/bookmarks';
+import { fetchCategoriesApiClient } from '../../../../api/clients/categories';
 import AdminBookmarkEditTemplate from '../../../../components/templates/admin/bookmarks/AdminBookmarkEditTemplate';
 import { paths } from '../../../../config/paths';
 import {
@@ -9,12 +10,17 @@ import {
   QueryParameterNaNError,
 } from '../../../../types';
 import { Bookmark } from '../../../../types/bookmark';
+import { Category } from '../../../../types/category';
 
 type ServerSideProps = {
   bookmark: Bookmark | null;
+  categories: Category[];
 };
 
-const AdminBookmarkEditPage: NextPage<ServerSideProps> = ({ bookmark }) => {
+const AdminBookmarkEditPage: NextPage<ServerSideProps> = ({
+  bookmark,
+  categories,
+}) => {
   const router = useRouter();
 
   if (bookmark === null) {
@@ -22,7 +28,9 @@ const AdminBookmarkEditPage: NextPage<ServerSideProps> = ({ bookmark }) => {
     return null;
   }
 
-  return <AdminBookmarkEditTemplate bookmark={bookmark} />;
+  return (
+    <AdminBookmarkEditTemplate bookmark={bookmark} categories={categories} />
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> =
@@ -39,10 +47,12 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> =
         throw new QueryParameterNaNError();
       }
 
-      const res = await fetchBookmarkApiClient(bookmarkId);
+      const bookmarkRes = await fetchBookmarkApiClient(bookmarkId);
+      const categoriesRes = await fetchCategoriesApiClient();
 
       const props: ServerSideProps = {
-        bookmark: res,
+        bookmark: bookmarkRes,
+        categories: categoriesRes.categories,
       };
 
       return { props };
@@ -51,6 +61,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> =
 
       const props: ServerSideProps = {
         bookmark: null,
+        categories: [],
       };
 
       return { props };

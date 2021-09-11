@@ -4,4 +4,6 @@ export type Bookmark = {
   description: string;
   createdAt: string;
   updatedAt: string;
+  categoryId: number;
+  categoryName: string;
 };

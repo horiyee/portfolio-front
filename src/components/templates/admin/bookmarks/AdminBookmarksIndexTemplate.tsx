@@ -37,6 +37,7 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
         <AdminTHead>
           <AdminTableRow>
             <AdminTableHeader>ID</AdminTableHeader>
+            <AdminTableHeader>カテゴリ</AdminTableHeader>
             <AdminTableHeader>リンク先</AdminTableHeader>
             <AdminTableHeader>ひとくちメモ</AdminTableHeader>
             <AdminTableHeader>作成日時</AdminTableHeader>
@@ -50,6 +51,7 @@ const AdminBookmarksIndexTemplate: React.VFC<Props> = ({ bookmarks }) => {
             {bookmarks.map((bookmark, index) => (
               <AdminTableRow key={index}>
                 <AdminTableData>{bookmark.id}</AdminTableData>
+                <AdminTableData>{bookmark.categoryName}</AdminTableData>
                 <AdminTableData>
                   <AdminUnderlinedBlueLink href={bookmark.url}>
                     開く{bookmark.url.includes('http') ? '（新規タブ）' : null}

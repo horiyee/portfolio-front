@@ -30,7 +30,7 @@ export const useExternalPostAdminApiClients = () => {
       }
 
       const parsedCategoryId = Number(categoryId);
-      if (isNaN(parsedCategoryId)) {
+      if (isNaN(parsedCategoryId) || parsedCategoryId === 0) {
         alert('カテゴリIDが不正です。');
         return;
       }
@@ -79,7 +79,7 @@ export const useExternalPostAdminApiClients = () => {
       }
 
       const parsedCategoryId = Number(categoryId);
-      if (isNaN(parsedCategoryId)) {
+      if (isNaN(parsedCategoryId) || parsedCategoryId === 0) {
         alert('カテゴリIDが不正です。');
         return;
       }
