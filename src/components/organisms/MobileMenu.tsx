@@ -8,7 +8,7 @@ import ClearIcon from '../atoms/icons/ClearIcon';
 import SideNavigation from './SideNavigation';
 
 const Root = styled.main`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 
