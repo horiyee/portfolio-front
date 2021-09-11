@@ -118,7 +118,7 @@ const AboutCareer: React.VFC = () => {
             <Role>
               Webフロントエンド
               <br />
-              2daysハッカソン 3位入賞
+              2daysハッカソン型インターン 3位入賞
             </Role>
 
             <Description>
@@ -146,6 +146,24 @@ const AboutCareer: React.VFC = () => {
               詳しくは
               <Link href={`${paths.blog.posts}/lsk8k8gpz`}>ブログ記事</Link>
               を参照。
+            </Description>
+          </InformationWrapper>
+        </CareerListItem>
+
+        <CareerListItem>
+          <Period useEnFont>2021.9.8</Period>
+
+          <InformationWrapper>
+            <Organization>クックパッド株式会社</Organization>
+            <Role>
+              Cookpad Summer Internship 2021
+              <br />
+              裏Techコース(1day)
+            </Role>
+
+            <Description>
+              Next.js, Ruby on
+              Railsで構築されたアプリケーションを題材に、GraphQLを用いてAPIを開発するインターン。
             </Description>
           </InformationWrapper>
         </CareerListItem>
