@@ -39,6 +39,7 @@ const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
         <AdminTHead>
           <AdminTableRow>
             <AdminTableHeader>ID</AdminTableHeader>
+            <AdminTableHeader>カテゴリ</AdminTableHeader>
             <AdminTableHeader>タイトル</AdminTableHeader>
             <AdminTableHeader>リンク先</AdminTableHeader>
             <AdminTableHeader>サムネイル</AdminTableHeader>
@@ -54,6 +55,7 @@ const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
             {externalPosts.map((externalPost, index) => (
               <AdminTableRow key={index}>
                 <AdminTableData>{externalPost.id}</AdminTableData>
+                <AdminTableData>{externalPost.categoryName}</AdminTableData>
                 <AdminTableData>
                   {externalPost.title.length > 30
                     ? `${externalPost.title.slice(0, 30)}…`

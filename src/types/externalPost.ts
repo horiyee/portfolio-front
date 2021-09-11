@@ -3,8 +3,9 @@ export type ExternalPost = {
   title: string;
   url: string;
   thumbnailUrl: string;
-  categoryId: number;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  categoryId: number;
+  categoryName: string;
 };

@@ -38,7 +38,6 @@ const AdminCategoriesIndexTemplate: React.VFC<Props> = ({ categories }) => {
           <AdminTableRow>
             <AdminTableHeader>ID</AdminTableHeader>
             <AdminTableHeader>カテゴリ名</AdminTableHeader>
-            <AdminTableHeader>記事数</AdminTableHeader>
             <AdminTableHeader>作成日</AdminTableHeader>
             <AdminTableHeader>更新日</AdminTableHeader>
             <AdminTableHeader>操作</AdminTableHeader>
@@ -51,7 +50,6 @@ const AdminCategoriesIndexTemplate: React.VFC<Props> = ({ categories }) => {
               <AdminTableRow key={index}>
                 <AdminTableData>{category.id}</AdminTableData>
                 <AdminTableData>{category.name}</AdminTableData>
-                <AdminTableData>{category.posts_count}</AdminTableData>
                 <AdminTableData>
                   <Time datetime={category.createdAt} />
                 </AdminTableData>

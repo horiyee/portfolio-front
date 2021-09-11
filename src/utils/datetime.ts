@@ -1,7 +1,9 @@
+export const invalidDateString = 'Invalid Date';
+
 export const getLocaleDateString = (datetime: Date) => {
   const localeDateString = datetime.toLocaleDateString();
 
-  if (localeDateString === 'Invalid Date') {
+  if (localeDateString === invalidDateString) {
     return '';
   }
 
@@ -11,9 +13,19 @@ export const getLocaleDateString = (datetime: Date) => {
 export const getLocaleString = (datetime: Date) => {
   const localeString = datetime.toLocaleString();
 
-  if (localeString === 'Invalid Date') {
+  if (localeString === invalidDateString) {
     return '';
   }
 
   return localeString;
+};
+
+export const getISOString = (datetime: Date) => {
+  const ISOString = datetime.toISOString();
+
+  if (ISOString === invalidDateString) {
+    return '';
+  }
+
+  return ISOString;
 };

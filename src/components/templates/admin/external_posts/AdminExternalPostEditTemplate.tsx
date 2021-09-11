@@ -7,6 +7,7 @@ import { useExternalPostAdminApiClients } from '../../../../hooks/externalPosts'
 import { AdminForm, AdminFormItemWrapper } from '../../../../styles/components';
 import { Category } from '../../../../types/category';
 import { ExternalPost } from '../../../../types/externalPost';
+import { getISOString } from '../../../../utils/datetime';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminFormLabel from '../../../atoms/admin/AdminFormLabel';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
@@ -39,7 +40,20 @@ const AdminExternalPostEditTemplate: React.VFC<Props> = ({
   const [url, setUrl] = useState(externalPost.url);
   const [thumbnailUrl, setThumbnailUrl] = useState(externalPost.thumbnailUrl);
   const [categoryId, setCategoryId] = useState(String(externalPost.categoryId));
-  const [publishedAt, setPublishedAt] = useState(externalPost.publishedAt);
+
+  // TODO: 何とかする
+  const publishedAtInitDatetime = new Date(externalPost.publishedAt);
+  const publishedAtDatetime = new Date(
+    publishedAtInitDatetime.getFullYear(),
+    publishedAtInitDatetime.getMonth(),
+    publishedAtInitDatetime.getDate(),
+    publishedAtInitDatetime.getHours() + 9,
+    publishedAtInitDatetime.getMinutes(),
+    publishedAtInitDatetime.getSeconds(),
+  );
+  const [publishedAt, setPublishedAt] = useState(
+    String(getISOString(publishedAtDatetime)).replace('Z', ''),
+  );
 
   return (
     <AdminTemplate hasBottomActionBar>
