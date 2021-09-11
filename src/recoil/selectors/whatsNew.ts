@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
 import { recoilKeys } from '..';
+import { envVariables } from '../../config/envVariables';
 import { paths } from '../../config/paths';
 import { WhatsNew } from '../../types/whatsNew';
 import { announcementsState } from '../atoms/announcements';
@@ -72,6 +73,9 @@ export const whatsNewState = selector<WhatsNew[]>({
       return 0;
     });
 
-    return sortedWhatsNew.slice(0, 3);
+    if (envVariables.NODE_ENV === 'production') {
+      return sortedWhatsNew.slice(0, 3);
+    }
+    return sortedWhatsNew;
   },
 });

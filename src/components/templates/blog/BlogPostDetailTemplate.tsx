@@ -3,12 +3,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { getUrl } from '../../../config';
 import { paths } from '../../../config/paths';
-import { fontSize, hoverWithTransition, mqSp } from '../../../styles/mixins';
+import {
+  fontSize,
+  hover,
+  hoverWithTransition,
+  mqSp,
+} from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
 import { MetaData, WebShareData } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
 import ClipboardCopyButton from '../../atoms/buttons/ClipboardCopyButton';
 import WebShareButton from '../../atoms/buttons/WebShareButton';
+import Decoration from '../../atoms/Decoration';
+import HorizontalLine from '../../atoms/HorizontalLine';
+import ArrowBackIcon from '../../atoms/icons/ArrowBackIcon';
+import Icon from '../../atoms/icons/Icon';
 import NextImage from '../../atoms/NextImage';
 import NextLink from '../../atoms/NextLink';
 import Time from '../../atoms/Time';
@@ -83,6 +92,29 @@ const StyledBlogPostDetailBody = styled(BlogPostDetailBody)`
   padding: 32px 0;
 `;
 
+const Footer = styled.footer`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
+const StyledDecoration = styled(Decoration)`
+  width: 42px;
+  height: 42px;
+  margin-right: 8px;
+`;
+
+const StyledLink = styled(NextLink)`
+  display: flex;
+  align-items: center;
+
+  fill: ${colors.white};
+  color: ${colors.defaultBlue};
+
+  opacity: 0.9;
+  ${hover(`opacity: 1;`)};
+`;
+
 const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
   const router = useRouter();
 
@@ -144,6 +176,17 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
 
         <StyledBlogPostDetailBody postBody={postDetail.body} />
       </BlogPostDetailWrapper>
+
+      <HorizontalLine />
+
+      <Footer>
+        <StyledLink href={paths.blog.index}>
+          <StyledDecoration>
+            <Icon icon={<ArrowBackIcon />} />
+          </StyledDecoration>
+          記事一覧に戻る
+        </StyledLink>
+      </Footer>
     </BlogTemplate>
   );
 };

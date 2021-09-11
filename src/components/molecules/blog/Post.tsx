@@ -8,6 +8,7 @@ import {
 } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
 import type { Post } from '../../../types/post';
+import Decoration from '../../atoms/Decoration';
 import ChevronRightIcon from '../../atoms/icons/ChevronRightIcon';
 import Icon from '../../atoms/icons/Icon';
 import NextImage from '../../atoms/NextImage';
@@ -94,19 +95,6 @@ const Footer = styled.footer`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-`;
-
-const Decoration = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-
-  border-radius: 50%;
-  background: ${colors.defaultBlue};
-
-  fill: ${colors.white};
 `;
 
 const Link = styled(NextLink)`

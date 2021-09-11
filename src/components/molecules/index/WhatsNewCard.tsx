@@ -119,7 +119,7 @@ const IndexWhatsNewCard: React.VFC<Props> = ({ whatsNew }) => {
         <Footer>
           <StyledLink href={whatsNew.url}>
             <StyledIcon icon={<ArrowForwardIcon />} />
-            リンク先を見る
+            {whatsNew.url.includes('http') ? 'リンク先を見る' : '記事を見る'}
           </StyledLink>
         </Footer>
       ) : null}

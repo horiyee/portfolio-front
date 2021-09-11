@@ -144,7 +144,7 @@ const AboutCareer: React.VFC = () => {
 
             <Description>
               詳しくは
-              <Link href={`${paths.blog.posts}/lsk8k8gpz`}>ブログ記事</Link>
+              {/* <Link href={`${paths.blog.posts}/lsk8k8gpz`}>ブログ記事</Link> */}
               を参照。
             </Description>
           </InformationWrapper>
