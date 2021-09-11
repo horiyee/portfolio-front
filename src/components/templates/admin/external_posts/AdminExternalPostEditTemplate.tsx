@@ -5,7 +5,6 @@ import { paths } from '../../../../config/paths';
 import { useGetCategorySelectorOptions } from '../../../../hooks/categories';
 import { useExternalPostAdminApiClients } from '../../../../hooks/externalPosts';
 import { AdminForm, AdminFormItemWrapper } from '../../../../styles/components';
-import { SelectorOption } from '../../../../types';
 import { Category } from '../../../../types/category';
 import { ExternalPost } from '../../../../types/externalPost';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';

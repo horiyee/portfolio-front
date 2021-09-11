@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import styled from 'styled-components';
 import { paths } from '../../../../config/paths';
-import { useBookmarkAdminApiClients } from '../../../../hooks/bookmarks';
 import { useMarkdownPostAdminApiClients } from '../../../../hooks/markdownPosts';
 import {
   AdminTable,
@@ -14,14 +12,11 @@ import {
   AdminUnderlinedBlueButton,
   AdminUnderlinedBlueLink,
 } from '../../../../styles/components';
-import { hover } from '../../../../styles/mixins';
-import { colors, underlinedBlueLinkStyle } from '../../../../styles/variables';
 import { MarkdownPost } from '../../../../types/markdownPost';
 import AdminBottomActionButton from '../../../atoms/admin/AdminBottomActionButton';
 import AdminPageTitle from '../../../atoms/admin/AdminPageTitle';
 import ArrowBackIcon from '../../../atoms/icons/ArrowBackIcon';
 import CreateIcon from '../../../atoms/icons/CreateIcon';
-import NextLink from '../../../atoms/NextLink';
 import Time from '../../../atoms/Time';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminTemplate from '../../common/AdminTemplate';
