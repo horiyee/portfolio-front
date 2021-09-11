@@ -50,6 +50,7 @@ const CategoryName = styled.span`
 
 const Main = styled.main`
   display: flex;
+  ${mqSp(`flex-direction: column;`)};
   align-items: center;
   width: 100%;
   padding: 24px 0;
@@ -57,8 +58,11 @@ const Main = styled.main`
 
 const StyledNextImage = styled(NextImage)`
   width: 192px;
-  ${mqSp(`width: 100%`)};
   margin-right: 32px;
+  ${mqSp(`
+    width: 100%;
+    margin: 0;
+  `)};
 `;
 
 type ContentProps = {
@@ -66,7 +70,10 @@ type ContentProps = {
 };
 const Content = styled.p<ContentProps>`
   width: ${props => (props.fullWidth ? '100%' : ' calc(100% - 224px)')};
-  ${mqSp(`width: 100%`)};
+  ${mqSp(`
+    width: 100%;
+    padding-top: 16px;
+  `)};
 `;
 
 const Footer = styled.footer`

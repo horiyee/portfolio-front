@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { paths } from '../../../config/paths';
 import { fontSize } from '../../../styles/mixins';
-import { colors, underlinedBlueLinkStyle } from '../../../styles/variables';
+import { underlinedBlueLinkStyle } from '../../../styles/variables';
 import NextLink from '../../atoms/NextLink';
 import Paragraph from '../../atoms/Paragraph';
 import SecondHeading from '../../atoms/SecondHeading';
@@ -142,11 +142,11 @@ const AboutCareer: React.VFC = () => {
               グランプリ・UI/UX賞受賞
             </Role>
 
-            <Description>
+            {/* <Description>
               詳しくは
-              {/* <Link href={`${paths.blog.posts}/lsk8k8gpz`}>ブログ記事</Link> */}
+              <Link href={`${paths.blog.posts}/lsk8k8gpz`}>ブログ記事</Link>
               を参照。
-            </Description>
+            </Description> */}
           </InformationWrapper>
         </CareerListItem>
 
