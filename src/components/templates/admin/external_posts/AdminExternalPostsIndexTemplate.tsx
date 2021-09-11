@@ -57,8 +57,8 @@ const AdminExternalPostsIndexTemplate: React.VFC<Props> = ({
                 <AdminTableData>{externalPost.id}</AdminTableData>
                 <AdminTableData>{externalPost.categoryName}</AdminTableData>
                 <AdminTableData>
-                  {externalPost.title.length > 30
-                    ? `${externalPost.title.slice(0, 30)}…`
+                  {externalPost.title.length > 20
+                    ? `${externalPost.title.slice(0, 20)}…`
                     : externalPost.title}
                 </AdminTableData>
                 <AdminTableData>
