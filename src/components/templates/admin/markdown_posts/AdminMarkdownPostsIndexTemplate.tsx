@@ -39,6 +39,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
         <AdminTHead>
           <AdminTableRow>
             <AdminTableHeader>ID</AdminTableHeader>
+            <AdminTableHeader>カテゴリ</AdminTableHeader>
             <AdminTableHeader>タイトル</AdminTableHeader>
             <AdminTableHeader>本文</AdminTableHeader>
             <AdminTableHeader>作成日時</AdminTableHeader>
@@ -52,6 +53,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
             {markdownPosts.map((markdownPost, index) => (
               <AdminTableRow key={index}>
                 <AdminTableData>{markdownPost.id}</AdminTableData>
+                <AdminTableData>{markdownPost.categoryName}</AdminTableData>
                 <AdminTableData>{markdownPost.title}</AdminTableData>
                 <AdminTableData>
                   {markdownPost.body.length > 40

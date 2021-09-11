@@ -67,4 +67,12 @@ export const GlobalStyle = createGlobalStyle`
   textarea {
     font-family: ${fontFamilies.jpFont};
   }
+
+  select {
+    font-family: ${fontFamilies.jpFont};
+  }
+
+  option {
+    font-family: ${fontFamilies.jpFont};
+  }
 `;
