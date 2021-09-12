@@ -11,16 +11,21 @@ import { fetchExternalPostsApiClient } from '../api/clients/externalPosts';
 import { ExternalPost } from '../types/externalPost';
 import { useSetExternalPosts } from '../hooks/externalPosts';
 import { debugCategoryNames } from '../config';
+import { fetchMarkdownPostsApiClient } from '../api/clients/markdownPosts';
+import { MarkdownPost } from '../types/markdownPost';
+import { useSetMarkdownPosts } from '../hooks/markdownPosts';
 
 type StaticProps = {
   cmsPosts: CmsPost[];
   externalPosts: ExternalPost[] | null;
+  markdownPosts: MarkdownPost[] | null;
   announcements: Announcement[];
 };
 
 const IndexPage: NextPage<StaticProps> = ({
   cmsPosts,
   externalPosts,
+  markdownPosts,
   announcements,
 }) => {
   if (cmsPosts.length !== 0) {
@@ -28,6 +33,9 @@ const IndexPage: NextPage<StaticProps> = ({
   }
   if (externalPosts) {
     useSetExternalPosts(externalPosts);
+  }
+  if (markdownPosts) {
+    useSetMarkdownPosts(markdownPosts);
   }
   if (announcements.length !== 0) {
     useSetAnnouncements(announcements);
@@ -40,11 +48,15 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   try {
     const cmsPostsRes = await fetchCmsPostsApiClient();
     const externalPostsRes = await fetchExternalPostsApiClient();
+    const markdownPostsRes = await fetchMarkdownPostsApiClient();
     const announcementsRes = await fetchAnnouncementsApiClient();
     const props: StaticProps = {
       cmsPosts: cmsPostsRes.contents,
       externalPosts: externalPostsRes.externalPosts.filter(
         post => debugCategoryNames.includes(post.categoryName) === false,
+      ),
+      markdownPosts: markdownPostsRes.markdownPosts.filter(post =>
+        debugCategoryNames.includes(post.categoryName),
       ),
       announcements: announcementsRes.contents.filter(
         post => post.debug === false,
@@ -57,6 +69,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
     const props: StaticProps = {
       cmsPosts: [],
       externalPosts: [],
+      markdownPosts: [],
       announcements: [],
     };
 

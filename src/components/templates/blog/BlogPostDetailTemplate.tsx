@@ -109,7 +109,7 @@ const StyledLink = styled(NextLink)`
 `;
 
 const StyledIcon = styled(Icon)`
-  margin-right: 8px;
+  margin-right: 4px;
 `;
 
 const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
