@@ -42,8 +42,6 @@ const Snackbar: React.VFC = () => {
   const [snackbarOption, setSnackbarOption] =
     useRecoilState(snackbarOptionState);
 
-  console.log(snackbarOption);
-
   useEffect(() => {
     setTimeout(() => {
       setSnackbarOption(null);
