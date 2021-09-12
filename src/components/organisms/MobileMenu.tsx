@@ -1,11 +1,13 @@
 import React from 'react';
-import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { showMobileMenuState } from '../../recoil/atoms/showMobileMenu';
 import { colors, zIndexes } from '../../styles/variables';
 import IconButton from '../atoms/buttons/IconButton';
 import ClearIcon from '../atoms/icons/ClearIcon';
 import SideNavigation from './SideNavigation';
+
+type Props = {
+  close: () => void;
+};
 
 const Root = styled.main`
   position: fixed;
@@ -33,15 +35,10 @@ const CloseButton = styled(IconButton)`
   fill: ${colors.buttonGray};
 `;
 
-const MobileMenu: React.VFC = () => {
-  const setShowMobileMenu = useSetRecoilState(showMobileMenuState);
-
+const MobileMenu: React.VFC<Props> = ({ close }) => {
   return (
     <Root>
-      <CloseButton
-        icon={<ClearIcon />}
-        onClick={() => setShowMobileMenu(false)}
-      />
+      <CloseButton icon={<ClearIcon />} onClick={() => close()} />
 
       <SideNavigation />
     </Root>

@@ -162,7 +162,7 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
           <Title>{postDetail.title}</Title>
           <HeaderAsideInfo>
             <StyledTime
-              datetime={postDetail.updatedAt}
+              datetime={postDetail.publishedAt}
               seperateWithPeriod
               dateOnly
             />

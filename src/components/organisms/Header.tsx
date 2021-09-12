@@ -1,13 +1,12 @@
-import React from 'react';
-import { useSetRecoilState } from 'recoil';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { paths } from '../../config/paths';
-import { showMobileMenuState } from '../../recoil/atoms/showMobileMenu';
 import { fontSize, mqPc } from '../../styles/mixins';
 import { colors, fontFamilies, zIndexes } from '../../styles/variables';
 import IconButton from '../atoms/buttons/IconButton';
 import MenuIcon from '../atoms/icons/MenuIcon';
 import NextLink from '../atoms/NextLink';
+import MobileMenu from './MobileMenu';
 
 const Root = styled.header`
   ${mqPc(`display: none;`)}
@@ -43,8 +42,11 @@ const StyledIconButton = styled(IconButton)`
 `;
 
 const Header: React.VFC = () => {
-  const setShowMobileMenu = useSetRecoilState(showMobileMenuState);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
+  if (showMobileMenu) {
+    return <MobileMenu close={() => setShowMobileMenu(false)} />;
+  }
   return (
     <Root>
       <IndexLink href={paths.index}>
