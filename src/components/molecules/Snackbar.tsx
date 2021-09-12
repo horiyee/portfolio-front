@@ -18,7 +18,7 @@ const Root = styled.div`
   width: 100%;
   height: 100vh;
 
-  padding: 48px;
+  padding: 48px 24px;
 
   pointer-events: none;
 `;
@@ -43,8 +43,12 @@ const Snackbar: React.VFC = () => {
     useRecoilState(snackbarOptionState);
 
   useEffect(() => {
+    const memorizedSnackbarOption = snackbarOption;
+
     setTimeout(() => {
-      setSnackbarOption(null);
+      if (snackbarOption === memorizedSnackbarOption) {
+        setSnackbarOption(null);
+      }
     }, 5000);
   }, [snackbarOption]);
 
