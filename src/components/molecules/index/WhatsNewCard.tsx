@@ -63,7 +63,6 @@ const StyledNextImage = styled(NextImage)`
     width: 100%;
     margin: 0;
   `)};
-  padding-bottom: 24px;
 `;
 
 type ContentProps = {
@@ -74,6 +73,7 @@ const Content = styled.p<ContentProps>`
   ${mqSp(`
     width: 100%;
   `)};
+  padding: 16px 0;
 `;
 
 const Footer = styled.footer`

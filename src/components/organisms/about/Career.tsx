@@ -142,11 +142,11 @@ const AboutCareer: React.VFC = () => {
               グランプリ・UI/UX賞受賞
             </Role>
 
-            {/* <Description>
+            <Description>
               詳しくは
               <Link href={`${paths.blog.posts}/lsk8k8gpz`}>ブログ記事</Link>
               を参照。
-            </Description> */}
+            </Description>
           </InformationWrapper>
         </CareerListItem>
 
