@@ -36,10 +36,12 @@ export type SelectorOption = {
   label: string;
 };
 
+export type SnackbarPositions = 'top' | 'bottom';
 export type SnackbarColors = typeof snackbarColors[keyof typeof snackbarColors];
 export type SnackbarOption = {
   content: string;
   color: SnackbarColors;
+  position: SnackbarPositions;
 };
 
 export class QueryParameterNaNError extends Error {}

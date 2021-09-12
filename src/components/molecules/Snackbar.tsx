@@ -3,9 +3,12 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { snackbarOptionState } from '../../recoil/atoms/snackbarOption';
 import { colors, zIndexes } from '../../styles/variables';
-import { SnackbarColors } from '../../types';
+import { SnackbarColors, SnackbarPositions } from '../../types';
 
-const Root = styled.div`
+type RootProps = {
+  position: SnackbarPositions;
+};
+const Root = styled.div<RootProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -13,12 +16,13 @@ const Root = styled.div`
   z-index: ${zIndexes.snackbar};
 
   display: flex;
-  align-items: flex-end;
+  align-items: ${props =>
+    props.position === 'bottom' ? 'flex-end' : 'flex-start'};
   justify-content: center;
   width: 100%;
   height: 100vh;
 
-  padding: 64px 24px;
+  padding: 128px 24px 96px 24px;
 
   pointer-events: none;
 `;
@@ -52,8 +56,10 @@ const Snackbar: React.VFC = () => {
     }, 5000);
   }, [snackbarOption]);
 
+  console.log(snackbarOption?.position === 'bottom' ? 'bottom' : 'top');
+
   return (
-    <Root>
+    <Root position={snackbarOption?.position === 'bottom' ? 'bottom' : 'top'}>
       {snackbarOption ? (
         <SnackbarContent color={snackbarOption.color}>
           {snackbarOption.content}

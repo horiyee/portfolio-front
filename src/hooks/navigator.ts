@@ -13,11 +13,13 @@ export const useNavigatorUtilities = () => {
       setSnackbarOption({
         content: 'URLをクリップボードにコピーしました。',
         color: snackbarColors.success,
+        position: 'top',
       });
     } catch (e) {
       setSnackbarOption({
         content: 'URLのコピーに失敗しました。もう一度お試しください。',
         color: snackbarColors.error,
+        position: 'top',
       });
     }
   }, []);
