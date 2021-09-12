@@ -1,3 +1,5 @@
+import { snackbarColors } from '../styles/variables';
+
 export type Matrix = {
   x: number;
   y: number;
@@ -32,6 +34,12 @@ export type WebShareData = {
 export type SelectorOption = {
   value: string;
   label: string;
+};
+
+export type SnackbarColors = typeof snackbarColors[keyof typeof snackbarColors];
+export type SnackbarOption = {
+  content: string;
+  color: SnackbarColors;
 };
 
 export class QueryParameterNaNError extends Error {}

@@ -1,13 +1,24 @@
 import { useCallback } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { snackbarOptionState } from '../recoil/atoms/snackbarOption';
+import { snackbarColors } from '../styles/variables';
 import { WebShareData } from '../types';
 
 export const useNavigatorUtilities = () => {
+  const setSnackbarOption = useSetRecoilState(snackbarOptionState);
+
   const copyStringToClipboard = useCallback(async (data: string) => {
     try {
-      const res = await navigator.clipboard.writeText(data);
-      console.log(res);
+      await navigator.clipboard.writeText(data);
+      setSnackbarOption({
+        content: 'URLをクリップボードにコピーしました。',
+        color: snackbarColors.success,
+      });
     } catch (e) {
-      console.error(e);
+      setSnackbarOption({
+        content: 'URLのコピーに失敗しました。もう一度お試しください。',
+        color: snackbarColors.error,
+      });
     }
   }, []);
 
@@ -15,7 +26,11 @@ export const useNavigatorUtilities = () => {
     try {
       await navigator.share(webShareData);
     } catch (e) {
-      console.error(e);
+      setSnackbarOption({
+        content:
+          'エラーが発生しました。ご利用のブラウザ・OSが共有に対応していない可能性があります。',
+        color: snackbarColors.error,
+      });
     }
   }, []);
 

@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { Provider } from 'next-auth/client';
 import { GlobalStyle } from '../styles/global';
+import Snackbar from '../components/molecules/Snackbar';
 
 const App: React.VFC = ({ Component, pageProps }: AppProps) => {
   return (
@@ -21,8 +22,12 @@ const App: React.VFC = ({ Component, pageProps }: AppProps) => {
           />
           <link rel="icon" type="image/x-icon" href="/favicon.jpg" />
         </Head>
+
         <GlobalStyle />
+
         <Component {...pageProps} />
+
+        <Snackbar />
       </RecoilRoot>
     </Provider>
   );
