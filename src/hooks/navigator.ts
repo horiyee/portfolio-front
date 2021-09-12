@@ -26,11 +26,13 @@ export const useNavigatorUtilities = () => {
     try {
       await navigator.share(webShareData);
     } catch (e) {
-      setSnackbarOption({
-        content:
-          'エラーが発生しました。ご利用のブラウザ・OSが共有に対応していない可能性があります。',
-        color: snackbarColors.error,
-      });
+      console.error(e);
+      // TODO: fix error handling
+      // setSnackbarOption({
+      //   content:
+      //     'エラーが発生しました。ご利用のブラウザ・OSが共有に対応していない可能性があります。',
+      //   color: snackbarColors.error,
+      // });
     }
   }, []);
 

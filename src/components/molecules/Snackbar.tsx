@@ -18,7 +18,7 @@ const Root = styled.div`
   width: 100%;
   height: 100vh;
 
-  padding: 48px 24px;
+  padding: 64px 24px;
 
   pointer-events: none;
 `;
