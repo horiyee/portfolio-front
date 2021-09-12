@@ -6,4 +6,5 @@ export type MarkdownPost = {
   updatedAt: string;
   categoryId: number;
   categoryName: string;
+  publish: boolean;
 };

@@ -8,4 +8,5 @@ export type MarkdownPostApiRequest = {
   title: string;
   body: string;
   categoryId: number;
+  publish: boolean;
 };

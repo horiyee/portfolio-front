@@ -13,6 +13,7 @@ import DeleteIcon from '../../../atoms/icons/DeleteIcon';
 import SendIcon from '../../../atoms/icons/SendIcon';
 import AdminBottomActionBar from '../../../molecules/admin/AdminBottomActionBar';
 import AdminLabeledSelector from '../../../molecules/admin/AdminLabeledSelector';
+import LabeledCheckBox from '../../../molecules/LabeledCheckBox';
 import AdminMarkdownPostEditor from '../../../organisms/admin/AdminMarkdownPostEditor';
 import AdminTemplate from '../../common/AdminTemplate';
 
@@ -32,6 +33,7 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({
   const [title, setTitle] = useState(markdownPost.title);
   const [body, setBody] = useState(markdownPost.body);
   const [categoryId, setCategoryId] = useState(String(markdownPost.categoryId));
+  const [publish, setPublish] = useState(markdownPost.publish);
 
   return (
     <AdminTemplate hasBottomActionBar>
@@ -44,6 +46,13 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({
             value={categoryId}
             setValue={setCategoryId}
             options={getCategorySelectorOptions(categories)}
+          />
+        </AdminFormItemWrapper>
+        <AdminFormItemWrapper>
+          <LabeledCheckBox
+            label="マークダウン記事として公開する"
+            checked={publish}
+            setChecked={setPublish}
           />
         </AdminFormItemWrapper>
 
@@ -82,6 +91,7 @@ const AdminMarkdownPostEditTemplate: React.VFC<Props> = ({
               title,
               body,
               categoryId,
+              publish,
             )
           }
           icon={<SendIcon />}

@@ -27,7 +27,7 @@ export const useMarkdownPostAdminApiClients = () => {
   const router = useRouter();
 
   const postMarkdownPost = useCallback(
-    async (title: string, body: string, categoryId: string) => {
+    async (title: string, body: string, categoryId: string, publish) => {
       if (title === '') {
         alert('タイトルを入力してください。');
         return;
@@ -46,6 +46,7 @@ export const useMarkdownPostAdminApiClients = () => {
           title,
           body,
           categoryId: parsedCategoryId,
+          publish,
         };
 
         try {
@@ -61,7 +62,13 @@ export const useMarkdownPostAdminApiClients = () => {
   );
 
   const updateMarkdownPost = useCallback(
-    async (id: number, title: string, body: string, categoryId: string) => {
+    async (
+      id: number,
+      title: string,
+      body: string,
+      categoryId: string,
+      publish: boolean,
+    ) => {
       if (title === '') {
         alert('タイトルを入力してください。');
         return;
@@ -80,6 +87,7 @@ export const useMarkdownPostAdminApiClients = () => {
           title,
           body,
           categoryId: parsedCategoryId,
+          publish,
         };
 
         try {

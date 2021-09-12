@@ -41,7 +41,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
             <AdminTableHeader>ID</AdminTableHeader>
             <AdminTableHeader>カテゴリ</AdminTableHeader>
             <AdminTableHeader>タイトル</AdminTableHeader>
-            <AdminTableHeader>本文</AdminTableHeader>
+            <AdminTableHeader>状態</AdminTableHeader>
             <AdminTableHeader>作成日時</AdminTableHeader>
             <AdminTableHeader>更新日時</AdminTableHeader>
             <AdminTableHeader>操作</AdminTableHeader>　
@@ -56,9 +56,7 @@ const AdminMarkdownPostsIndexTemplate: React.VFC<Props> = ({
                 <AdminTableData>{markdownPost.categoryName}</AdminTableData>
                 <AdminTableData>{markdownPost.title}</AdminTableData>
                 <AdminTableData>
-                  {markdownPost.body.length > 40
-                    ? `${markdownPost.body.slice(0, 40)}…`
-                    : markdownPost.body}
+                  {markdownPost.publish ? '公開中' : '非公開'}
                 </AdminTableData>
                 <AdminTableData>
                   <Time datetime={markdownPost.createdAt} />
