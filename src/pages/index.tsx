@@ -55,8 +55,8 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
       externalPosts: externalPostsRes.externalPosts.filter(
         post => debugCategoryNames.includes(post.categoryName) === false,
       ),
-      markdownPosts: markdownPostsRes.markdownPosts.filter(post =>
-        debugCategoryNames.includes(post.categoryName),
+      markdownPosts: markdownPostsRes.markdownPosts.filter(
+        post => post.publish,
       ),
       announcements: announcementsRes.contents.filter(
         post => post.debug === false,

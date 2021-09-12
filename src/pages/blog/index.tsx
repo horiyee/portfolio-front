@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
         post => debugCategoryNames.includes(post.categoryName) === false,
       ),
       markdownPosts: markdownPostsRes.markdownPosts.filter(
-        post => debugCategoryNames.includes(post.categoryName) === false,
+        post => post.publish,
       ),
     };
 
