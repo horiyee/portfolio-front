@@ -14,7 +14,6 @@ import { MetaData, WebShareData } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
 import ClipboardCopyButton from '../../atoms/buttons/ClipboardCopyButton';
 import WebShareButton from '../../atoms/buttons/WebShareButton';
-import Decoration from '../../atoms/Decoration';
 import HorizontalLine from '../../atoms/HorizontalLine';
 import ArrowBackIcon from '../../atoms/icons/ArrowBackIcon';
 import Icon from '../../atoms/icons/Icon';
@@ -98,21 +97,19 @@ const Footer = styled.footer`
   width: 100%;
 `;
 
-const StyledDecoration = styled(Decoration)`
-  width: 42px;
-  height: 42px;
-  margin-right: 8px;
-`;
-
 const StyledLink = styled(NextLink)`
   display: flex;
   align-items: center;
 
-  fill: ${colors.white};
+  fill: ${colors.defaultBlue};
   color: ${colors.defaultBlue};
 
   opacity: 0.9;
   ${hover(`opacity: 1;`)};
+`;
+
+const StyledIcon = styled(Icon)`
+  margin-right: 8px;
 `;
 
 const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
@@ -181,9 +178,7 @@ const BlogPostDetailTemplate: React.VFC<Props> = ({ postDetail }) => {
 
       <Footer>
         <StyledLink href={paths.blog.index}>
-          <StyledDecoration>
-            <Icon icon={<ArrowBackIcon />} />
-          </StyledDecoration>
+          <StyledIcon icon={<ArrowBackIcon />} />
           記事一覧に戻る
         </StyledLink>
       </Footer>

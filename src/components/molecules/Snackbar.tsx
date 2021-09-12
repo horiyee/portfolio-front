@@ -56,8 +56,6 @@ const Snackbar: React.VFC = () => {
     }, 5000);
   }, [snackbarOption]);
 
-  console.log(snackbarOption?.position === 'bottom' ? 'bottom' : 'top');
-
   return (
     <Root position={snackbarOption?.position === 'bottom' ? 'bottom' : 'top'}>
       {snackbarOption ? (
