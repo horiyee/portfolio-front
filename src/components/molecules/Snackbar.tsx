@@ -49,11 +49,13 @@ const Snackbar: React.VFC = () => {
   useEffect(() => {
     const memorizedSnackbarOption = snackbarOption;
 
-    setTimeout(() => {
-      if (snackbarOption === memorizedSnackbarOption) {
-        setSnackbarOption(null);
-      }
-    }, 5000);
+    if (memorizedSnackbarOption) {
+      setTimeout(() => {
+        if (snackbarOption === memorizedSnackbarOption) {
+          setSnackbarOption(null);
+        }
+      }, 5000);
+    }
   }, [snackbarOption]);
 
   return (

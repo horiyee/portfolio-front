@@ -92,7 +92,6 @@ export const TechnologyMainContent = styled.div`
 
 export const MobilePageTitle = styled.h1`
   ${mqPc(`display: none`)};
-  ${mqTablet(`display: none`)};
 
   text-align: center;
   text-transform: uppercase;
