@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { snackbarOptionState } from '../../recoil/atoms/snackbarOption';
@@ -45,17 +45,17 @@ const SnackbarContent = styled.div<SnackbarContentProps>`
 const Snackbar: React.VFC = () => {
   const [snackbarOption, setSnackbarOption] =
     useRecoilState(snackbarOptionState);
+  const [appearTime, setAppearTime] = useState(new Date());
 
   useEffect(() => {
-    const memorizedSnackbarOption = snackbarOption;
+    setAppearTime(new Date());
 
-    if (memorizedSnackbarOption) {
-      setTimeout(() => {
-        if (snackbarOption === memorizedSnackbarOption) {
-          setSnackbarOption(null);
-        }
-      }, 5000);
-    }
+    setTimeout(() => {
+      const elapsedTime = new Date().valueOf() - appearTime.valueOf();
+      if (elapsedTime > 5000) {
+        setSnackbarOption(null);
+      }
+    }, 5000);
   }, [snackbarOption]);
 
   return (

@@ -29,12 +29,22 @@ export const useNavigatorUtilities = () => {
       await navigator.share(webShareData);
     } catch (e) {
       console.error(e);
-      // TODO: fix error handling
-      // setSnackbarOption({
-      //   content:
-      //     'エラーが発生しました。ご利用のブラウザ・OSが共有に対応していない可能性があります。',
-      //   color: snackbarColors.error,
-      // });
+      if (e.name === 'TypeError') {
+        setSnackbarOption({
+          content:
+            'エラーが発生しました。ご利用のブラウザ・OSが共有に対応していません。',
+          color: snackbarColors.error,
+          position: 'top',
+        });
+      } else if (e.name === 'AbortError') {
+        return;
+      } else {
+        setSnackbarOption({
+          content: 'エラーが発生しました。もう一度お試しください。',
+          color: snackbarColors.error,
+          position: 'top',
+        });
+      }
     }
   }, []);
 
