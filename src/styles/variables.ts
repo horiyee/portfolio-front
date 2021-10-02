@@ -13,6 +13,7 @@ export const colors = {
   disabled: `#12121236`,
   defaultBlue: `#1e65df`,
   darkBlue: `#1757c4`,
+  lightBlue: `#70c8f7`,
   defaultGreen: `#159e7c`,
   success: `rgb(60, 157, 112)`,
   error: `rgb(228, 83, 83)`,

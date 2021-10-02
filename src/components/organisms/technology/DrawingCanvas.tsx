@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../styles/variables';
 import { Matrix } from '../../../types';
@@ -15,14 +15,14 @@ type ColorSelectorProps = {
   chosen: boolean;
 };
 const ColorSelector = styled.button<ColorSelectorProps>`
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   background: ${props => props.color};
   border-radius: 50%;
   margin-right: 4px;
-  /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25); */
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
   border: 2px solid
-    ${props => (props.chosen ? colors.defaultBlue : colors.white)};
+    ${props => (props.chosen ? colors.lightBlue : colors.borderGray)};
 `;
 
 const Canvas = styled.canvas`
@@ -48,10 +48,10 @@ const TechnologyDrawingCanvas: React.VFC = () => {
     blue: `#274da0`,
   } as const;
   type Color = typeof colors[keyof typeof colors];
-  const chosenColor = useRef<Color>(colors.black);
+  const [chosenColor, setChosenColor] = useState<Color>(colors.black);
 
   const onClickColorPalette = (color: Color) => {
-    chosenColor.current = color;
+    setChosenColor(color);
   };
 
   const getCurrentCanvasData = (): string | null => {
@@ -64,48 +64,53 @@ const TechnologyDrawingCanvas: React.VFC = () => {
     return null;
   };
 
-  const drawLine = (e: MouseEvent) => {
-    const currentEventType = e.type;
-    const currentEventOffsets: Matrix = { x: e.offsetX, y: e.offsetY };
+  const drawLine = useCallback(
+    (e: MouseEvent) => {
+      const currentEventType = e.type;
+      const currentEventOffsets: Matrix = { x: e.offsetX, y: e.offsetY };
 
-    const startDrawing = currentEventType === 'mousedown';
-    const drawing = currentEventType === 'mousemove' && isDrawn.current;
-    const stopDrawing =
-      currentEventType === 'mouseup' || currentEventType === 'mouseout';
+      const startDrawing = currentEventType === 'mousedown';
+      const drawing = currentEventType === 'mousemove' && isDrawn.current;
+      const stopDrawing =
+        currentEventType === 'mouseup' || currentEventType === 'mouseout';
 
-    if (startDrawing) {
-      isDrawn.current = true;
-    }
+      if (startDrawing) {
+        isDrawn.current = true;
+      }
 
-    if (startDrawing || drawing) {
-      const currentCanvasRef = canvasRef.current;
-      if (currentCanvasRef) {
-        const canvasContext = currentCanvasRef.getContext('2d');
+      if (startDrawing || drawing) {
+        const currentCanvasRef = canvasRef.current;
+        if (currentCanvasRef) {
+          const canvasContext = currentCanvasRef.getContext('2d');
 
-        if (canvasContext) {
-          canvasContext.lineCap = 'round';
-          canvasContext.lineWidth = 7;
-          canvasContext.strokeStyle = chosenColor.current;
-          canvasContext.beginPath();
-          canvasContext.moveTo(eventOffsets.current.x, eventOffsets.current.y);
-          canvasContext.lineTo(currentEventOffsets.x, currentEventOffsets.y);
-          canvasContext.stroke();
+          if (canvasContext) {
+            canvasContext.lineCap = 'round';
+            canvasContext.lineWidth = 7;
+            canvasContext.strokeStyle = chosenColor;
+            canvasContext.beginPath();
+            canvasContext.moveTo(
+              eventOffsets.current.x,
+              eventOffsets.current.y,
+            );
+            canvasContext.lineTo(currentEventOffsets.x, currentEventOffsets.y);
+            canvasContext.stroke();
+          }
         }
       }
-    }
 
-    if (stopDrawing) {
-      isDrawn.current = false;
+      if (stopDrawing) {
+        isDrawn.current = false;
 
-      const currentCanvasData = getCurrentCanvasData();
-      if (currentCanvasData) {
-        canvasHistories.current.push(currentCanvasData);
-        console.log(canvasHistories.current);
+        const currentCanvasData = getCurrentCanvasData();
+        if (currentCanvasData) {
+          canvasHistories.current.push(currentCanvasData);
+        }
       }
-    }
 
-    eventOffsets.current = currentEventOffsets;
-  };
+      eventOffsets.current = currentEventOffsets;
+    },
+    [chosenColor],
+  );
 
   useEffect(() => {
     const currentCanvasRef = canvasRef.current;
@@ -116,7 +121,16 @@ const TechnologyDrawingCanvas: React.VFC = () => {
       currentCanvasRef.addEventListener('mouseup', drawLine);
       currentCanvasRef.addEventListener('mouseout', drawLine);
     }
-  }, [canvasRef.current]);
+
+    return () => {
+      if (currentCanvasRef) {
+        currentCanvasRef.removeEventListener('mousedown', drawLine);
+        currentCanvasRef.removeEventListener('mousemove', drawLine);
+        currentCanvasRef.removeEventListener('mouseup', drawLine);
+        currentCanvasRef.removeEventListener('mouseout', drawLine);
+      }
+    };
+  }, [chosenColor]);
 
   return (
     <Section enHeading="Drawing Canvas" jpHeading="描画キャンバス" id="canvas">
@@ -133,6 +147,7 @@ const TechnologyDrawingCanvas: React.VFC = () => {
           );
         })}
       </ToolBox>
+
       <Canvas
         ref={canvasRef}
         width={CANVAS_SIZE.width}
