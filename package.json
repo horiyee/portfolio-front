@@ -1,6 +1,10 @@
 {
   "name": "portfolio-front",
   "version": "1.0.0",
+  "author": "horri1520 <kh1520.shsf@gmail.com>",
+  "homepage": "https://github.com/horri1520/portfolio-front",
+  "description": "",
+  "license": "ISC",
   "scripts": {
     "dev": "next dev -p 8081",
     "build": "next build",
@@ -20,8 +24,8 @@
     }
   },
   "dependencies": {
-    "@horri1520/hori-base-components": "^1.0.8",
-    "@horri1520/hori-base-elements": "^1.1.1",
+    "@horri1520/hori-base-components": "^1.2.0",
+    "@horri1520/hori-base-elements": "^1.2.0",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
