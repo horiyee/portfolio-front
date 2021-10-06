@@ -23,6 +23,7 @@
     "@horri1520/hori-base-components": "^1.0.8",
     "@horri1520/hori-base-elements": "^1.1.1",
     "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
     "highlight.js": "^11.2.0",
     "next": "^11.1.0",
