@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '../../utils/classes';
-import { getLocaleDateString, getLocaleString } from '../../utils/datetime';
+import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
+import {
+  getLocaleDateString,
+  getLocaleString,
+} from '@horri1520/hori-base-elements/lib/utils/datetime';
 
 type Props = {
   datetime: string;

@@ -421,12 +421,14 @@
     react-markdown "^7.0.0"
     styled-components "^5.3.0"
 
-"@horri1520/hori-base-elements@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@horri1520/hori-base-elements/-/hori-base-elements-1.0.2.tgz#8a032c64b703aa77b93ab39cbeb1314d90f6a83e"
-  integrity sha512-Wo9cZY7Yi5rA2/scVFQbAgtSoCeDmPod7N+xz/BQlifSrsqR2qKQbMwzehdeqNVOI3pIYhSjAGviWK3sh3f3BQ==
+"@horri1520/hori-base-elements@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@horri1520/hori-base-elements/-/hori-base-elements-1.1.1.tgz#3e5b122b8b9dde2a2c78fa0128a1ec18e95992e2"
+  integrity sha512-AiOV7VbX/QjWYOyZlp0I0OqjwTu/8pbKxT5QJ0YliT2lYTuSF2MLJPfxOqALptOBaw1opWwaMybKA4beVhcmHw==
   dependencies:
     axios "^0.21.1"
+    cheerio "^1.0.0-rc.10"
+    highlight.js "^11.2.0"
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"

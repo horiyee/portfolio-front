@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
 import { hover } from '../../../styles/mixins';
-import { classes } from '../../../utils/classes';
 import NextImage from '../NextImage';
 import NextLink from '../NextLink';
 import StaticImage from '../StaticImage';

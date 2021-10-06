@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { classes } from '../../utils/classes';
+import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
 
 type ObjectFit = 'contain' | 'cover';
 
