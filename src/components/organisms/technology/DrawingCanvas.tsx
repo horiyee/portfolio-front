@@ -50,11 +50,17 @@ const TechnologyDrawingCanvas: React.VFC = () => {
   type Color = typeof colors[keyof typeof colors];
   const [chosenColor, setChosenColor] = useState<Color>(colors.black);
 
-  const onClickColorPalette = (color: Color) => {
+  const onClickColorPalette = useCallback((color: Color) => {
     setChosenColor(color);
-  };
+  }, []);
 
-  const getCurrentCanvasData = (): string | null => {
+  // const onClickUndo = useCallback(() => {
+  //   const canvasDataToRollback = canvasHistories.current.
+  // }, [canvasHistories.current]);
+
+  // const onClickRedo = useCallback(() => {}, [canvasHistories.current]);
+
+  const getCurrentCanvasData = useCallback((): string | null => {
     const currentCanvasRef = canvasRef.current;
 
     if (currentCanvasRef) {
@@ -62,7 +68,7 @@ const TechnologyDrawingCanvas: React.VFC = () => {
       return currentCanvasData;
     }
     return null;
-  };
+  }, [canvasRef.current]);
 
   const drawLine = useCallback(
     (e: MouseEvent) => {
@@ -137,6 +143,7 @@ const TechnologyDrawingCanvas: React.VFC = () => {
       <ToolBox>
         {Object.keys(colors).map((colorName, index) => {
           const colorCode = colors[colorName];
+
           return (
             <ColorSelector
               color={colorCode}

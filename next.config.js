@@ -23,16 +23,26 @@ module.exports = {
     ],
   },
   webpack(config, { isServer }) {
-    config.experiments = {
-      asyncWebAssembly: true,
+    config = {
+      ...config,
+      experiments: {
+        ...config.experiments,
+        asyncWebAssembly: true,
+      },
+      output: {
+        ...config.output,
+        webassemblyModuleFilename:
+          (isServer ? '../' : '') + 'static/wasm/webassembly.wasm',
+      },
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          src: path.join(__dirname, 'src/'),
+        },
+      },
     };
-    config.output.webassemblyModuleFilename =
-      (isServer ? '../' : '') + 'static/wasm/webassembly.wasm';
 
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      src: path.join(__dirname, 'src/'),
-    };
     return config;
   },
 };
