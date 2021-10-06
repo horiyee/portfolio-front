@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import React from 'react';
-import { syntaxHighlighter } from '@horri1520/hori-base-elements/lib/utils/syntaxHighlight';
 import {
   fetchCmsPostApiClient,
   fetchCmsPostsApiClient,
@@ -11,6 +10,7 @@ import { QueryParameterDuplicateError } from '../../../types';
 import { CmsPost } from '../../../types/cmsPost';
 // TODO: implement base component
 import 'highlight.js/styles/vs2015.css';
+import { syntaxHighlighter } from '../../../utils/syntaxHighlight';
 
 type StaticProps = {
   postDetail: CmsPost | null;
