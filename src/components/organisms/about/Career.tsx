@@ -90,7 +90,7 @@ const AboutCareer: React.VFC = () => {
         </CareerListItem>
 
         <CareerListItem>
-          <Period useEnFont>2021.2 - now</Period>
+          <Period useEnFont>2021.2 - 2021.10</Period>
 
           <InformationWrapper>
             <Organization>note株式会社</Organization>
