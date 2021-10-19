@@ -70,7 +70,7 @@ const AboutCareer: React.VFC = () => {
               Automation)Webシステム開発、TensorFlow,
               Kerasでの同システム向けCNNモデル開発、React.jsでの自社プロダクト開発、Gatsby.jsでの自社HP・LP開発に従事。
               <br />
-              ほかにも、RevPiなどを用いたFAシステムのハードウェア面にも携わっていた。
+              ほかにも、RevPiなどを用いたFAシステムのハードウェア面にも携わった。
             </Description>
           </InformationWrapper>
         </CareerListItem>
@@ -105,7 +105,7 @@ const AboutCareer: React.VFC = () => {
               Railsを用いて、noteのフロントエンド・サーバサイド開発に従事。
               <br />
               ほかにも、Next.js,
-              Svelteを用いてフロントエンドApp分割などにも携わっている。
+              Svelteを用いてフロントエンドApp分割などにも携わった。
             </Description>
           </InformationWrapper>
         </CareerListItem>
