@@ -22,7 +22,7 @@ export const apiRequestHeaders = {
 };
 
 export const cmsRequestHeaders = {
-  'X-API-KEY': envVariables.CMS_KEY,
+  'X-MICROCMS-API-KEY': envVariables.CMS_KEY,
 };
 
 export const debugCategoryNames =

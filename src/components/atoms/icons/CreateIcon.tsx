@@ -1,5 +1,5 @@
 import React from 'react';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
+import { classes } from '../../../utils/classes';
 
 type Props = {
   className?: string;

@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
 import { paths } from '../../../config/paths';
 import { fontSize, hoverWithTransition } from '../../../styles/mixins';
 import { colors, fontFamilies } from '../../../styles/variables';
+import { classes } from '../../../utils/classes';
 import NextLink from '../NextLink';
 
 type Props = {

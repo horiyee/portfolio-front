@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { getISOString } from '@horri1520/hori-base-elements/lib/utils/datetime';
 import { paths } from '../../../../config/paths';
 import { useGetCategorySelectorOptions } from '../../../../hooks/categories';
 import { useExternalPostAdminApiClients } from '../../../../hooks/externalPosts';
@@ -52,7 +51,7 @@ const AdminExternalPostEditTemplate: React.VFC<Props> = ({
     publishedAtInitDatetime.getSeconds(),
   );
   const [publishedAt, setPublishedAt] = useState(
-    String(getISOString(publishedAtDatetime)).replace('Z', ''),
+    String(publishedAtDatetime.toISOString()).replace('Z', ''),
   );
 
   return (

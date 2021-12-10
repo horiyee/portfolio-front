@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
 import { fontSize, mqSp } from '../../styles/mixins';
 import { colors, fontFamilies } from '../../styles/variables';
+import { classes } from '../../utils/classes';
 import ResponsiveBreak from './ResponsiveBreak';
 
 type Props = {

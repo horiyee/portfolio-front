@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
-import {
-  getLocaleDateString,
-  getLocaleString,
-} from '@horri1520/hori-base-elements/lib/utils/datetime';
+import { classes } from '../../utils/classes';
+import { getLocaleDateString, getLocaleString } from '../../utils/datetime';
 
 type Props = {
   datetime: string;
@@ -21,9 +18,8 @@ const Time: React.VFC<Props> = ({
   dateOnly,
   seperateWithPeriod,
 }) => {
-  const d = new Date(datetime);
-  const localeString = getLocaleString(d);
-  const localeDateString = getLocaleDateString(d);
+  const localeString = getLocaleString(datetime);
+  const localeDateString = getLocaleDateString(datetime);
 
   const dateString = dateOnly ? localeDateString : localeString;
 

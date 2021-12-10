@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
 import { hover, mqSp } from '../../../styles/mixins';
 import { colors } from '../../../styles/variables';
+import { classes } from '../../../utils/classes';
 import Icon from '../icons/Icon';
 
 type Props = {

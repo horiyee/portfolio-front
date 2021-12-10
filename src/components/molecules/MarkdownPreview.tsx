@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
+import { classes } from '../../utils/classes';
 import InnerHTMLStyler from '../atoms/InnerHTMLStyler';
 
 type Props = {

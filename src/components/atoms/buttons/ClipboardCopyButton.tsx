@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
 import { useNavigatorUtilities } from '../../../hooks/navigator';
 import { hoverWithTransition } from '../../../styles/mixins';
 import { colors } from '../../../styles/variables';
-import Icon from '../icons/Icon';
+import { classes } from '../../../utils/classes';
 import LinkIcon from '../icons/LinkIcon';
 import IconButton from './IconButton';
 

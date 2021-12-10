@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
 import { colors } from '../../styles/variables';
+import { classes } from '../../utils/classes';
 
 type Props = {
   children: React.ReactNode;

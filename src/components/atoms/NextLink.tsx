@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { classes } from '@horri1520/hori-base-elements/lib/utils/classes';
+import { classes } from '../../utils/classes';
 
 type Props = {
   children?: React.ReactNode;
