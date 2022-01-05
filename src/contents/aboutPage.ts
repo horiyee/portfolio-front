@@ -27,32 +27,32 @@ export const snsInfo: { [s: string]: Sns } = {
   atCoder: {
     name: 'AtCoder',
     logo: atCoderLogoImage,
-    url: 'https://atcoder.jp/users/horri1520',
-    id: 'horri1520',
+    url: 'https://atcoder.jp/users/horiy0125',
+    id: 'horiy0125',
   },
   github: {
     name: 'GitHub',
     logo: gitHubLogoImage,
-    url: 'https://github.com/horri1520',
-    id: 'horri1520',
+    url: 'https://github.com/horiy0125',
+    id: 'horiy0125',
   },
   note: {
     name: 'note',
     logo: noteLogoImage,
-    url: 'https://note.com/horri1520',
-    id: 'horri1520',
+    url: 'https://note.com/horiy0125',
+    id: 'horiy0125',
   },
   qiita: {
     name: 'Qiita',
     logo: qiitaLogoImage,
-    url: 'https://qiita.com/horri1520',
-    id: 'horri1520',
+    url: 'https://qiita.com/horiy0125',
+    id: 'horiy0125',
   },
   twitter: {
     name: 'Twitter',
     logo: twitterLogoImage,
-    url: 'https://twitter.com/horri1520',
-    id: 'horri1520',
+    url: 'https://twitter.com/horiy0125',
+    id: 'horiy0125',
   },
 };
 
