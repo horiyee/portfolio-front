@@ -95,7 +95,7 @@ const AboutCareer: React.VFC = () => {
           <InformationWrapper>
             <Organization>note株式会社</Organization>
             <Role>
-              カイゼン・web1チーム
+              カイゼンチーム/web1チーム
               <br />
               エンジニア（長期インターン）
             </Role>
@@ -164,6 +164,25 @@ const AboutCareer: React.VFC = () => {
             <Description>
               Next.js, Ruby on
               Railsで構築されたアプリケーションを題材に、GraphQLを用いてAPIを開発するインターン。
+            </Description>
+          </InformationWrapper>
+        </CareerListItem>
+
+        <CareerListItem>
+          <Period useEnFont>2021.11.1 - 2021.12.9</Period>
+
+          <InformationWrapper>
+            <Organization>クックパッド株式会社</Organization>
+            <Role>
+              <Role>
+                買物サービス開発部
+                <br />
+                エンジニア（就業型インターン）
+              </Role>
+            </Role>
+
+            <Description>
+              かいもの連携機能の開発に前半はSwiftを用いて（クックパッドiOSアプリ）、後半はNext.jsを用いて（Web版クックパッド）携わった。
             </Description>
           </InformationWrapper>
         </CareerListItem>
